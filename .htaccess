@@ -1,0 +1,5 @@
+RedirectMatch 301 /sigma(/)?$ /
+
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} "MSIE [6-8]" [NC]
+RewriteRule ^(.*)$ http://browsehappy.com/ [L]

@@ -1,0 +1,318 @@
+/*
+    ---------
+    structure
+    ---------
+*/
+
+html, body {
+  font: 24px/150% "Source Sans Pro", sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#sigma-container {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  padding: 0;
+  z-index: 1;
+}
+
+/*
+    ------
+    colors
+    ------
+*/
+
+.bg_an:after { background: #003; }
+
+.bg_se:after { background: #300; }
+
+.bg_gr:after { background: #222; }
+
+/*
+    -----
+    links
+    -----
+*/
+
+a {
+  color: #ff6;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff9;
+  text-decoration: underline;
+}
+
+a:active, a.here { color: #fff; }
+
+a.here, a.button {
+  padding: 3px 6px;
+  border: 1px solid #999;
+  text-decoration: none;
+}
+
+a.button {
+  float: left;
+  margin: 0 0 .5em 1em;
+  padding: 3px 5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #fff;
+  display:inline-block;
+  font-size:15px;
+  font-style: normal;
+  height:45px;
+  line-height:45px;
+  width:110px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+}
+
+a.button:hover {
+  color: #ff9;
+  border-color: #ff9;
+}
+
+/*
+    -------
+    headers
+    -------
+*/
+
+h1, h2, p, nav {
+  clear: left;
+  padding: 15px;
+  margin:0;
+}
+
+h1 {
+  letter-spacing: 1.2px;
+  font-variant: small-caps;
+  font-weight: normal;
+  font-size: 150%;
+  padding: 25px 15px 5px;
+  float: left;
+  border-bottom: 1px solid white;
+}
+
+h2 {
+  font-size: 130%;
+  font-weight: 600;
+}
+
+h2 img { clear: left; }
+
+/*
+    ---------------
+    sidebar and box
+    ---------------
+*/
+
+#controls, #box {
+  position: absolute;
+  top: 0;
+  opacity: 1;
+  z-index: 2;
+}
+
+#controls {
+  width: 360px;
+  bottom: 0;
+  border: 1px solid #666;
+  border-width: 0 1px 0 0;
+  overflow: hidden;
+  font-size: 80%;
+}
+
+#controls p { padding: .25em 1em; }
+
+#box {
+  max-width: 680px;
+  margin: 20px 15px 0;
+  right: 0;
+  padding: 0;
+}
+
+#box p { padding: 30px 30px 10px; }
+
+#box img {
+  border: 1px solid #eee;
+  float: left;
+  margin-right: 15px;
+}
+
+#controls::after, #box::after {
+  content: "";
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+#controls:hover::after, #box:hover::after { opacity: 0.75; }
+
+/*
+    ------
+    footer
+    ------
+*/
+
+footer {
+  position: absolute;
+  bottom: 0;
+  clear: left;
+  padding: 1em 20px 3em 0;
+  font-size: 75%;
+  line-height: 150%;
+}
+
+footer ul {
+  clear: left;
+  margin: 0;
+  padding: 1em;
+}
+
+footer li {
+  list-style-type: none;
+  margin: 0 0 0 1em;
+  padding: .5em 0 0 0;
+}
+
+footer small a {
+  color: #999;
+  font-size: 125%;
+}
+
+/*
+    ---------
+    searchbox
+    ---------
+*/
+
+.smart_autocomplete_container ul {
+  margin: 0;
+  padding: 0;
+}
+.smart_autocomplete_container li {
+  width: 100%;
+  font-size: 66%;
+  list-style-type: none;
+  padding: 2px 6px;
+  margin: 0;
+  background: #111;
+  opacity: .95;
+  color: #eee;
+  border-bottom: 1px solid #111;
+}
+.smart_autocomplete_container li:hover, li.smart_autocomplete_highlight {
+  background: #ff9;
+  color: #333;
+}
+
+#search-nodes-fieldset { border-color: transparent; }
+
+#search-nodes-fieldset label { padding-right: 1em; }
+
+#search-nodes-fieldset input {
+  min-width: 200px;
+  min-height: 18px;
+  background: transparent;
+  border: 1px solid white;
+  padding: 0.25em;
+  color: #fff;
+  font-size: 90%;
+}
+
+/*
+    -----
+    about
+    -----
+*/
+
+#about {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #999;
+  margin: 0;
+  font-size: 150%;
+  float: right;
+}
+
+#about:hover {
+  color: #fff;
+  background: #111;
+}
+
+#about ul { display: none; }
+
+#about li {
+  list-style-type: none;
+  padding: .2em .2em;
+  margin: 0;
+}
+
+#about:hover ul {
+  display: block;
+  width: 340px;
+  padding: 10px 20px;
+}
+
+#about h3 {
+  font-size: 80%;
+  font-weight: normal;
+  line-height: 200%;
+  padding: 2em 1.5em .5em;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+#about li {
+  line-height: 133%;
+  text-align: left;
+  padding-bottom: .5em;
+  padding-right: .5em;
+}
+
+#about li a {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/*
+    -------
+    details
+    -------
+*/
+
+#details { color: #999; }
+
+#details:hover { color: #fff; }
+
+#details h3 {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding-right: 1em;
+  margin-top: 0;
+  float: right;
+  display: inline;
+  font-size: 80%;
+  font-weight: normal;
+}
+
+#details p { display: none; }
+
+#details:hover h3 { margin-bottom: 3em; }
+
+#details:hover p { display: block; }
