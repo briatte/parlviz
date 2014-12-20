@@ -137,15 +137,8 @@
       </ul>
 
       <div id="about">
-        <h3><i class="fa fa-eye"></i>&nbsp;About</h3>
+        <h3><i class="fa fa-eye"></i>&nbsp;More networks</h3>
         <ul>
-          <li>
-            This visualization was built with <a href="http://www.r-project.org/" title="The R Project for Statistical Computing">R</a> and
-            <a href="http://sigmajs.org/" title="JavaScript library dedicated to graph drawing">sigma.js</a>,
-            and was inspired by <a href="http://coulmont.com/blog/2011/09/02/travail-de-deputes/">Baptiste Coulmont</a> and
-            <a href="http://jhfowler.ucsd.edu/cosponsorship.htm">James Fowler</a>.
-          </li>
-          <li>View other parliaments:</li>
           <li><a href="/nationalrat">Austria</a></li>
           <li><a href="/belparl">Belgium</a></li>
           <li><a href="/bgparl">Bulgaria</a></li>
@@ -154,7 +147,9 @@
           <li><a href="/epam">European Union</a></li>
           <li><a href="/eduskunta">Finland</a></li>
           <li><a href="/parlement">France</a></li>
+          <li><a href="/althing">Iceland</a></li>
           <li><a href="/parlamento">Italy</a></li>
+          <li><a href="/seimas">Lithuania</a></li>
           <li><a href="/stortinget">Norway</a></li>
           <li><a href="/parlamentul">Romania</a></li>
           <li><a href="/riksdag">Sweden</a></li>
