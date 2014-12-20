@@ -133,7 +133,7 @@
       <!-- tweet -->
       <p>
         <a href="http://twitter.com/share?text=Cosponsorship%20networks%20in%20the%20@Europarl_EN%20European%20Parliament,%20by%20@phnk:&amp;url=<?php echo 'http://' . $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>" class="button" title="Share this page on Twitter."><i class="fa fa-twitter"></i>&nbsp;Tweet</a>&nbsp;&nbsp;
-        <a href="https://github.com/briatte/epam" class="button" title="Get the replication code from GitHub."><i class="fa fa-github"></i>&nbsp;Code</a>
+        <a href="https://github.com/briatte/parlviz" class="button" title="Get the visualization code from GitHub."><i class="fa fa-github"></i>&nbsp;Code</a>
       </p>
 
       <!-- creds -->
