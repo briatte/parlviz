@@ -343,7 +343,7 @@ sigma.parsers.gexf(
         document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
         photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + stat;
       else
-        document.getElementById('box').innerHTML = '<p style="background:' + rgba + ';">' +
+        document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
         photo + 'You selected ' + id + ', a senator' + stat;
 
       // Since the data has been modified, we need to
