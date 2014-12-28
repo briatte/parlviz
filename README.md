@@ -1,4 +1,4 @@
-[Interactive visualizations](http://briatte.org/) of the following legislative cosponsorship networks:
+[Interactive visualizations](http://briatte.org/) of the following [legislative cosponsorship networks](https://github.com/briatte/parlnet):
 
 - [`nationalrat`](https://github.com/briatte/nationalrat) · Austria
 - [`belparl`](https://github.com/briatte/belparl) · Belgium
