@@ -153,6 +153,7 @@
           <li><a href="/epam">European Union</a></li>
           <li><a href="/eduskunta">Finland</a></li>
           <li><a href="/parlement">France</a></li>
+          <li><a href="/orszaggyules">Hungary</a></li>
           <li><a href="/althing">Iceland</a></li>
           <li><a href="/parlamento">Italy</a></li>
           <li><a href="/seimas">Lithuania</a></li>
