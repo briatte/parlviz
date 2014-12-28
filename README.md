@@ -8,8 +8,10 @@
 - [`epam`](https://github.com/briatte/epam) · European Union
 - [`eduskunta`](https://github.com/briatte/eduskunta) · Finland
 - [`parlement`](https://github.com/briatte/parlement) · France
+- [`orszaggyules`](https://github.com/briatte/orszaggyules) · Hungary
 - [`althing`](https://github.com/briatte/althing) · Iceland
 - [`parlamento`](https://github.com/briatte/parlamento) · Italy
+- [`seimas`](https://github.com/briatte/seimas) · Lithuania
 - [`stortinget`](https://github.com/briatte/stortinget) · Norway
 - [`parlamentul`](https://github.com/briatte/parlamentul) · Romania
 - [`riksdag`](https://github.com/briatte/riksdag) · Sweden
