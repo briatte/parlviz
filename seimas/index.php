@@ -220,10 +220,10 @@ sigma.parsers.gexf(
     });
 
     // box
-    var parties = [ 'Lietuvos valstiečių ir žaliųjų sąjunga', 'Lietuvos socialdemokratų partija', 
+    var parties = [ 'Lietuvos socialdemokratų partija', 'Lietuvos valstiečių ir žaliųjų sąjunga', 
       'Darbo partija', 'Lietuvos lenkų rinkimų akcija', 'Naujoji sąjunga (socialliberalai)', 
-      'Tvarka ir teisingumas', 'Liberalų sąjūdis', 'Liberalų ir centro sąjunga', 
-      'Tėvynės sąjunga - Lietuvos krikščionys demokratai', 'Tautos prisikėlimo partija', 
+      'Tvarka ir teisingumas', 'Tėvynės sąjunga - Lietuvos krikščionys demokratai', 
+      'Liberalų sąjūdis', 'Liberalų ir centro sąjunga', 'Tautos prisikėlimo partija', 
       'Drąsos kelias', 'independent' ];
     var colors = new Array(parties.length);
 
