@@ -222,10 +222,13 @@ sigma.parsers.gexf(
 
     // box
     var parties = [ "Green Party, GPS/PES", "Social Democratic Party, SPS/PSS",
-      "Green Liberal Party, GLP/PVL", "Christian Democratic People's Party, CVP/PDC/PPD",
-      "Evangelical People's Party, EVP/PEV", "FDP.The Liberals, LPS/PLS-FDP/PLR",
-      "Swiss People's Party, SVP/UDC", "Conservative Democratic Party, BPD/PBD",
-      "Freedom Party, FPS/PSL", "Ticino League", "independent or minor party" ];
+      "Green Liberal Party, GLP/PVL", "Ring of Independents, LdU/AdI", 
+      "Christian Democratic People's Party, CVP/PDC/PPD", 
+      "Evangelical People's Party, EVP/PEV", "Christian Social Party, CSP/PCS", 
+      "Free Democratic Party, FDP/PLR", "Liberal Party, LPS/PLS", 
+      "Swiss People's Party, SVP/UDC", "Conservative Democratic Party, BPD/PBD", 
+      "Freedom Party, FPS/PSL", "Ticino League", "Geneva Citizens Movement, MCG/MCR", 
+      "independent or minor party" ];
     var colors = new Array(parties.length);
 
     // initial nodes
