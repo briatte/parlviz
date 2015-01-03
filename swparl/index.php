@@ -132,7 +132,9 @@
           <i class="fa fa-file-o"></i>&nbsp;&nbsp;
           <a href="<?php echo 'net_ch' . $t; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
           <i class="fa fa-files-o"></i>&nbsp;&nbsp;
-          <a href="net_ch.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>
+          <a href="net_ch.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
+          <i class="fa fa-file-image-o"></i>&nbsp;&nbsp;
+          <a href="plots.html">plots</a>
         </li>
       </ul>
 
@@ -222,12 +224,12 @@ sigma.parsers.gexf(
 
     // box
     var parties = [ "Green Party, GPS/PES", "Social Democratic Party, SPS/PSS",
-      "Green Liberal Party, GLP/PVL", "Ring of Independents, LdU/AdI", 
-      "Christian Democratic People's Party, CVP/PDC/PPD", 
-      "Evangelical People's Party, EVP/PEV", "Christian Social Party, CSP/PCS", 
-      "Free Democratic Party, FDP/PLR", "Liberal Party, LPS/PLS", 
-      "Swiss People's Party, SVP/UDC", "Conservative Democratic Party, BPD/PBD", 
-      "Freedom Party, FPS/PSL", "Ticino League", "Geneva Citizens Movement, MCG/MCR", 
+      "Green Liberal Party, GLP/PVL", "Ring of Independents, LdU/AdI",
+      "Christian Democratic People's Party, CVP/PDC/PPD",
+      "Evangelical People's Party, EVP/PEV", "Christian Social Party, CSP/PCS",
+      "Free Democratic Party, FDP/PLR", "Liberal Party, LPS/PLS",
+      "Swiss People's Party, SVP/UDC", "Conservative Democratic Party, BPD/PBD",
+      "Freedom Party, FPS/PSL", "Ticino League", "Geneva Citizens Movement, MCG/MCR",
       "independent or minor party" ];
     var colors = new Array(parties.length);
 
