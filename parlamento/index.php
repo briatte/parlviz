@@ -252,15 +252,16 @@ sigma.parsers.gexf(
     });
 
     // box
-    var parties = [ "P. Rifondazione Comunista", "Sinistra Ecologia Libertà",
-      "P. Comunisti Italiani", "Verdi e Communisti", "Verdi",
-      "Sinistra Democratica", "M5S", "L'Ulivo", "Partito Democratico",
-      "Socialisti e Radicali", "Margherita", "Partito Popolare Italiano",
-      "Italia dei Valori", "Rinnovamento Italiano", "Popolari-UDEUR",
-      "Per l'Italia", "Scelta Civica con Monti", "Centro Democratico",
-      "Unione di Centro", "Grandi Autonomie e Libertà", "Forza Italia",
-      "Il Popolo della Libertà", "Nuovo Centrodestra", "Fratelli d'Italia",
-      "Lega Nord", "Alleanza Nazionale", "mixed group or smaller party" ];
+    var parties = [ "P. Rifondazione Comunista", "P. Comunisti Italiani", "Sinistra Democratica",
+      "Sinistra Ecologia Libertà", "Verdi e Communisti", "Verdi", "Democratici di Sinistra",
+      "Movimento 5 Stelle", "Partito Democratico", "L'Ulivo", "Autonomie, PSI e MAIE",
+      "Rosa nel Pugno", "Margherita", "I Democratici", "Partito Popolare Italiano",
+      "Italia dei Valori", "Rinnovamento Italiano", "Popolari-UDEUR", "Südtiroler Volkspartei",
+      "Per l'Italia", "UDC, SVP e Autonomie", "Centro Cristiano Democratico", "CCD-CDU: Biancofiore",
+      "Scelta Civica con Monti", "Centro Democratico", "Unione di Centro", "Cristiani Democratici Uniti",
+      "Movimento per l'Autonomia", "Movimento per le Autonomie", "Grandi Autonomie e Libertà", "Forza Italia",
+      "Il Popolo della Libertà", "Nuovo Centrodestra", "Fratelli d'Italia", "Lega Nord", "Alleanza Nazionale", 
+      "linguistic minorities", "mixed group or smaller party" ];
     var colors = new Array(parties.length);
 
     // initial nodes
