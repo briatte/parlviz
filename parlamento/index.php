@@ -257,18 +257,17 @@ sigma.parsers.gexf(
       "Movimento 5 Stelle", "Partito Democratico", "L'Ulivo", "Autonomie, PSI e MAIE",
       "Rosa nel Pugno", "Margherita", "I Democratici", "Partito Popolare Italiano",
       "Italia dei Valori", "Rinnovamento Italiano", "Popolari-UDEUR", "Südtiroler Volkspartei",
-      "Per l'Italia", "UDC, SVP e Autonomie", "Centro Cristiano Democratico", "CCD-CDU: Biancofiore",
+      "Democrazia Cristiana per le Autonomie e Nuovo PSI", "Per l'Italia", 
+      "Liberal-Democratici, Repubblicani e Nuovo PSI", 
+      "UDC, SVP e Autonomie", "Centro Cristiano Democratico", "CCD-CDU: Biancofiore",
       "Scelta Civica con Monti", "Centro Democratico", "Unione di Centro", "Cristiani Democratici Uniti",
       "Movimento per l'Autonomia", "Movimento per le Autonomie", "Grandi Autonomie e Libertà", "Forza Italia",
       "Il Popolo della Libertà", "Nuovo Centrodestra", "Fratelli d'Italia", "Lega Nord", "Alleanza Nazionale", 
-      "linguistic minorities", "mixed group or smaller party" ];
+      "linguistic minorities", "mixed or minor group" ];
     var colors = new Array(parties.length);
 
     // initial nodes
     s.graph.nodes().forEach(function(n) {
-      // 'Misto'
-      if(n.attributes['party'] == 'Misto')
-        n.attributes['party'] = 'mixed group or smaller party';
       // find party colors
       if(parties.indexOf(n.attributes['party']) != -1)
         colors[ jQuery.inArray(n.attributes['party'], parties) ] = n.color;
