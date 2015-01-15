@@ -66,7 +66,7 @@
 
     <h2>
       <a href="https://www.stortinget.no/" title="Stortinget">
-        <img src="logo_st.png" height="18" alt="logo">
+        <img src="logo_no.png" height="18" alt="logo">
       </a>
       &nbsp;<?php echo $y[ $t ]; ?>
     </h2>
@@ -305,14 +305,14 @@ sigma.parsers.gexf(
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
       // constituency
-      var county = '';
+      var constituency = '';
       if(typeof e.data.node.attributes['constituency'] != 'undefined')
-        var county = ' representing <a title="Go to Wikipedia entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
+        var constituency = ' representing <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
           e.data.node.attributes['constituency'].replace(new RegExp(' ', 'g'), '_') +
           '">' + e.data.node.attributes['constituency'] + '</a>';
 
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
-        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + county +
+        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + constituency +
         ' who had <span title="unweighted Freeman degree">' +
         s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' +
         e.data.node.attributes['n_bills'] + ' bill(s) on this theme.</p>';

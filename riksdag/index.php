@@ -300,7 +300,7 @@ sigma.parsers.gexf(
       // constituency
       var constituency = '';
       if(typeof e.data.node.attributes['county'] != 'undefined')
-        var constituency = ' representing <a title="Go to Wikipedia entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
+        var constituency = ' representing <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
         e.data.node.attributes['county'] + '">' + e.data.node.attributes['county'].replace('_', ' ') + '</a>';
 
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +

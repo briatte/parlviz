@@ -319,7 +319,7 @@ sigma.parsers.gexf(
       var id = profile + e.data.node.label + '</a> <span title="Political group affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['group'] + ')</span>';
 
       // nationality
-      var natl = ' from <a title="Go to Wikipedia entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
+      var natl = ' from <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
         e.data.node.attributes['nat'].replace(new RegExp(' ', 'g'), '_') +
         '">' + e.data.node.attributes['nat'] + '</a>';
 

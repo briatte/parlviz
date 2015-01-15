@@ -290,7 +290,7 @@ sigma.parsers.gexf(
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
       // constituency
-      var constituency = ' representing <a title="Look up on Wikipedia English (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
+      var constituency = ' representing <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
         e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace("_", " ") + '</a>';
 
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
