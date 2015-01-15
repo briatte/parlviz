@@ -299,8 +299,8 @@ sigma.parsers.gexf(
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
       
       // constituency
-      var constituency = ' representing <a href="https://da.wikipedia.org/wiki/' + e.data.node.attributes['constituency'] + 
-        '" title="Look up on Wikipedia Dansk (new window)" target="_blank">' + e.data.node.attributes['constituency'] + '</a>';
+      var constituency = ' representing <a title="Look up on Wikipedia Dansk (new window)" target="_blank" href="https://da.wikipedia.org/wiki/' + 
+        e.data.node.attributes['constituency'] + '" >' + e.data.node.attributes['constituency'].replace("_", " ") + '</a>';
 
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
         photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + constituency +
