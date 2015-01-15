@@ -64,7 +64,7 @@
 
     <h2>
       <a href="http://www.ft.dk/" title="Folketinget">
-        <img src="logo_fo.png" height="18" alt="logo">
+        <img src="logo_dk.png" height="18" alt="logo">
       </a>
       &nbsp;<?php echo $y[ $t ]; ?>
     </h2>
@@ -297,9 +297,13 @@ sigma.parsers.gexf(
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
+      
+      // constituency
+      var constituency = ' representing <a href="https://da.wikipedia.org/wiki/' + e.data.node.attributes['constituency'] + 
+        '" title="Look up on Wikipedia Dansk (new window)" target="_blank">' + e.data.node.attributes['constituency'] + '</a>';
 
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
-        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' +
+        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + constituency +
         ' who had <span title="unweighted Freeman degree">' +
         s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' +
         e.data.node.attributes['n_bills'] + ' bill(s) on this theme.</p>';
