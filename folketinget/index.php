@@ -6,12 +6,18 @@
   if(!isset($t)) $t = 'Environment';
 
   $y = array(
-    'Economy' => 'Economy &amp; Business',
+    'Agriculture' => 'Agriculture',
+    'Culture' => 'Culture',
+    'Economy' => 'Economic&nbsp;Affairs',
     'Education' => 'Education',
-    'Environment' => 'Environment &amp; Energy',
+    'Environment' => 'Environment',
+    'Foreign Affairs' => 'Foreign&nbsp;Affairs',
     'Health' => 'Health',
-    'Immigration' => 'Immigration &amp; Integration',
+    'Housing' => 'Housing',
+    'Immigration' => 'Immigration',
+    'Institutional' => 'Institutional',
     'Justice' => 'Justice',
+    'Technology' => 'Technology',
     'Welfare' => 'Welfare');
 
   $c = $y;
