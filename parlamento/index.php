@@ -328,16 +328,25 @@ sigma.parsers.gexf(
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
+      // constituency
+      var constituency = '';
+      if(e.data.node.attributes['constituency'] == 'Senatore_a_vita')
+        constituency = ' <a title="Go to Wikipedia Italiano entry (new window)" target="_blank" href="https://it.wikipedia.org/wiki/' + 
+          e.data.node.attributes['constituency'] + '" >elected for life</a>';
+      else
+        constituency = ' representing <a title="Go to Wikipedia Italiano entry (new window)" target="_blank" href="https://it.wikipedia.org/wiki/' + 
+          e.data.node.attributes['constituency'] + '" >' + e.data.node.attributes['constituency'].replace("_", " ") + '</a>';
+
       // activity stats
       var stat = ' who <?php echo $have; ?> <span title="unweighted Freeman degree">' +
         s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' + e.data.node.attributes['n_bills'] + ' bill(s) during the legislature.</p>';
 
       if(document.title.match('Camera'))
         document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
-        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + stat;
+        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + constituency + stat;
       else
         document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
-        photo + 'You selected ' + id + ', a senator' + stat;
+        photo + 'You selected ' + id + ', a senator' + constituency + stat;
 
       // Since the data has been modified, we need to
       // call the refresh method to make the colors
