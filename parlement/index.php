@@ -29,6 +29,9 @@
     '12' => '2002&mdash;2007',
     '13' => '2007&mdash;2012',
     '14' => '2012&mdash;2017');
+    
+  if($ch == 'an')
+    unset($y['10']);
 
   $c = $y;
 
@@ -330,8 +333,8 @@ sigma.parsers.gexf(
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
       // constituency
-      var constituency = ' representing <a href="https://fr.wikipedia.org/wiki/' + e.data.node.attributes['constituency'] + 
-        '" title="Look up on Wikipedia Francophone (new window)" target="_blank">' + e.data.node.attributes['constituency'] + '</a>';
+      var constituency = ' representing <a title="Go to Wikipedia Francophone entry (new window)" target="_blank" href="https://fr.wikipedia.org/wiki/' +
+        e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
 
       // activity stats
       var stat = ' who had <span title="unweighted Freeman degree">' +
