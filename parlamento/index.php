@@ -333,7 +333,7 @@ sigma.parsers.gexf(
       if(e.data.node.attributes['constituency'] == 'Senatore_a_vita')
         constituency = ' <a title="Go to Wikipedia Italiano entry (new window)" target="_blank" href="https://it.wikipedia.org/wiki/' + 
           e.data.node.attributes['constituency'] + '" >elected for life</a>';
-      else
+      else if(typeof e.data.node.attributes['constituency'] != 'undefined')
         constituency = ' representing <a title="Go to Wikipedia Italiano entry (new window)" target="_blank" href="https://it.wikipedia.org/wiki/' + 
           e.data.node.attributes['constituency'] + '" >' + e.data.node.attributes['constituency'].replace("_", " ") + '</a>';
 
