@@ -335,6 +335,11 @@ sigma.parsers.gexf(
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
+      // constituency
+      if(typeof e.data.node.attributes['constituency'] != 'undefined')
+        var constituency = ' representing the <a title="Go to Wikipedia Francophone entry (new window)" target="_blank" href="https://fr.wikipedia.org/wiki/' +
+          e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
+
       // activity stats
       var stat = ' who <?php echo $have; ?> <span title="unweighted Freeman degree">' +
         s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' +
@@ -342,7 +347,7 @@ sigma.parsers.gexf(
 
       if(document.title.match('Chambre'))
         document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
-        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + stat;
+        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + constituency + stat;
       else
         document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
         photo + 'You selected ' + id + ', a senator' + stat;
