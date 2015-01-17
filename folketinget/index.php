@@ -306,7 +306,7 @@ sigma.parsers.gexf(
       
       // constituency
       var constituency = ' representing <a title="Go to Wikipedia Dansk entry (new window)" target="_blank" href="https://da.wikipedia.org/wiki/' + 
-        e.data.node.attributes['constituency'] + '" >' + e.data.node.attributes['constituency'].replace("_", " ") + '</a>';
+        e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
 
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
         photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + constituency +

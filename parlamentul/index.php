@@ -326,17 +326,21 @@ sigma.parsers.gexf(
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
+      console.log(e.data.node.attributes['party']);
+      if(e.data.node.attributes['party'] == 'Ethnic/Linguistic minorities')
+        id = id.replace('(Ethnic/Linguistic minorities)', '').replace('</a> <', '</a><');
+      
       // activity stats
       var stat = ' who <?php echo $have; ?> <span title="unweighted Freeman degree">' +
         s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' +
         e.data.node.attributes['n_bills'] + ' bill(s) during the legislature.</p>';
 
       // constituency
-      var constituency = '';
-      if(e.data.node.attributes['constituency'] != 'Naţional')
-        constituency = ' representing <a title="Go to Wikipedia entry (new window)" target="_blank" href="https://ro.wikipedia.org/wiki/Județul_' +
-        e.data.node.attributes['constituency'].replace('-severin', '').replace('Bistriţa-năsăud', 'Bistrița-Năsăud').replace('Satu-mare', 'Satu_Mare') +
-        '">' + e.data.node.attributes['constituency'] + '</a>';
+      var constituency = ' representing <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
+        e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
+        
+      if(e.data.node.attributes['constituency'] == "Romanian_diaspora")
+        constituency = constituency.replace('representing', 'representing the');
 
       if(document.title.match('Camera'))
         document.getElementById('box').innerHTML = '<p style="min-height:150px; background:' + rgba + ';">' +
