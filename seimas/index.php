@@ -290,9 +290,15 @@ sigma.parsers.gexf(
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
+      // constituency
+      var constituency = '';
+      if(typeof e.data.node.attributes['constituency'] != 'undefined')
+        if(e.data.node.attributes['constituency'] != 'pagal sąrašą')
+          constituency = ' representing ' + e.data.node.attributes['constituency'];
+
       // selection text
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
-        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr> ' +
+        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr> ' + constituency +
         ' who had <span title="unweighted Freeman degree">' + s.graph.getNeighborsCount(nodeId) +
         ' cosponsor(s)</span> on ' + e.data.node.attributes['n_bills'] + ' bill(s) during the legislature.</p>';
 
