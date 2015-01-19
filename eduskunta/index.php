@@ -3,11 +3,13 @@
   if(count($_GET) > 0 & !empty($_GET['legislature'])) $t = basename($_GET['legislature']);
 
   // default legislature
-  if(!isset($t)) $t = '35';
+  if(!isset($t)) $t = '2011-2014';
 
   $y = array(
-    '35' => '2009&mdash;2010',
-    '36' => '2011&mdash;2014'
+    '1999-2002' => '1999&mdash;2002',
+    '2003-2006' => '2003&mdash;2006',
+    '2007-2010' => '2007&mdash;2010',
+    '2011-2014' => '2011&mdash;'
   );
 
   $c = $y;
