@@ -66,14 +66,14 @@
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
-  <link rel="stylesheet" type="text/css" href="/assets/styles.css" />
-  <link rel="stylesheet" type="text/css" href="/assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../assets/styles.css" />
+  <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css">
   <style type="text/css" media="screen">body { background: #111; }</style>
-  <script type="text/javascript" src="/assets/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="/assets/jquery.smart_autocomplete.min.js"></script>
-  <script type="text/javascript" src="/assets/sigmajs-release-v1.0.2/sigma.min.js"></script>
-  <script type="text/javascript" src="/assets/sigmajs-release-v1.0.2/plugins/sigma.parsers.gexf.min.js"></script>
-  <script type="text/javascript" src="/assets/sigmajs-release-v1.0.2/plugins/sigma.layout.forceAtlas2.min.js"></script>
+  <script type="text/javascript" src="../assets/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="../assets/jquery.smart_autocomplete.min.js"></script>
+  <script type="text/javascript" src="../assets/sigmajs-release-v1.0.2/sigma.min.js"></script>
+  <script type="text/javascript" src="../assets/sigmajs-release-v1.0.2/plugins/sigma.parsers.gexf.min.js"></script>
+  <script type="text/javascript" src="../assets/sigmajs-release-v1.0.2/plugins/sigma.layout.forceAtlas2.min.js"></script>
 </head>
 <body>
 
