@@ -1,4 +1,4 @@
-[Interactive visualizations](http://briatte.org/) of the following [legislative cosponsorship networks](https://github.com/briatte/parlnet):
+[Interactive visualizations](http://f.briatte.org/parlviz) of the following [legislative cosponsorship networks](https://github.com/briatte/parlnet):
 
 - [`nationalrat`](https://github.com/briatte/nationalrat) · Austria
 - [`belparl`](https://github.com/briatte/belparl) · Belgium
@@ -19,7 +19,7 @@
 
 Javascript code hacked from [sigma.js / examples / load-external-gexf.html](https://github.com/jacomyal/sigma.js/blob/master/examples/load-external-gexf.html) (parser) and [osdc2012-demo](http://jcml.fr/~jacomyal/osdc2012-demo/) (searchbox).
 
-For a different framework, see [this visualization of the Tunisian Constitution](http://briatte.org/marsad/), using code from the [InteractiveVis project](https://github.com/oxfordinternetinstitute/InteractiveVis/) at the [Oxford Internet Institute](http://blogs.oii.ox.ac.uk/vis/).
+For a different framework, see [this visualization of the Tunisian Constitution](http://f.briatte.org/parlviz/marsad/), using code from the [InteractiveVis project](https://github.com/oxfordinternetinstitute/InteractiveVis/) at the [Oxford Internet Institute](http://blogs.oii.ox.ac.uk/vis/).
 
 # BUGS
 
@@ -38,4 +38,4 @@ If you find a bug in the scraper code, please report it in the corresponding rep
 
 # CREDITS
 
-Thanks to [Apinc](http://www.apinc.org/) for hosting.
+Thanks to [l'Autre Net](http://www.lautre.net/) for hosting.
