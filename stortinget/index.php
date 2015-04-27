@@ -3,24 +3,17 @@
   if(count($_GET) > 0 & !empty($_GET['t'])) $t = basename($_GET['t']);
 
   // default theme
-  if(!isset($t)) $t = 'Naturvern';
+  if(!isset($t)) $t = '2013-2017';
 
   $y = array(
-    'Barn' => 'Children',
-    'Barnevern' => 'Childcare',
-    'Elektrisitet' => 'Electricity',
-    'Forurensning' => 'Pollution',
-    'Funksjonshemmede' => 'Disability',
-    'Innvandrere' => 'Immigration',
-    'Kommuner' => 'Municipalities',
-    'Naturvern' => 'Environment',
-    'Politi' => 'Police',
-    'Priser' => 'Economy',
-    'Samferdsel' => 'Transport',
-    'Skatter' => 'Taxation',
-    'Skoler' => 'Schools',
-    'Trygder' => 'Social Security',
-    'Vegvesen' => 'Roads &amp; Traffic');
+    '1985-1989' => '1985–1989',
+    '1989-1993' => '1989–1993',
+    '1993-1997' => '1993–1997',
+    '1997-2001' => '1997–2001',
+    '2001-2005' => '2001–2005',
+    '2005-2009' => '2005–2009',
+    '2009-2013' => '2009–2013',
+    '2013-2017' => '2013–');
 
   $c = $y;
 
@@ -30,7 +23,7 @@
   $c[ $t ] = 'here';
 
   $box =
-    '<p>This graph shows Norwegian Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years 1998&mdash;2014. ' .
+    '<p>This graph shows Norwegian Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $t . '. ' .
     'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they cosponsored at least one bill together on the selected theme.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
@@ -68,7 +61,7 @@
       <a href="https://www.stortinget.no/" title="Stortinget">
         <img src="logo_no.png" height="18" alt="logo">
       </a>
-      &nbsp;<?php echo $y[ $t ]; ?>
+      &nbsp;Stortinget, <?php echo $y[ $t ]; ?>
     </h2>
 
     <!-- graph selector -->
@@ -131,8 +124,9 @@
       <ul>
         <li>
           Data from
-          <a href="https://www.stortinget.no/">stortinget.no</a>
-          (summer 2014)
+          <!-- <a href="https://www.stortinget.no/">stortinget.no</a> and -->
+          <a href="https://data.stortinget.no/">data.stortinget.no</a> 
+          (winter 2015)
         </li>
 
         <li>
@@ -237,9 +231,10 @@ sigma.parsers.gexf(
     });
 
     // box
-    var parties = [ 'Sosialistisk Venstreparti', 'Miljøpartiet De Grønne', 'Arbeiderpartiet',
+    var parties = [ 'Rød Valgallianse', 'Sosialistisk Venstreparti', 
+      'Miljøpartiet De Grønne', 'Arbeiderpartiet',
       'Senterpartiet', 'Venstre', 'Kristelig Folkeparti', 'Kystpartiet', 'Høyre',
-      'Fremskrittspartiet', 'Independent' ];
+      'Fremskrittspartiet', 'Framtid for Finnmark', 'Independent' ];
     var colors = new Array(parties.length);
 
     // initial nodes
