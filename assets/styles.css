@@ -258,21 +258,21 @@ footer small a {
 
 #about li {
   list-style-type: none;
-  padding: .45em .2em;
+  padding: .3em .2em;
   margin: 0;
 }
 
 #about:hover ul {
   display: block;
   width: 340px;
-  padding: 10px 20px;
+  padding: 15px 20px;
 }
 
 #about h3 {
   font-size: 80%;
   font-weight: normal;
-  line-height: 200%;
-  padding: 2em 1.5em .5em;
+  line-height: 100%;
+  padding: 1em 0 1em 1.75em;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 3px;

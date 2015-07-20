@@ -148,10 +148,12 @@
           <li><a href="/eduskunta">Finland</a></li>
           <li><a href="/parlement">France</a></li>
           <li><a href="/althing">Iceland</a></li>
+		  <!-- <li><a href="/orszaggyules">Hungary</a></li> -->
           <li><a href="/parlamento">Italy</a></li>
           <li><a href="/seimas">Lithuania</a></li>
           <li><a href="/stortinget">Norway</a></li>
           <li><a href="/parlamentul">Romania</a></li>
+		  <li><a href="/nrsr">Slovakia</a></li>
           <li><a href="/riksdag">Sweden</a></li>
           <li><a href="/swparl">Switzerland</a></li>
           <li><a href="/marsad">Tunisia</a></li>
