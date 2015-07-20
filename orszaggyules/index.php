@@ -56,7 +56,7 @@
     <h1>hungarian parliament</h1>
 
     <h2>
-      <a href="http://www.parlament.hu/" title="Alþingi">
+      <a href="http://www.parlament.hu/" title="Országgyűlés">
       <img src="logo_hu.png" height="18" alt="logo"></a>&nbsp;
       Országgyűlés, <?php echo $y[ $t ]; ?>
     </h2>
