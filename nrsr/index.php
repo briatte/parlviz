@@ -292,8 +292,10 @@ sigma.parsers.gexf(
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
       // constituency
-      var constituency = ' representing <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
-        e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
+	  var constituency = '';
+	  if(e.data.node.attributes['constituency'] != '')
+	      var constituency = ' representing <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
+	        e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
 
       // selection text
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
