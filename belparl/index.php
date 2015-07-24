@@ -6,13 +6,16 @@
   }
 
   // default legislature
-  if(!isset($t)) $t = '53';
+  if(!isset($t)) $t = '54';
 
   // default chamber
   if(!isset($ch)) $ch = 'ch';
 
   // start Senate at l. 49
   if($ch == 'se' & $t < 49) $t = '49';
+  
+  // stop Senate at l. 43
+  if($ch == 'se' & $t > 53) $t = '53';
 
   if($ch == 'ch') {
     $chamber = 'Chambre';
@@ -32,8 +35,8 @@
     '50' => '1999&mdash;2003',
     '51' => '2003&mdash;2007',
     '52' => '2007&mdash;2010',
-    '53' => '2010&mdash;2014');
-    // '54' => '2014&mdash;'
+    '53' => '2010&mdash;2014',
+    '54' => '2014&mdash;');
 
   $c = $y;
 
@@ -106,7 +109,7 @@
       Legislature
         <?php
         foreach ($y as $i => $j)
-          if($ch != 'se' || ($ch == 'se' & $i > 48))
+          if($ch != 'se' || ($ch == 'se' & $i > 48 & $i < 54))
             echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;legislature=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
         ?>
     </nav>
@@ -262,12 +265,13 @@ sigma.parsers.gexf(
     });
 
     // box
-    var parties = ['Greens', 'Francophone Socialists', 'Flemish Socialists',
-      'Francophone Conservatives', 'Flemish Conservatives',
-      'Libertair, Direct, Democratisch', 'ROSSEM',
-      'Flemish Conservatives + Volksunie', 'Volksunie',
-      'Francophone Liberals', 'Flemish Liberals',
-      'Vlaams Blok', 'Front National', 'Independent'];
+    var parties = ["Worker's Party", "Greens", "Francophone Socialists", "Flemish Socialists",
+      "Francophone Conservatives", "Flemish Conservatives",
+      "Libertair, Direct, Democratisch", "ROSSEM",
+      "Flemish Conservatives + Volksunie", "Volksunie",
+      "Francophone Liberals", "Flemish Liberals", "People's Party",
+      "Debout Les Belges!",
+      "Vlaams Blok", "Front National", "Independent"];
     var colors = new Array(parties.length);
 
     // initial nodes
@@ -331,7 +335,8 @@ sigma.parsers.gexf(
       // photo
       var photo = '';
       if(typeof e.data.node.attributes['photo'] != 'undefined')
-        photo = profile + '<img height="128px" src="photos_<?php echo $ch; ?>/' + e.data.node.attributes['photo'] + '.jpg" alt="photo" /></a> ';
+        photo = profile + '<img height="128px" src="photos_<?php echo $ch; ?>/' + e.data.node.attributes['photo'] +
+		  '.<?php if($ch == 'ch') echo 'gif'; else echo 'jpg'; ?>" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
