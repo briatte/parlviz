@@ -33,7 +33,7 @@
       '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
       '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
       'that connect the first author of each bill to its cosponsor(s). The /nodes nodes are sized proportionally to their ' .
-      '<a href="http://toreopsahl.com/tnet/weighted-networks/node-centrality/">weighted degree</a>.</p>' .
+      '<a href="https://en.wikipedia.org/wiki/Degree_distribution">unweighted total degree</a>.</p>' .
       '<p>The graph includes only <a href="http://www.ft.dk/Leksikon/Lovforslag.aspx">bills</a> and ' .
       '<a href="http://www.ft.dk/Leksikon/Beslutningsforslag.aspx">motions</a>, ' .
       'mostly from opposition <abbr title="Members of Parliament">MPs</abbr>, plus a handful of bills cosponsored by ' .
@@ -153,24 +153,25 @@
       <div id="about">
         <h3><i class="fa fa-eye"></i>&nbsp;More networks</h3>
         <ul>
-          <li><a href="/nationalrat">Austria</a></li>
-          <li><a href="/belparl">Belgium</a></li>
-          <li><a href="/bgparl">Bulgaria</a></li>
-          <li><a href="/poslanecka">Czech Republic</a></li>
-          <!-- <li><a href="/folketinget">Denmark</a></li> -->
-          <li><a href="/epam">European Union</a></li>
-          <li><a href="/eduskunta">Finland</a></li>
-          <li><a href="/parlement">France</a></li>
-          <li><a href="/orszaggyules">Hungary</a></li>
-          <li><a href="/althing">Iceland</a></li>
-          <li><a href="/parlamento">Italy</a></li>
-          <li><a href="/seimas">Lithuania</a></li>
-          <li><a href="/stortinget">Norway</a></li>
-          <li><a href="/parlamentul">Romania</a></li>
-		  <li><a href="/nrsr">Slovakia</a></li>
-          <li><a href="/riksdag">Sweden</a></li>
-          <li><a href="/swparl">Switzerland</a></li>
-          <li><a href="/marsad">Tunisia</a></li>
+          <li><a href="/parlviz/nationalrat">Austria</a></li>
+          <li><a href="/parlviz/belparl">Belgium</a></li>
+          <li><a href="/parlviz/bgparl">Bulgaria</a></li>
+          <li><a href="/parlviz/poslanecka">Czech Republic</a></li>
+          <!-- <li><a href="/parlviz/folketinget">Denmark</a></li> -->
+          <li><a href="/parlviz/epam">European Union</a></li>
+          <li><a href="/parlviz/eduskunta">Finland</a></li>
+          <li><a href="/parlviz/parlement">France</a></li>
+          <li><a href="/parlviz/orszaggyules">Hungary</a></li>
+          <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/parlamento">Italy</a></li>
+          <li><a href="/parlviz/seimas">Lithuania</a></li>
+          <li><a href="/parlviz/stortinget">Norway</a></li>
+          <li><a href="/parlviz/assembleia">Portugal</a></li>
+          <li><a href="/parlviz/parlamentul">Romania</a></li>
+		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/riksdag">Sweden</a></li>
+          <li><a href="/parlviz/swparl">Switzerland</a></li>
+          <li><a href="/parlviz/marsad">Tunisia</a></li>
         </ul>
       </div>
 
@@ -311,7 +312,7 @@ sigma.parsers.gexf(
 
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
         photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + constituency +
-        ' who had <span title="unweighted Freeman degree">' +
+        ' who had <span title="unweighted total degree">' +
         s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' +
         e.data.node.attributes['n_bills'] + ' bill(s) on this theme.</p>';
 

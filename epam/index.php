@@ -44,7 +44,7 @@
     'A link between two <abbr title="Members of the European Parliament">MEPs</abbr> indicates that they cosponsored at least one committee amendment together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /amdts cosponsored amendments. It contains /nodes nodes connected by /edges undirected edges' .
-    ' and sized proportionally to their <a href="http://toreopsahl.com/tnet/weighted-networks/node-centrality/">weighted degree</a>.</p>' .
+    ' and sized proportionally to their <a href="https://en.wikipedia.org/wiki/Degree_distribution">unweighted total degree</a>.</p>' .
     '<p>Group colors&nbsp;&nbsp; /colortext</p></div>';
 
 ?>
@@ -164,24 +164,25 @@
       <div id="about">
         <h3><i class="fa fa-eye"></i>&nbsp;More networks</h3>
         <ul>
-          <li><a href="/nationalrat">Austria</a></li>
-          <li><a href="/belparl">Belgium</a></li>
-          <li><a href="/bgparl">Bulgaria</a></li>
-          <li><a href="/poslanecka">Czech Republic</a></li>
-          <li><a href="/folketinget">Denmark</a></li>
-          <!-- <li><a href="/epam">European Union</a></li> -->
-          <li><a href="/eduskunta">Finland</a></li>
-          <li><a href="/parlement">France</a></li>
-          <li><a href="/orszaggyules">Hungary</a></li>
-          <li><a href="/althing">Iceland</a></li>
-          <li><a href="/parlamento">Italy</a></li>
-          <li><a href="/seimas">Lithuania</a></li>
-          <li><a href="/stortinget">Norway</a></li>
-          <li><a href="/parlamentul">Romania</a></li>
-		  <li><a href="/nrsr">Slovakia</a></li>
-          <li><a href="/riksdag">Sweden</a></li>
-          <li><a href="/swparl">Switzerland</a></li>
-          <li><a href="/marsad">Tunisia</a></li>
+          <li><a href="/parlviz/nationalrat">Austria</a></li>
+          <li><a href="/parlviz/belparl">Belgium</a></li>
+          <li><a href="/parlviz/bgparl">Bulgaria</a></li>
+          <li><a href="/parlviz/poslanecka">Czech Republic</a></li>
+          <li><a href="/parlviz/folketinget">Denmark</a></li>
+          <!-- <li><a href="/parlviz/epam">European Union</a></li> -->
+          <li><a href="/parlviz/eduskunta">Finland</a></li>
+          <li><a href="/parlviz/parlement">France</a></li>
+          <li><a href="/parlviz/orszaggyules">Hungary</a></li>
+          <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/parlamento">Italy</a></li>
+          <li><a href="/parlviz/seimas">Lithuania</a></li>
+          <li><a href="/parlviz/stortinget">Norway</a></li>
+          <li><a href="/parlviz/assembleia">Portugal</a></li>
+          <li><a href="/parlviz/parlamentul">Romania</a></li>
+		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/riksdag">Sweden</a></li>
+          <li><a href="/parlviz/swparl">Switzerland</a></li>
+          <li><a href="/parlviz/marsad">Tunisia</a></li>
         </ul>
       </div>
 
@@ -325,7 +326,7 @@ sigma.parsers.gexf(
         '">' + e.data.node.attributes['nat'] + '</a>';
 
       // activity stats
-      var stat = ' who had <span title="unweighted Freeman degree">' +
+      var stat = ' who had <span title="unweighted total degree">' +
         s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' + e.data.node.attributes['amendments'] + ' amendment(s) in this committee. ';
 
       // selection text
@@ -340,7 +341,7 @@ sigma.parsers.gexf(
       //   e.data.node.attributes['id'] + '.jpg" alt="no photo available" /></a> You selected ' + profile +
       //   e.data.node.label + '</a> <span style="color:' + rgba.replace('0.25)', '1)') + ';">(' +
       //   e.data.node.attributes['group'] + ')</span>, an <abbr title="Member of the European Parliament">MEP</abbr> representing ' +
-      //   e.data.node.attributes['nat'] + ' who had <span title="unweighted Freeman degree">' +
+      //   e.data.node.attributes['nat'] + ' who had <span title="unweighted total degree">' +
       //   s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> in this committee.<br /><a href="http://www.europarl.europa.eu' +
       //   e.data.node.attributes['url'] + '" class="button" style="width:125px; margin:1.25em 0; float:none;" title="Go to EP profile (new window)" target="_blank">EP homepage</a>&nbsp;&nbsp; ' + parltrack + '" class="button" style="width: 175px; margin:1.25em 0; float:none;" target="_blank">Parltrack profile</a></p>';
 

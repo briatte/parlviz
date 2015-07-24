@@ -28,7 +28,7 @@
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
     'that connect the first author of each bill to its cosponsor(s). The /nodes nodes are sized proportionally to their ' .
-    '<a href="http://toreopsahl.com/tnet/weighted-networks/node-centrality/">weighted degree</a>.</p>' .
+    '<a href="https://en.wikipedia.org/wiki/Degree_distribution">unweighted total degree</a>.</p>' .
     '<p>Group colors&nbsp;&nbsp; /colortext</p></div>';
 
 ?>
@@ -304,7 +304,7 @@ sigma.parsers.gexf(
       // selection text
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
         photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr> ' + constituency +
-        ' who had <span title="unweighted Freeman degree">' + s.graph.getNeighborsCount(nodeId) +
+        ' who had <span title="unweighted total degree">' + s.graph.getNeighborsCount(nodeId) +
         ' cosponsor(s)</span> on ' + e.data.node.attributes['n_bills'] + ' bill(s) during the legislature.</p>';
 
       // Since the data has been modified, we need to
