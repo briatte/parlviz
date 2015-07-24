@@ -1,12 +1,24 @@
 <?php
 
-  if(count($_GET) > 0 & !empty($_GET['legislature'])) $t = basename($_GET['legislature']);
+  if(count($_GET) > 0) {
+    if(!empty($_GET['t'])) $t = basename($_GET['t']);
+    if(!empty($_GET['chamber'])) $ch = basename($_GET['chamber']);
+  }
 
   // default legislature
-  if(!isset($t)) $t = '2011-2015';
+  if(!isset($t)) $t = '1995-1999';
 
+  // default chamber
+  if(!isset($ch)) $ch = 'cn';
+
+  if($ch == 'cn') {
+    $chamber = 'Conseil national';
+  }
+  else {
+    $chamber = 'Conseil des États';
+  }
+  
   $y = array(
-    '1991-1995' => '1991&mdash;1995',
     '1995-1999' => '1995&mdash;1999',
     '1999-2003' => '1999&mdash;2003',
     '2003-2007' => '2003&mdash;2007',
@@ -35,8 +47,8 @@
 <html>
 <head>
   <title>
-    Cosponsorship networks in the Swiss Parliament, years
-    <?php echo $t; ?>
+    Cosponsorship networks in the Swiss Parliament:
+	<?php echo $chamber; ?>, years <?php echo $t; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -60,15 +72,18 @@
     <h2>
       <a href="http://www.parlament.ch/" title="Assemblée fédérale">
       <img src="logo_ch.png" height="18" alt="logo"></a>&nbsp;
-      Conseil national,<br><?php echo $y[ $t ]; ?>
+      <?php echo $chamber; ?>,<br><?php echo $y[ $t ]; ?>
     </h2>
 
     <!-- graph selector -->
     <nav>
+  	Chamber&nbsp;&nbsp;
+	<a href="?chamber=cn&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'cn') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
+	<a href="?chamber=cs&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'cs') echo 'here'; ?>">Upper</a><br>
       Legislature
       <?php
       foreach ($y as $i => $j)
-        echo '&nbsp;&nbsp; <a href="?legislature=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+        echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
       ?>
     </nav>
 
@@ -124,13 +139,13 @@
         <li>
           Data from
           <a href="http://www.parlament.ch/">parlament.ch</a>
-          (winter 2014)
+          (summer 2015)
         </li>
 
         <li>
           Download&nbsp;&nbsp;
           <i class="fa fa-file-o"></i>&nbsp;&nbsp;
-          <a href="<?php echo 'net_ch' . $t; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
+          <a href="net_ch_<?php echo $ch . $t; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
           <i class="fa fa-files-o"></i>&nbsp;&nbsp;
           <a href="net_ch.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
           <i class="fa fa-file-image-o"></i>&nbsp;&nbsp;
@@ -182,7 +197,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the Swiss Parliament, years ', 'net_ch') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the Swiss Parliament: ', 'net_ch_').replace('Conseil national', 'cn').replace('Conseil des États', 'cs').replace(', years ', '') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -210,7 +225,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  document.title.replace('Cosponsorship networks in the Swiss Parliament, years ', 'net_ch') + '.gexf',
+  document.title.replace('Cosponsorship networks in the Swiss Parliament: ', 'net_ch_').replace('Conseil national', 'cn').replace('Conseil des États', 'cs').replace(', years ', '') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -224,14 +239,15 @@ sigma.parsers.gexf(
     });
 
     // box
-    var parties = [ "Green Party, GPS/PES", "Social Democratic Party, SPS/PSS",
-      "Green Liberal Party, GLP/PVL", "Ring of Independents, LdU/AdI",
-      "Christian Democratic People's Party, CVP/PDC/PPD",
-      "Evangelical People's Party, EVP/PEV", "Christian Social Party, CSP/PCS",
-      "Free Democratic Party, FDP/PLR", "Liberal Party, LPS/PLS",
-      "Swiss People's Party, SVP/UDC", "Conservative Democratic Party, BPD/PBD",
-      "Freedom Party, FPS/PSL", "Ticino League", "Geneva Citizens Movement, MCG/MCR",
-      "independent or minor party" ];
+    var parties = [ "Labour Party", "Frauen Macht Politik!",
+	  "Green Party", "Socialist Party",
+      "Green Liberal Party", "Alliance of Independents",
+      "Christian Democratic People's Party",
+      "Evangelical People's Party", "Christian Social Party",
+      "Free Democratic Party", "Liberal Party",
+      "Swiss People's Party", "Conservative Democratic Party",
+      "Freedom Party", "Federal Democratic Union", "Ticino League",
+	  "Swiss Democrats", "Geneva Citizens Movement", "independent" ];
     var colors = new Array(parties.length);
 
     // initial nodes
@@ -289,9 +305,7 @@ sigma.parsers.gexf(
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
 
       // photo
-      var photo = '';
-      if(typeof e.data.node.attributes['photo'] != 'undefined')
-        photo = profile + '<img height="128px" src="photos/' + e.data.node.attributes['photo'] + '.jpg" alt="photo" /></a> ';
+      var photo = profile + '<img height="128px" src="photos/' + e.data.node.attributes['url'] + '.jpg" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
