@@ -1,31 +1,10 @@
-[Interactive visualizations](http://f.briatte.org/parlviz) of the following [legislative cosponsorship networks](https://github.com/briatte/parlnet):
+This repository contains the code used to produce [interactive visualizations](http://f.briatte.org/parlviz) of legislative cosponsorship networks in [17 European countries](https://github.com/briatte/parlnet) and in the [European Parliament](https://github.com/briatte/epam).
 
-- [`nationalrat`](https://github.com/briatte/nationalrat) · Austria
-- [`belparl`](https://github.com/briatte/belparl) · Belgium
-- [`bgparl`](https://github.com/briatte/bgparl) · Bulgaria
-- [`poslanecka`](https://github.com/briatte/poslanecka) · Czech Republic
-- [`folketinget`](https://github.com/briatte/folketinget)   Denmark
-- [`epam`](https://github.com/briatte/epam) · European Union
-- [`eduskunta`](https://github.com/briatte/eduskunta) · Finland
-- [`parlement`](https://github.com/briatte/parlement) · France
-- [`orszaggyules`](https://github.com/briatte/orszaggyules) · Hungary
-- [`althing`](https://github.com/briatte/althing) · Iceland
-- [`parlamento`](https://github.com/briatte/parlamento) · Italy
-- [`seimas`](https://github.com/briatte/seimas) · Lithuania
-- [`stortinget`](https://github.com/briatte/stortinget) · Norway
-- [`parlamentul`](https://github.com/briatte/parlamentul) · Romania
-- [`riksdag`](https://github.com/briatte/riksdag) · Sweden
-- [`swparl`](https://github.com/briatte/eduskunta) · Switzerland
+The Javascript code was hacked from [sigma.js / examples / load-external-gexf.html](https://github.com/jacomyal/sigma.js/blob/master/examples/load-external-gexf.html) (parser) and [osdc2012-demo](http://jcml.fr/~jacomyal/osdc2012-demo/) (searchbox) by [Alexis Jacomy](https://github.com/jacomyal).
 
-Javascript code hacked from [sigma.js / examples / load-external-gexf.html](https://github.com/jacomyal/sigma.js/blob/master/examples/load-external-gexf.html) (parser) and [osdc2012-demo](http://jcml.fr/~jacomyal/osdc2012-demo/) (searchbox).
+The [visualization](http://f.briatte.org/parlviz/marsad/) of the [Tunisian Constituent Assembly](https://github.com/briatte/marsad), which is not included in the repository, uses code from the [InteractiveVis project](https://github.com/oxfordinternetinstitute/InteractiveVis/) at the [Oxford Internet Institute](http://blogs.oii.ox.ac.uk/vis/).
 
-For a different framework, see [this visualization of the Tunisian Constitution](http://f.briatte.org/parlviz/marsad/), using code from the [InteractiveVis project](https://github.com/oxfordinternetinstitute/InteractiveVis/) at the [Oxford Internet Institute](http://blogs.oii.ox.ac.uk/vis/).
-
-# BUGS
-
-Please report bugs in the [issues section](https://github.com/briatte/parlviz/issues).
-
-If you find a bug in the scraper code, please report it in the corresponding repo.
+Please use the [issues](issues) to report bugs or suggestions about the visualizations. If you find a bug that affects data collection or network construction, please report it in the corresponding repository.
 
 # DEPENDENCIES
 
@@ -36,6 +15,6 @@ If you find a bug in the scraper code, please report it in the corresponding rep
 
 > __Note:__ the code currently uses jQuery 2.1.1, which [does not support Internet Explorer 6, 7, or 8](http://blog.jquery.com/2013/04/18/jquery-2-0-released/).
 
-# CREDITS
+# THANKS
 
 Thanks to [l'Autre Net](http://www.lautre.net/) for hosting.
