@@ -128,7 +128,7 @@
         <li>
           Data from
           <a href="http://www.psp.cz/">psp.cz</a>
-          (summer 2014)
+          (summer 2015)
         </li>
 
         <li>
