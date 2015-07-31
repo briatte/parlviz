@@ -9,7 +9,8 @@
     // '2001-2005' => '2001&mdash;2005',
     '2005-2009' => '2005&mdash;2009',
     '2009-2013' => '2009&mdash;2013',
-    '2013-2014' => '2013&mdash;2014');
+    '2013-2014' => '2013&mdash;2014',
+	'2014-2018' => '2014&mdash;');
 
   $c = $y;
 
@@ -123,7 +124,7 @@
         <li>
           Data from
           <a href="http://www.parliament.bg/">parliament.bg</a>
-          (summer 2014)
+          (summer 2015)
         </li>
 
         <li>
@@ -228,7 +229,9 @@ sigma.parsers.gexf(
     var parties = [ "Coalition for Bulgaria", "National Movement Simeon the Second",
       "Movement for Rights and Freedoms", "Ataka", "Bulgarian People's Union",
       "United Democratic Forces", "Citizens for European Development of Bulgaria",
-      "Blue Coalition", "Democrats for Strong Bulgaria", "Order, Lawfulness, Justice" ];
+      "Bulgaria Without Censorship", "Reformist Bloc",
+      "Blue Coalition", "Democrats for Strong Bulgaria", "Patriotic Front",
+      "Order, Lawfulness, Justice" ];
     var colors = new Array(parties.length);
 
     // initial nodes
