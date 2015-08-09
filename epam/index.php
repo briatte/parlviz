@@ -174,12 +174,13 @@
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -335,15 +336,6 @@ sigma.parsers.gexf(
         'The <a href="http://toreopsahl.com/tnet/weighted-networks/shortest-paths/">mean weighted distance</a>' +
         ' between this <abbr title="Member of the European Parliament">MEP</abbr> and all others was ' + distance + '.<br>' +
         ' <a href="http://www.europarl.europa.eu/meps/en/' + e.data.node.attributes['url'] + '_home.html" class="button" style="width: 125px; margin: 1em 0; float: none;" title="Go to EP profile (new window)" target="_blank">EP homepage</a>&nbsp;&nbsp; ' + parltrack + '" class="button" style="width: 175px; margin: 1em 0; float: none;" target="_blank">Parltrack profile</a></p>';
-
-      // document.getElementById('box').innerHTML = '<p style="background:' + rgba + ';">' + profile +
-      //   '<img height="120px" src="http://www.europarl.europa.eu/mepphoto/' +
-      //   e.data.node.attributes['id'] + '.jpg" alt="no photo available" /></a> You selected ' + profile +
-      //   e.data.node.label + '</a> <span style="color:' + rgba.replace('0.25)', '1)') + ';">(' +
-      //   e.data.node.attributes['group'] + ')</span>, an <abbr title="Member of the European Parliament">MEP</abbr> representing ' +
-      //   e.data.node.attributes['nat'] + ' who had <span title="unweighted total degree">' +
-      //   s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> in this committee.<br /><a href="http://www.europarl.europa.eu' +
-      //   e.data.node.attributes['url'] + '" class="button" style="width:125px; margin:1.25em 0; float:none;" title="Go to EP profile (new window)" target="_blank">EP homepage</a>&nbsp;&nbsp; ' + parltrack + '" class="button" style="width: 175px; margin:1.25em 0; float:none;" target="_blank">Parltrack profile</a></p>';
 
       // Since the data has been modified, we need to
       // call the refresh method to make the colors

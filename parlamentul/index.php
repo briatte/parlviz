@@ -153,7 +153,9 @@
       <!-- creds -->
       <ul>
         <li>
-          Data from <a href="http://www.cdep.ro/">cdep.ro</a> (autumn 2014)
+          Data from 
+           <a href="http://www.cdep.ro/">cdep.ro</a> 
+           (summer 2015)
         </li>
 
         <li>
@@ -180,12 +182,13 @@
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <!-- <li><a href="/parlviz/parlamentul">Romania</a></li> -->
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -314,8 +317,7 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="http://www.cdep.ro/pls/' + e.data.node.attributes['url'] +
-        '" title="Go to profile (<?php echo $chamber; ?>, new window)" target="_blank">';
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (<?php echo $chamber; ?>, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');

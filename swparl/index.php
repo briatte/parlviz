@@ -6,7 +6,7 @@
   }
 
   // default legislature
-  if(!isset($t)) $t = '1995-1999';
+  if(!isset($t)) $t = '2011-2015';
 
   // default chamber
   if(!isset($ch)) $ch = 'cn';
@@ -34,7 +34,7 @@
   $c[ $t ] = 'here';
 
   $box =
-    '<p>This graph shows Swiss Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $t . '. ' .
+    '<p>This graph shows Swiss Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $y[ $t ] . '. ' .
     'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they have cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
@@ -48,7 +48,7 @@
 <head>
   <title>
     Cosponsorship networks in the Swiss Parliament:
-	<?php echo $chamber; ?>, years <?php echo $t; ?>
+    <?php echo $chamber; ?>, years <?php echo $t; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -77,9 +77,9 @@
 
     <!-- graph selector -->
     <nav>
-  	Chamber&nbsp;&nbsp;
-	<a href="?chamber=cn&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'cn') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
-	<a href="?chamber=cs&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'cs') echo 'here'; ?>">Upper</a><br>
+       Chamber&nbsp;&nbsp;
+    <a href="?chamber=cn&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'cn') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
+    <a href="?chamber=cs&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'cs') echo 'here'; ?>">Upper</a><br>
       Legislature
       <?php
       foreach ($y as $i => $j)
@@ -147,7 +147,7 @@
           <i class="fa fa-file-o"></i>&nbsp;&nbsp;
           <a href="net_ch_<?php echo $ch . $t; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
           <i class="fa fa-files-o"></i>&nbsp;&nbsp;
-          <a href="net_ch.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
+          <a href="net_ch_<?php echo $ch; ?>.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
           <i class="fa fa-file-image-o"></i>&nbsp;&nbsp;
           <a href="plots.html">plots</a>
         </li>
@@ -166,12 +166,13 @@
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <!-- <li><a href="/parlviz/swparl">Switzerland</a></li> -->
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -241,14 +242,14 @@ sigma.parsers.gexf(
 
     // box
     var parties = [ "Labour Party", "Frauen Macht Politik!",
-	  "Green Party", "Socialist Party",
+      "Green Party", "Socialist Party",
       "Green Liberal Party", "Alliance of Independents",
       "Christian Democratic People's Party",
       "Evangelical People's Party", "Christian Social Party",
       "Free Democratic Party", "Liberal Party",
       "Swiss People's Party", "Conservative Democratic Party",
       "Freedom Party", "Federal Democratic Union", "Ticino League",
-	  "Swiss Democrats", "Geneva Citizens Movement", "independent" ];
+      "Swiss Democrats", "Geneva Citizens Movement", "independent" ];
     var colors = new Array(parties.length);
 
     // initial nodes
@@ -299,22 +300,30 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="http://www.parlament.ch/f/suche/pages/biografie.aspx?biografie_id=' + e.data.node.attributes['url'] +
-        '" title="Go to profile (Swiss Parliament, new window)" target="_blank">';
+      // profile
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (Swiss Parliament, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
 
       // photo
-      var photo = profile + '<img height="128px" src="photos/' + e.data.node.attributes['url'] + '.jpg" alt="photo" /></a> ';
+      var photo = '';
+      if(typeof e.data.node.attributes['photo'] != 'undefined')
+        photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
+      // constituency
+      var constituency = '';
+      if(e.data.node.attributes['constituency'] != '')
+          constituency = ' representing the <a title="Go to Wikipedia Francophone entry (new window)" target="_blank" href="https://fr.wikipedia.org/wiki/' +
+            e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
+
       // selection text
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
-        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr> representing ' +
-        e.data.node.attributes['constituency'] + ' who had <span title="unweighted total degree">' +
+        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + constituency +
+        ' who had <span title="unweighted total degree">' +
         s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' + e.data.node.attributes['n_bills'] +
         ' bill(s) during the legislature.</p>';
 

@@ -1,12 +1,12 @@
 <?php
 
   if(count($_GET) > 0) {
-    if(!empty($_GET['legislature'])) $t = basename($_GET['legislature']);
+    if(!empty($_GET['t'])) $t = basename($_GET['t']);
     if(!empty($_GET['chamber'])) $ch = basename($_GET['chamber']);
   }
 
   // default legislature
-  if(!isset($t)) $t = '17';
+  if(!isset($t)) $t = '2013-2018';
 
   // default chamber
   if(!isset($ch)) $ch = 'ca';
@@ -23,11 +23,11 @@
   }
 
   $y = array(
-    '13' => '1996&mdash;2001',
-    '14' => '2001&mdash;2006',
-    '15' => '2006&mdash;2008',
-    '16' => '2008&mdash;2013',
-    '17' => '2013&mdash;');
+    '1996-2001' => '1996&mdash;2001',
+    '2001-2006' => '2001&mdash;2006',
+    '2006-2008' => '2006&mdash;2008',
+    '2008-2013' => '2008&mdash;2013',
+    '2013-2018' => '2013&mdash;');
 
   $c = $y;
 
@@ -38,18 +38,15 @@
 
   // ongoing legislature
   $be = 'was';
-  if($t == '17') $be = 'is';
+  if($t == '2013-2018') $be = 'is';
 
   $have = 'had';
-  if($t == '17') $have = 'has had';
-
-  $nth = $t . 'th';
-  if($t == '13') $nth = '13rd';
+  if($t == '2013-2018') $have = 'has had';
 
   // initial box
   $box =
-    '<p>This graph shows Italian ' . str_replace('<abbr title="Members of Parliament">MPs</abbr>', 'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) . ' during the ' . $nth . '&nbsp;legislature. ' .
-    'A link between two ' . $members . ' indicates that they cosponsored at least one bill together.</p>' .
+    '<p>This graph shows Italian ' . str_replace('<abbr title="Members of Parliament">MPs</abbr>', 'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) .
+    ' during years ' . $y[ $t ] . '. ' . 'A link between two ' . $members . ' indicates that they cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
     'that connect the first author of each bill to its cosponsor(s). The /nodes nodes are sized proportionally to their ' .
@@ -62,7 +59,7 @@
 <head>
   <title>
     Cosponsorship networks in the Italian Parliament:
-    <?php echo $chamber; ?>, legislature <?php echo $t; ?>
+    <?php echo $chamber; ?>, years <?php echo $t; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -93,12 +90,12 @@
     <!-- graph selector -->
     <nav>
       Chamber&nbsp;&nbsp;
-      <a href="?chamber=ca&amp;legislature=<?php echo $t; ?>" class="<?php if($ch == 'ca') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
-      <a href="?chamber=se&amp;legislature=<?php echo $t; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper</a><br>
+      <a href="?chamber=ca&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'ca') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
+      <a href="?chamber=se&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper</a><br>
       Legislature
         <?php
         foreach ($y as $i => $j)
-          echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;legislature=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+          echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
         ?>
     </nav>
 
@@ -154,7 +151,7 @@
         <li>
           Data from
           <a href="<?php echo $source ?>"><?php echo str_replace(array('http://', 'www.', '/'), '', $source) ?></a>
-          (autumn 2014)
+          (summer 2015)
         </li>
 
         <li>
@@ -181,12 +178,13 @@
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <!-- <li><a href="/parlviz/parlamento">Italy</a></li> -->
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -212,7 +210,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the Italian Parliament: ', 'net_it_').replace('Camera', 'ca').replace('Senato', 'se').replace(', legislature ', '') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the Italian Parliament: ', 'net_it_').replace('Camera', 'ca').replace('Senato', 'se').replace(', years ', '') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -240,7 +238,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  document.title.replace('Cosponsorship networks in the Italian Parliament: ', 'net_it_').replace('Camera', 'ca').replace('Senato', 'se').replace(', legislature ', '') + '.gexf',
+  document.title.replace('Cosponsorship networks in the Italian Parliament: ', 'net_it_').replace('Camera', 'ca').replace('Senato', 'se').replace(', years ', '') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -259,12 +257,15 @@ sigma.parsers.gexf(
       "Movimento 5 Stelle", "Partito Democratico", "L'Ulivo", "Autonomie, PSI e MAIE",
       "Rosa nel Pugno", "Margherita", "I Democratici", "Partito Popolare Italiano",
       "Italia dei Valori", "Rinnovamento Italiano", "Popolari-UDEUR", "Südtiroler Volkspartei",
-      "Democrazia Cristiana per le Autonomie e Nuovo PSI", "Per l'Italia", 
+      "Democrazia Cristiana per le Autonomie e Nuovo PSI", // "Per l'Italia", 
       "Liberal-Democratici, Repubblicani e Nuovo PSI", 
       "UDC, SVP e Autonomie", "Centro Cristiano Democratico", "CCD-CDU: Biancofiore",
       "Scelta Civica con Monti", "Centro Democratico", "Unione di Centro", "Cristiani Democratici Uniti",
-      "Movimento per l'Autonomia", "Movimento per le Autonomie", "Grandi Autonomie e Libertà", "Forza Italia",
-      "Il Popolo della Libertà", "Nuovo Centrodestra", "Fratelli d'Italia", "Lega Nord", "Alleanza Nazionale", 
+      "Movimento per l'Autonomia", "Movimento per le Autonomie", "Grandi Autonomie e Libertà",
+      "Alleanza Liberalpopolare-Autonomie", "Area Popolare", "Conservatori, Riformisti italiani",
+      "Forza Italia",
+      "Il Popolo della Libertà", // "Nuovo Centrodestra",
+      "Fratelli d'Italia", "Lega Nord", "Alleanza Nazionale", 
       "linguistic minorities", "mixed or minor group" ];
     var colors = new Array(parties.length);
 
@@ -316,7 +317,7 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="http://www.senato.it/loc/link.asp?tipodoc=' + e.data.node.attributes['url'] +
+      var profile = '<a href="' + e.data.node.attributes['url'] +
         '" title="Go to profile (<?php echo $chamber; ?>, new window)" target="_blank">';
 
       // transparency

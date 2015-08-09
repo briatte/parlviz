@@ -1,15 +1,15 @@
 <?php
 
   if(count($_GET) > 0) {
-    if(!empty($_GET['legislature'])) $t = basename($_GET['legislature']);
+    if(!empty($_GET['t'])) $t = basename($_GET['t']);
     if(!empty($_GET['chamber'])) $ch = basename($_GET['chamber']);
   }
 
   // default legislature
-  if(!isset($t)) $t = '14';
+  if(!isset($t)) $t = '2012-2017';
 
   // default chamber
-  if(!isset($ch)) $ch = 'se';
+  if(!isset($ch)) $ch = 'an';
 
   if($ch == 'an') {
     $chamber = 'Assemblée nationale';
@@ -22,16 +22,16 @@
   }
 
   $y = array(
-    '8' => '1986&mdash;1988',
-    '9' => '1988&mdash;1993',
-    '10' => '1993&mdash;1997',
-    '11' => '1997&mdash;2002',
-    '12' => '2002&mdash;2007',
-    '13' => '2007&mdash;2012',
-    '14' => '2012&mdash;2017');
+    '1986-1988' => '1986&mdash;1988',
+    '1988-1993' => '1988&mdash;1993',
+    '1993-1997' => '1993&mdash;1997',
+    '1997-2002' => '1997&mdash;2002',
+    '2002-2007' => '2002&mdash;2007',
+    '2007-2012' => '2007&mdash;2012',
+    '2012-2017' => '2012&mdash;');
     
   if($ch == 'an')
-    unset($y['10']);
+    unset($y['1993-1997']);
 
   $c = $y;
 
@@ -50,8 +50,7 @@
   // initial box
   $box =
     '<p>This graph shows French ' . str_replace('<abbr title="Members of Parliament">MPs</abbr>', 'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) . 
-    ' during the ' . $t . 'th&nbsp;legislature (' . $y[ $t ] . '). ' .
-    'A link between two ' . $members . ' indicates that they cosponsored at least one bill together.</p>' .
+    ' during years ' . $y[ $t ] . '. A link between two ' . $members . ' indicates that they cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .  
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
     'that connect the first author of each bill to its cosponsor(s). The /nodes nodes are sized proportionally to their ' .
@@ -64,7 +63,7 @@
 <head>
   <title>
     Cosponsorship networks in the French Parliament:
-    <?php echo $chamber; ?>, législature <?php echo $t; ?>
+    <?php echo $chamber; ?>, years <?php echo $t; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -95,14 +94,14 @@
     <!-- graph selector -->
     <nav>
       Chamber&nbsp;&nbsp;
-      <a href="?chamber=an&amp;legislature=<?php echo $t; ?>" class="<?php if($ch == 'an') echo 'here'; ?>">National Assembly</a>&nbsp;&nbsp;
-      <a href="?chamber=se&amp;legislature=<?php echo $t; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Senate</a><br>
+      <a href="?chamber=an&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'an') echo 'here'; ?>">National Assembly</a>&nbsp;&nbsp;
+      <a href="?chamber=se&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Senate</a><br>
       Legislature
         <?php
         foreach ($y as $i => $j)
-          echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;legislature=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+          echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
         ?>
-      <label title="Map MPs to their constituencies (very approximative).">&nbsp;<input type="checkbox" id="showMap" />&nbsp;Map</label>
+      <!-- <label title="Map MPs to their constituencies (very approximative).">&nbsp;<input type="checkbox" id="showMap" />&nbsp;Map</label> -->
     </nav>
 
     <!-- user search field -->
@@ -157,7 +156,7 @@
         <li>
           Data from
           <a href="<?php echo $source ?>"><?php echo str_replace(array("http://", "www.", "/"), "", $source) ?></a>
-          (summer 2014)
+          (summer 2015)
         </li>
 
         <li>
@@ -190,12 +189,13 @@
           <!-- <li><a href="/parlviz/parlement">France</a></li> -->
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -222,7 +222,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the French Parliament: ', 'net_fr_').replace('Assemblée nationale', 'an').replace('Sénat', 'se').replace(', législature ', '') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the French Parliament: ', 'net_fr_').replace('Assemblée nationale', 'an').replace('Sénat', 'se').replace(', years ', '') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -250,7 +250,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  'net_fr_' + document.title.replace('Cosponsorship networks in the French Parliament: ', '').replace('Assemblée nationale', 'an').replace('Sénat', 'se').replace(', législature ', '') + '.gexf',
+  'net_fr_' + document.title.replace('Cosponsorship networks in the French Parliament: ', '').replace('Assemblée nationale', 'an').replace('Sénat', 'se').replace(', years ', '') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -317,19 +317,15 @@ sigma.parsers.gexf(
       });
 
       if(document.title.match('Assemblée nationale'))
-        var profile = '<a href="http://www.assemblee-nationale.fr/sycomore/fiche.asp?num_dept=' + e.data.node.attributes['url'];
-      else
-        var profile = '<a href="http://www.senat.fr/senateur/' + e.data.node.attributes['url'] + '.html';
-
-      profile = profile + '" title="Go to profile (<?php echo $chamber; ?>, new window)" target="_blank">';
+        var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (<?php echo $chamber; ?>, new window)" target="_blank">';
       
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
 
       // photo
       var photo = '';
-      if(e.data.node.attributes['photo'] == 1)
-        photo = profile + '<img height="128px" src="photos_<?php echo $ch; ?>/' + e.data.node.attributes['url'] + '.jpg" alt="photo" /></a> ';
+      if(typeof e.data.node.attributes['photo'] != 'undefined')
+        photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
@@ -519,24 +515,24 @@ sigma.parsers.gexf(
       s.refresh();
     });
 
-    // view as map
-    //
-    document.getElementById('showMap').addEventListener('change',
-    function(e){
-      if (e.target.checked) {
-        s.graph.nodes().forEach(function(n) {
-          // map node position to lon/lat
-          n.x = n.attributes['lon'];
-          n.y = n.attributes['lat'] * -1;
-        });
-      } else {
-        s.graph.nodes().forEach(function(n) {
-          n.x = n.originalX;
-          n.y = n.originalY;
-        });
-      }
-      s.refresh();
-    });
+    // // view as map
+    // //
+    // document.getElementById('showMap').addEventListener('change',
+    // function(e){
+    //   if (e.target.checked) {
+    //     s.graph.nodes().forEach(function(n) {
+    //       // map node position to lon/lat
+    //       n.x = n.attributes['lon'];
+    //       n.y = n.attributes['lat'] * -1;
+    //     });
+    //   } else {
+    //     s.graph.nodes().forEach(function(n) {
+    //       n.x = n.originalX;
+    //       n.y = n.originalY;
+    //     });
+    //   }
+    //   s.refresh();
+    // });
 
     // force atlas
     //

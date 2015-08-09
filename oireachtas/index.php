@@ -1,15 +1,32 @@
 <?php
 
-  if(count($_GET) > 0 & !empty($_GET['t'])) $t = basename($_GET['t']);
+  if(count($_GET) > 0) {
+    if(!empty($_GET['t'])) $t = basename($_GET['t']);
+    if(!empty($_GET['chamber'])) $ch = basename($_GET['chamber']);
+  }
 
   // default legislature
-  if(!isset($t)) $t = '2011-2014';
+  if(!isset($t)) $t = '2011-2016';
 
+  // default chamber
+  if(!isset($ch)) $ch = 'da';
+
+  if($ch == 'da') {
+    $chamber = 'Dáil Éireann';
+    $member = 'an <abbr title="Member of Parliament">MP</abbr>';
+    $members = 'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)';
+  }
+  else {
+    $chamber = 'Seanad Éireann';
+    $member = 'a senator';
+    $members = 'senators';
+  }
+  
   $y = array(
-    '1999-2002' => '1999&mdash;2002',
-    '2003-2006' => '2003&mdash;2006',
-    '2007-2010' => '2007&mdash;2010',
-    '2011-2014' => '2011&mdash;'
+    '1997-2002' => '1997&mdash;2002',
+    '2002-2007' => '2002&mdash;2007',
+    '2007-2011' => '2007&mdash;2011',
+    '2011-2016' => '2011&mdash;'
   );
 
   $c = $y;
@@ -20,8 +37,8 @@
   $c[ $t ] = 'here';
 
   $box =
-    '<p>This graph shows Finnish Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $y[ $t ] . '. ' .
-    'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they have cosponsored at least one bill together.</p>' .
+    '<p>This graph shows Irish ' . $members . ' during years ' . $t . '. ' .
+    'A link between two ' . $members . ' indicates that they have cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
     'that connect the first author of each bill to its cosponsor(s). The /nodes nodes are sized proportionally to their ' .
@@ -33,8 +50,8 @@
 <html>
 <head>
   <title>
-    Cosponsorship networks in the Finnish Parliament, years
-    <?php echo $t; ?>
+    Cosponsorship networks in the Irish Parliament:
+    <?php echo $chamber; ?>, years <?php echo $t; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -51,22 +68,25 @@
 
 <div id="sigma-container">
 
-  <div id="controls" class="bg_an">
+  <div id="controls" class="bg_gr">
 
-    <h1>finnish parliament</h1>
+    <h1>irish parliament</h1>
 
     <h2>
-      <a href="http://www.eduskunta.fi/" title="Eduskunta">
-      <img src="logo_fi.png" height="18" alt="logo"></a>&nbsp;
-      Eduskunta,&nbsp;<?php echo $y[ $t ]; ?>
+      <a href="http://www.oireachtas.ie/" title="Oireachtas">
+      <img src="logo_ie.png" height="18" alt="logo"></a>&nbsp;
+      <?php echo $chamber; ?>, <?php echo $y[ $t ]; ?>
     </h2>
 
     <!-- graph selector -->
     <nav>
+      Chamber&nbsp;&nbsp;
+      <a href="?chamber=da&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'da') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
+      <a href="?chamber=se&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper</a><br>
       Legislature
       <?php
       foreach ($y as $i => $j)
-            echo '&nbsp;&nbsp; <a href="?t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+        echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
       ?>
     </nav>
 
@@ -113,7 +133,7 @@
 
       <!-- tweet -->
       <p>
-        <a href="http://twitter.com/share?text=Cosponsorship%20networks%20in%20the%20@SuomenEduskunta%20-%20Finnish%20Parliament%20-%20using%20%23rstats%20and%20@sigmajs,%20by%20@phnk:&amp;url=<?php echo 'http://' . $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>" class="button" title="Share this page on Twitter."><i class="fa fa-twitter"></i>&nbsp;Tweet</a>&nbsp;&nbsp;
+        <a href="http://twitter.com/share?text=Cosponsorship%20networks%20in%20the%20Irish%20Parliament%20using%20%23rstats%20and%20@sigmajs,%20by%20@phnk:&amp;url=<?php echo 'http://' . $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>" class="button" title="Share this page on Twitter."><i class="fa fa-twitter"></i>&nbsp;Tweet</a>&nbsp;&nbsp;
         <a href="https://github.com/briatte/parlviz" class="button" title="Get the visualization code from GitHub."><i class="fa fa-github"></i>&nbsp;Code</a>
       </p>
 
@@ -121,16 +141,16 @@
       <ul>
         <li>
           Data from
-          <a href="http://www.eduskunta.fi/">eduskunta.fi</a>
-          (summer 2014)
+          <a href="http://www.oireachtas.ie/">oireachtas.ie</a>
+          (summer 2015)
         </li>
 
         <li>
           Download&nbsp;&nbsp;
           <i class="fa fa-file-o"></i>&nbsp;&nbsp;
-          <a href="<?php echo 'net_fi' . $t; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
+          <a href="net_ie_<?php echo $ch . $t; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
           <i class="fa fa-files-o"></i>&nbsp;&nbsp;
-          <a href="net_fi.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
+          <a href="net_ie_<?php echo $ch; ?>.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
           <i class="fa fa-file-image-o"></i>&nbsp;&nbsp;
           <a href="plots.html">plots</a>
         </li>
@@ -145,11 +165,11 @@
           <li><a href="/parlviz/poslanecka">Czech Republic</a></li>
           <li><a href="/parlviz/folketinget">Denmark</a></li>
           <li><a href="/parlviz/epam">European Union</a></li>
-          <!-- <li><a href="/parlviz/eduskunta">Finland</a></li> -->
+          <li><a href="/parlviz/eduskunta">Finland</a></li>
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
-          <li><a href="/parlviz/oireachtas">Ireland</a></li>
+          <!-- <li><a href="/parlviz/oireachtas">Ireland</a></li> -->
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
@@ -167,7 +187,7 @@
     <div id="graph-container"></div>
   </div>
 
-  <div id="box" class="bg_an">
+  <div id="box" class="bg_gr">
     <?php echo $box; ?>
   </div>
 
@@ -182,7 +202,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the Finnish Parliament, years ', 'net_fi') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the Irish Parliament: ', 'net_ie_').replace('Dáil Éireann', 'da').replace('Seanad Éireann', 'se').replace(', years ', '') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -210,7 +230,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  document.title.replace('Cosponsorship networks in the Finnish Parliament, years ', 'net_fi') + '.gexf',
+  document.title.replace('Cosponsorship networks in the Irish Parliament: ', 'net_ie_').replace('Dáil Éireann', 'da').replace('Seanad Éireann', 'se').replace(', years ', '') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -224,10 +244,10 @@ sigma.parsers.gexf(
     });
 
     // box
-    var parties = [ 'Vasenryhmä', 'Vasemmistoliitto', 'Vihreä liitto',
-      'Sosialidemokraattinen Puolue', 'Keskusta', 'Ruotsalainen kansanpuolue',
-      'Perussuomalaiset', 'Kristillisdemokraatit', 'Kansallinen Kokoomus',
-      'Muutos 2011' ];
+    var parties = [ "Anti Austerity Alliance", "Socialist Party",
+      "Sinn Féin", "Workers' Party", "Democratic Left", "Green Party",
+      "Labour Party", "Fianna Fáil", "Fine Gael", "RENUA Ireland",
+      "Progressive Democrats", "chamber chair", "independent" ];
     var colors = new Array(parties.length);
 
     // initial nodes
@@ -278,7 +298,8 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (Eduskunta, new window)" target="_blank">';
+      // profile
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (Irish Parliament, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
@@ -293,16 +314,23 @@ sigma.parsers.gexf(
 
       // constituency
       var constituency = '';
-      if(typeof e.data.node.attributes['constituency'] != 'undefined')
-        var constituency = ' representing <a title="Go to Wikipedia Suomi entry (new window)" target="_blank" href="https://fi.wikipedia.org/wiki/' +
-        e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace('_', ' ') + '</a>';
+      if(e.data.node.attributes['constituency'] != '' && e.data.node.attributes['constituency'].indexOf("Panel") == -1)
+        constituency = ' representing <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
+          e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ').replace(' (Dáil Éireann constituency)', '') + '</a>';
+      else if(e.data.node.attributes['constituency'] != '' && e.data.node.attributes['constituency'].indexOf("Panel") > -1)
+        constituency = ' sitting on the <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
+          e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
+
+      if(e.data.node.attributes['constituency'] != '' && (e.data.node.attributes['constituency'].indexOf("University") > -1 || e.data.node.attributes['constituency'].indexOf("Nominated") > -1))
+        constituency = ' from the <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
+          e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
 
       // selection text
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
-        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + constituency +
+        photo + 'You selected ' + id + ', <?php echo $member; ?>' + constituency +
         ' who had <span title="unweighted total degree">' +
-        s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' +
-        e.data.node.attributes['n_bills'] + ' bill(s) during the legislature.</p>';
+        s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' + e.data.node.attributes['n_bills'] +
+        ' bill(s) during the legislature.</p>';
 
       // Since the data has been modified, we need to
       // call the refresh method to make the colors

@@ -3,7 +3,7 @@
   if(count($_GET) > 0 & !empty($_GET['t'])) $t = basename($_GET['t']);
 
   // default legislature
-  if(!isset($t)) $t = '2010-2014';
+  if(!isset($t)) $t = '2014-2018';
 
   $y = array(
     '1988-1991' => '1988&mdash;1991',
@@ -12,7 +12,8 @@
     '1998-2002' => '1998&mdash;2002',
     '2002-2006' => '2002&mdash;2006',
     '2006-2010' => '2006&mdash;2010',
-    '2010-2014' => '2010&mdash;2014');
+    '2010-2014' => '2010&mdash;2014',
+    '2014-2018' => '2014&mdash;');
 
   $c = $y;
 
@@ -42,7 +43,7 @@
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
   <link rel="stylesheet" type="text/css" href="../assets/styles.css" />
   <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css">
-  <style type="text/css" media="screen">body { background: url("riksdag.jpg") no-repeat; }</style>
+  <style type="text/css" media="screen">body { background: url("hemicycle.jpg") no-repeat; }</style>
   <script type="text/javascript" src="../assets/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="../assets/jquery.smart_autocomplete.min.js"></script>
   <script type="text/javascript" src="../assets/sigmajs-release-v1.0.2/sigma.min.js"></script>
@@ -59,7 +60,7 @@
 
     <h2>
       <a href="http://www.riksdagen.se/" title="Sveriges Riksdag">
-        <img src="logo_ri.png" height="18" alt="logo">
+        <img src="logo_se.png" height="18" alt="logo">
       </a>
       &nbsp;Riksdag,&nbsp;<?php echo $y[ $t ]; ?>
     </h2>
@@ -125,7 +126,7 @@
         <li>
           Data from
           <a href="http://data.riksdagen.se/">data.riksdagen.se</a>
-          (summer 2014)
+          (summer 2015)
         </li>
 
         <li>
@@ -158,12 +159,13 @@
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <!-- <li><a href="/parlviz/riksdag">Sweden</a></li> -->
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -234,7 +236,7 @@ sigma.parsers.gexf(
     // box
     var parties = ['Vänsterpartiet', 'Miljöpartiet ', 'Socialdemokraterna',
       'Centerpartiet', 'Folkpartiet', 'Kristdemokraterna',
-      'Moderaterna', 'Sverigedemokraterna', 'Ny Demokrati', 'Independent'];
+      'Moderaterna', 'Sverigedemokraterna', 'Ny Demokrati', 'Piratpartiet', 'independent'];
     var colors = new Array(parties.length);
 
     // initial nodes
@@ -285,16 +287,15 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="http://data.riksdagen.se/personlista/?iid=' + e.data.node.attributes['url'] +
-        '&utformat=html" title="Go to profile (Riksdag Open Data, new window)" target="_blank">';
+      var profile = '<a href="' + e.data.node.attributes['url'] + '&utformat=html" title="Go to profile (Riksdag Open Data, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
 
       // photo
       var photo = '';
-      if(e.data.node.attributes['photo'] == 1)
-        photo = profile + '<img height="128px" src="photos/' + e.data.node.attributes['url'] + '.jpg" alt="photo" /></a> ';
+      if(typeof e.data.node.attributes['photo'] != 'undefined')
+        photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';

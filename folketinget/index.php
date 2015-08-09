@@ -28,7 +28,7 @@
   $c[ $t ] = 'here';
 
   // initial box
-  $box = '<p>This graph shows Danish Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years 2004&mdash;2014. ' .
+  $box = '<p>This graph shows Danish Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years 2004&mdash;2015. ' .
       'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they cosponsored at least one bill together on the selected theme.</p>' .
       '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
       '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
@@ -136,7 +136,7 @@
         <li>
           Data from
           <a href="http://www.ft.dk/">folketinget.dk</a>
-          (summer 2014)
+          (summer 2015)
         </li>
 
         <li>
@@ -163,12 +163,13 @@
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -292,8 +293,8 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="http://www.ft.dk/Folketinget/findMedlem/' + e.data.node.attributes['url'] +
-        '.aspx" title="Go to profile (Folketinget, new window)" target="_blank">';
+      // profile
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (Folketinget, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');

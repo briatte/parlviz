@@ -1,9 +1,9 @@
 <?php
 
-  if(count($_GET) > 0 & !empty($_GET['legislature'])) $t = basename($_GET['legislature']);
+  if(count($_GET) > 0 & !empty($_GET['t'])) $t = basename($_GET['t']);
 
   // default legislature
-  if(!isset($t)) $t = '1995-1999';
+  if(!isset($t)) $t = '2013-2017';
 
   $y = array(
     '1995-1999' => '1995&mdash;1999',
@@ -34,7 +34,7 @@
 <html>
 <head>
   <title>
-    Cosponsorship networks in the Icelandic Parliament, legislature
+    Cosponsorship networks in the Icelandic Parliament, years
     <?php echo $t; ?>
   </title>
   <meta charset="utf-8">
@@ -67,7 +67,7 @@
       Legislature
       <?php
       foreach ($y as $i => $j)
-        echo '&nbsp;&nbsp; <a href="?legislature=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+        echo '&nbsp;&nbsp; <a href="?t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
       ?>
     </nav>
 
@@ -123,7 +123,7 @@
         <li>
           Data from
           <a href="http://www.althingi.is/">althing.is</a>
-          (winter 2014)
+          (summer 2015)
         </li>
 
         <li>
@@ -155,7 +155,7 @@
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -182,7 +182,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the Icelandic Parliament, legislature ', 'net_is') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the Icelandic Parliament, years ', 'net_is') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -210,7 +210,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  document.title.replace('Cosponsorship networks in the Icelandic Parliament, legislature ', 'net_is') + '.gexf',
+  document.title.replace('Cosponsorship networks in the Icelandic Parliament, years ', 'net_is') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -279,7 +279,7 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="http://www.althingi.is/altext/cv/is/?nfaerslunr=' + e.data.node.attributes['url'] +
+      var profile = '<a href="' + e.data.node.attributes['url'] +
         '" title="Go to profile (Icelandic Parliament, new window)" target="_blank">';
 
       // transparency
@@ -288,7 +288,7 @@ sigma.parsers.gexf(
       // photo
       var photo = '';
       if(typeof e.data.node.attributes['photo'] != 'undefined')
-        photo = profile + '<img height="128px" src="photos/' + e.data.node.attributes['photo'] + '.jpg" alt="photo" /></a> ';
+        photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';

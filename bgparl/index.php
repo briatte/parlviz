@@ -3,14 +3,14 @@
   if(count($_GET) > 0 & !empty($_GET['t'])) $t = basename($_GET['t']);
 
   // default legislature
-  if(!isset($t)) $t = '2005-2009';
+  if(!isset($t)) $t = '2014-2018';
 
   $y = array(
     // '2001-2005' => '2001&mdash;2005',
     '2005-2009' => '2005&mdash;2009',
     '2009-2013' => '2009&mdash;2013',
     '2013-2014' => '2013&mdash;2014',
-	'2014-2018' => '2014&mdash;');
+    '2014-2018' => '2014&mdash;');
 
   $c = $y;
 
@@ -152,12 +152,13 @@
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -282,14 +283,16 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="http://www.parliament.bg/bg/MP/' + e.data.node.attributes['url'] +
-        '" title="Go to profile (Bulgarian Parliament, new window)" target="_blank">';
+      // profile
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (Bulgarian Parliament, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
 
-      // photo (no need to test whether present, all of them downloaded fine)
-      var photo = profile + '<img height="128px" src="photos/' + e.data.node.attributes['url'] + '.jpg" alt="photo" /></a> ';
+      // photo
+      var photo = '';
+      if(typeof e.data.node.attributes['photo'] != 'undefined')
+         photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';

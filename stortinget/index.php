@@ -24,7 +24,7 @@
 
   $box =
     '<p>This graph shows Norwegian Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $t . '. ' .
-    'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they cosponsored at least one bill together on the selected theme.</p>' .
+    'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
     'that connect the first author of each bill to its cosponsor(s). The /nodes nodes are sized proportionally to their ' .
@@ -35,14 +35,14 @@
 <html>
 <head>
   <title>
-    Cosponsorship networks in the Norwegian Parliament:
+    Cosponsorship networks in the Norwegian Parliament: years
     <?php echo $t; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
   <link rel="stylesheet" type="text/css" href="../assets/styles.css" />
   <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css">
-  <style type="text/css" media="screen">body { background: url("stortinget.jpg") no-repeat; }</style>
+  <style type="text/css" media="screen">body { background: url("hemicycle.jpg") no-repeat; }</style>
   <script type="text/javascript" src="../assets/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="../assets/jquery.smart_autocomplete.min.js"></script>
   <script type="text/javascript" src="../assets/sigmajs-release-v1.0.2/sigma.min.js"></script>
@@ -66,7 +66,7 @@
 
     <!-- graph selector -->
     <nav>
-      Theme
+      Legislature
       <?php
       foreach ($y as $i => $j)
         echo '&nbsp;&nbsp; <a href="?t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
@@ -126,7 +126,7 @@
           Data from
           <!-- <a href="https://www.stortinget.no/">stortinget.no</a> and -->
           <a href="https://data.stortinget.no/">data.stortinget.no</a> 
-          (winter 2015)
+          (summer 2015)
         </li>
 
         <li>
@@ -159,12 +159,13 @@
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <!-- <li><a href="/parlviz/stortinget">Norway</a></li> -->
-		  <li><a href="/parlviz/assembleia">Portugal</a></li>
+           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -191,7 +192,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the Norwegian Parliament: ', 'net_no') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the Norwegian Parliament: years ', 'net_no') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -219,7 +220,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  document.title.replace('Cosponsorship networks in the Norwegian Parliament: ', 'net_no') + '.gexf',
+  document.title.replace('Cosponsorship networks in the Norwegian Parliament: years ', 'net_no') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -287,16 +288,15 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="http://www.stortinget.no/no/Representanter-og-komiteer/Representantene/Representantfordeling/Representant/?perid=' +
-        e.data.node.attributes['url'] + '" title="Go to profile (Stortinget, new window)" target="_blank">';
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (Stortinget, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
 
       // photo
       var photo = '';
-      if(e.data.node.attributes['photo'] == 1)
-        photo = profile + '<img height="128px" src="photos/' + e.data.node.attributes['url'] + '.jpg" alt="photo" /></a> ';
+      if(typeof e.data.node.attributes['photo'] != 'undefined')
+        photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
@@ -304,7 +304,7 @@ sigma.parsers.gexf(
       // constituency
       var constituency = '';
       if(typeof e.data.node.attributes['constituency'] != 'undefined')
-        var constituency = ' representing <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
+        var constituency = ' representing <a title="Go to Wikipedia Norsk bokmål entry (new window)" target="_blank" href="https://no.wikipedia.org/wiki/' +
           e.data.node.attributes['constituency'].replace(new RegExp(' ', 'g'), '_') +
           '">' + e.data.node.attributes['constituency'] + '</a>';
 

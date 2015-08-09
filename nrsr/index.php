@@ -1,16 +1,16 @@
 <?php
 
-  if(count($_GET) > 0 & !empty($_GET['legislature'])) $t = basename($_GET['legislature']);
+  if(count($_GET) > 0 & !empty($_GET['t'])) $t = basename($_GET['t']);
 
   // default legislature
-  if(!isset($t)) $t = '2012-2015';
+  if(!isset($t)) $t = '2012-2016';
 
   $y = array(
     '1998-2002' => '1998&mdash;2002',
     '2002-2006' => '2002&mdash;2006',
     '2006-2010' => '2006&mdash;2010',
     '2010-2012' => '2010&mdash;2012',
-	'2012-2015' => '2012&mdash;'
+    '2012-2016' => '2012&mdash;'
   );
 
   $c = $y;
@@ -21,7 +21,7 @@
   $c[ $t ] = 'here';
 
   $box =
-    '<p>This graph shows Slovakian Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $t . '. ' .
+    '<p>This graph shows Slovakian Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $y[ $t ] . '. ' .
     'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they have cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
@@ -34,7 +34,7 @@
 <html>
 <head>
   <title>
-    Cosponsorship networks in the Slovakian Parliament, legislature
+    Cosponsorship networks in the Slovakian Parliament, years
     <?php echo $t; ?>
   </title>
   <meta charset="utf-8">
@@ -67,7 +67,7 @@
       Legislature
       <?php
       foreach ($y as $i => $j)
-        echo '&nbsp;&nbsp; <a href="?legislature=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+        echo '&nbsp;&nbsp; <a href="?t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
       ?>
     </nav>
 
@@ -131,7 +131,7 @@
           <a href="https://commons.wikimedia.org/wiki/File:N%C3%A1rodn%C3%A1_rada_SR.jpg" title="Original photograph by Rl91">Rl91</a>
           (Wikimedia)
         </li>
-		
+         
         <li>
           Download&nbsp;&nbsp;
           <i class="fa fa-file-o"></i>&nbsp;&nbsp;
@@ -154,14 +154,15 @@
           <li><a href="/parlviz/epam">European Union</a></li>
           <li><a href="/parlviz/eduskunta">Finland</a></li>
           <li><a href="/parlviz/parlement">France</a></li>
-		  <li><a href="/parlviz/orszaggyules">Hungary</a></li>
+           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <!-- <li><a href="/parlviz/nrsr">Slovakia</a></li> -->
+           <!-- <li><a href="/parlviz/nrsr">Slovakia</a></li> -->
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -188,7 +189,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the Slovakian Parliament, legislature ', 'net_sk') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the Slovakian Parliament, years ', 'net_sk') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -216,7 +217,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  document.title.replace('Cosponsorship networks in the Slovakian Parliament, legislature ', 'net_sk') + '.gexf',
+  document.title.replace('Cosponsorship networks in the Slovakian Parliament, years ', 'net_sk') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -234,7 +235,7 @@ sigma.parsers.gexf(
       'Smer - sociálna demokracia', 'Hnutie za demokratické Slovensko', 'Sloboda a Solidarita', 
       'Strana maďarskej komunity - Magyar Közösség Pártja', 'Slovenská národná strana', 
       'Kresťanskodemokratické hnutie', 'Aliancia Nového Občana', 'Slovenská demokratická a kresťanská únia – Demokratická strana',
-	  'Most–Híd', 'Obyčajní ľudia a nezávislé osobnosti' ];
+      'Most–Híd', 'Obyčajní ľudia a nezávislé osobnosti' ];
     var colors = new Array(parties.length);
 
 
@@ -286,23 +287,25 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="http://www.nrsr.sk/web/Default.aspx?sid=poslanci/poslanec&PoslanecID=' + e.data.node.attributes['url'] +
-        '" title="Go to profile (Slovakian Parliament, new window)" target="_blank">';
+      // profile
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (Slovakian Parliament, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
 
       // photo
-      var photo = '<img height="128px" src="photos/' + e.data.node.attributes['photo'] + '.jpg" alt="photo" /></a> ';
+      var photo = '';
+      if(typeof e.data.node.attributes['photo'] != 'undefined')
+        photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
       // constituency
-	  var constituency = '';
-	  if(e.data.node.attributes['constituency'] != '')
-	      var constituency = ' representing <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
-	        e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
+      var constituency = '';
+      if(e.data.node.attributes['constituency'] != '')
+          constituency = ' representing <a title="Go to Wikipedia Slovenčina entry (new window)" target="_blank" href="https://sk.wikipedia.org/wiki/' +
+            e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
 
       // selection text
       document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +

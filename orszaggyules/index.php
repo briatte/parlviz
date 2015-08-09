@@ -1,15 +1,16 @@
 <?php
 
-  if(count($_GET) > 0 & !empty($_GET['legislature'])) $t = basename($_GET['legislature']);
+  if(count($_GET) > 0 & !empty($_GET['t'])) $t = basename($_GET['t']);
 
   // default legislature
-  if(!isset($t)) $t = '1998-2002';
+  if(!isset($t)) $t = '2014-2018';
 
   $y = array(
     '1998-2002' => '1998&mdash;2002',
     '2002-2006' => '2002&mdash;2006',
     '2006-2010' => '2006&mdash;2010',
-    '2010-2014' => '2010&mdash;2014'
+    '2010-2014' => '2010&mdash;2014',
+    '2014-2018' => '2014&mdash;'
   );
 
   $c = $y;
@@ -20,7 +21,7 @@
   $c[ $t ] = 'here';
 
   $box =
-    '<p>This graph shows Hungarian Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $t . '. ' .
+    '<p>This graph shows Hungarian Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $y[ $t ] . '. ' .
     'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they have cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
@@ -33,7 +34,7 @@
 <html>
 <head>
   <title>
-    Cosponsorship networks in the Hungarian Parliament, legislature
+    Cosponsorship networks in the Hungarian Parliament, years
     <?php echo $t; ?>
   </title>
   <meta charset="utf-8">
@@ -66,7 +67,7 @@
       Legislature
       <?php
       foreach ($y as $i => $j)
-        echo '&nbsp;&nbsp; <a href="?legislature=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+        echo '&nbsp;&nbsp; <a href="?t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
       ?>
     </nav>
 
@@ -122,7 +123,7 @@
         <li>
           Data from
           <a href="http://www.parlament.hu/">parlament.hu</a>
-          (winter 2014)
+          (summer 2015)
         </li>
 
         <li>
@@ -148,13 +149,14 @@
           <li><a href="/parlviz/eduskunta">Finland</a></li>
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
-		  <!-- <li><a href="/parlviz/orszaggyules">Hungary</a></li> -->
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
+           <!-- <li><a href="/parlviz/orszaggyules">Hungary</a></li> -->
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -181,7 +183,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the Hungarian Parliament, legislature ', 'net_hu') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the Hungarian Parliament, years ', 'net_hu') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -209,7 +211,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  document.title.replace('Cosponsorship networks in the Hungarian Parliament, legislature ', 'net_hu') + '.gexf',
+  document.title.replace('Cosponsorship networks in the Hungarian Parliament, years ', 'net_hu') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -278,22 +280,21 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="http://www.parlament.hu/internet/cplsql/ogy_kpv.kepv_adat?p_azon=' + e.data.node.attributes['url'] +
-        '" title="Go to profile (Hungarian Parliament, new window)" target="_blank">';
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (Hungarian Parliament, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
 
       // photo
       var photo = '';
-      if(e.data.node.attributes['photo'] == '1')
-        photo = profile + '<img height="128px" src="photos/' + e.data.node.attributes['url'] + '.jpg" alt="photo" /></a> ';
+      if(typeof e.data.node.attributes['photo'] != 'undefined')
+        photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
-      var id = profile + e.data.node.attributes['name'] + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
+      var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
       // constituency
-      var constituency = ' representing <a title="Go to Wikipedia English entry (new window)" target="_blank" href="https://en.wikipedia.org/wiki/' +
+      var constituency = ' representing <a title="Go to Wikipedia Magyar entry (new window)" target="_blank" href="https://hu.wikipedia.org/wiki/' +
         e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
 
       // selection text

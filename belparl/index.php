@@ -1,21 +1,21 @@
 <?php
 
   if(count($_GET) > 0) {
-    if(!empty($_GET['legislature'])) $t = basename($_GET['legislature']);
+    if(!empty($_GET['t'])) $t = basename($_GET['t']);
     if(!empty($_GET['chamber'])) $ch = basename($_GET['chamber']);
   }
 
   // default legislature
-  if(!isset($t)) $t = '54';
+  if(!isset($t)) $t = '2014-2019';
 
   // default chamber
   if(!isset($ch)) $ch = 'ch';
 
   // start Senate at l. 49
-  if($ch == 'se' & $t < 49) $t = '49';
+  if($ch == 'se' & $t == '1991-1995') $t = '1995-1999';
   
   // stop Senate at l. 43
-  if($ch == 'se' & $t > 53) $t = '53';
+  if($ch == 'se' & $t == '2014-2019') $t = '2010-2014';
 
   if($ch == 'ch') {
     $chamber = 'Chambre';
@@ -30,13 +30,13 @@
 
   $y = array(
     // '47' => '1988&mdash;1991',
-    '48' => '1991&mdash;1995',
-    '49' => '1995&mdash;1999',
-    '50' => '1999&mdash;2003',
-    '51' => '2003&mdash;2007',
-    '52' => '2007&mdash;2010',
-    '53' => '2010&mdash;2014',
-    '54' => '2014&mdash;');
+    '1991-1995' => '1991&mdash;1995',
+    '1995-1999' => '1995&mdash;1999',
+    '1999-2003' => '1999&mdash;2003',
+    '2003-2007' => '2003&mdash;2007',
+    '2007-2010' => '2007&mdash;2010',
+    '2010-2014' => '2010&mdash;2014',
+    '2014-2019' => '2014&mdash;');
 
   $c = $y;
 
@@ -47,19 +47,15 @@
 
   // ongoing legislature
   $be = 'was';
-  if($t == '54') $be = 'is';
+  if($t == '2014-2019') $be = 'is';
 
   $have = 'had';
-  if($t == '54') $have = 'has had';
-
-  $nth = $t . 'th';
-  if($t == '51') $nth = '51st';
-  if($t == '52') $nth = '52nd';
-  if($t == '53') $nth = '53rd';
+  if($t == '2014-2019') $have = 'has had';
 
   // initial box
   $box =
-    '<p>This graph shows Belgian ' . str_replace('<abbr title="Members of Parliament">MPs</abbr>', 'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) . ' during the ' . $nth . '&nbsp;legislature. ' .
+    '<p>This graph shows Belgian ' . str_replace('<abbr title="Members of Parliament">MPs</abbr>', 'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) .
+    ' during years ' . $y[ $t ] . '. ' .
     'A link between two ' . $members . ' indicates that they cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
@@ -73,7 +69,7 @@
 <head>
   <title>
     Cosponsorship networks in the Belgian Parliament:
-    <?php echo $chamber; ?>, législature <?php echo $t; ?>
+    <?php echo $chamber; ?>, years <?php echo $t; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -95,22 +91,20 @@
     <h1>belgian parliament</h1>
 
     <h2>
-      <a href="<?php if($ch == 'ch') echo 'http://www.lachambre.be/'; else echo 'http://www.senate.be/'; ?>" title="<?php echo $chamber; ?>">
-        <img src="logo_<?php echo $ch; ?>.png" height="25" alt="logo">
-      </a>
+      <a href="<?php if($ch == 'ch') echo 'http://www.lachambre.be/'; else echo 'http://www.senate.be/'; ?>" title="<?php echo $chamber; ?>"><img src="logo_<?php echo $ch; ?>.png" height="25" alt="logo"></a>
       &nbsp;<?php echo $chamber . ', ' . $y[ $t ]; ?>
     </h2>
 
     <!-- graph selector -->
     <nav>
       Chamber&nbsp;&nbsp;
-      <a href="?chamber=ch&amp;legislature=<?php echo $t; ?>" class="<?php if($ch == 'ch') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
-      <a href="?chamber=se&amp;legislature=<?php echo $t; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper<?php if($t == 48) echo '&nbsp;(1995&mdash;)'; ?></a><br>
+      <a href="?chamber=ch&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'ch') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
+      <a href="?chamber=se&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper</a><br>
       Legislature
         <?php
         foreach ($y as $i => $j)
-          if($ch != 'se' || ($ch == 'se' & $i > 48 & $i < 54))
-            echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;legislature=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+          if($ch != 'se' || ($ch == 'se' & $i != '1991-1995' & $i != '2014-2019'))
+            echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
         ?>
     </nav>
 
@@ -166,7 +160,7 @@
         <li>
           Data from
           <a href="<?php echo $source ?>"><?php echo str_replace(array('http://', 'www.', '/'), '', $source) ?></a>
-          (summer 2014)
+          (summer 2015)
         </li>
 
         <li>
@@ -193,12 +187,13 @@
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -224,7 +219,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the Belgian Parliament: ', 'net_be_').replace('Chambre', 'ch').replace('Sénat', 'se').replace(', législature ', '') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the Belgian Parliament: ', 'net_be_').replace('Chambre', 'ch').replace('Sénat', 'se').replace(', years ', '') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -252,7 +247,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  document.title.replace('Cosponsorship networks in the Belgian Parliament: ', 'net_be_').replace('Chambre', 'ch').replace('Sénat', 'se').replace(', législature ', '') + '.gexf',
+  document.title.replace('Cosponsorship networks in the Belgian Parliament: ', 'net_be_').replace('Chambre', 'ch').replace('Sénat', 'se').replace(', years ', '') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -323,12 +318,8 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      if(document.title.match('Chambre'))
-        var profile = '<a href="http://www.lachambre.be/kvvcr/showpage.cfm?section=/depute&language=fr&rightmenu=right_depute&cfm=cvview54.cfm?key=' + e.data.node.attributes['url'] +
-          '&lactivity=<?php echo $t ?>" title="Go to profile (<?php echo $chamber; ?>, new window)" target="_blank">';
-      else
-        var profile = '<a href="http://www.senate.be/www/?MIval=/showSenator&ID=' + e.data.node.attributes['url'] +
-          '" title="Go to profile (<?php echo $chamber; ?>, new window)" target="_blank">';
+      // profile URL
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (<?php echo $chamber; ?>, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
@@ -336,15 +327,15 @@ sigma.parsers.gexf(
       // photo
       var photo = '';
       if(typeof e.data.node.attributes['photo'] != 'undefined')
-        photo = profile + '<img height="128px" src="photos_<?php echo $ch; ?>/' + e.data.node.attributes['photo'] +
-		  '.<?php if($ch == 'ch') echo 'gif'; else echo 'jpg'; ?>" alt="photo" /></a> ';
+           photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
       // constituency
-      if(typeof e.data.node.attributes['constituency'] != 'undefined')
-        var constituency = ' representing the <a title="Go to Wikipedia Francophone entry (new window)" target="_blank" href="https://fr.wikipedia.org/wiki/' +
+      var constituency = '';
+      if(typeof e.data.node.attributes['constituency'] != 'boolean' & typeof e.data.node.attributes['constituency'] != 'undefined')
+        constituency = ' representing the <a title="Go to Wikipedia Francophone entry (new window)" target="_blank" href="https://fr.wikipedia.org/wiki/' +
           e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
 
       // activity stats

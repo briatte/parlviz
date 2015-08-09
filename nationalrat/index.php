@@ -3,15 +3,15 @@
   if(count($_GET) > 0 & !empty($_GET['t'])) $t = basename($_GET['t']);
 
   // default legislature
-  if(!isset($t)) $t = '24';
+  if(!isset($t)) $t = '2013-2018';
 
   $y = array(
-    '20' => '1995&mdash;1999',
-    '21' => '1999&mdash;2002',
-    '22' => '2002&mdash;2006',
-    '23' => '2006&mdash;2008',
-    '24' => '2008&mdash;2013',
-    '25' => '2013&mdash;'); // last legislature is very incomplete
+    '1995-1999' => '1995&mdash;1999',
+    '1999-2002' => '1999&mdash;2002',
+    '2002-2006' => '2002&mdash;2006',
+    '2006-2008' => '2006&mdash;2008',
+    '2008-2013' => '2008&mdash;2013',
+    '2013-2018' => '2013&mdash;');
 
   $c = $y;
 
@@ -34,7 +34,7 @@
 <html>
 <head>
   <title>
-    Cosponsorship networks in the Austrian Parliament, legislature
+    Cosponsorship networks in the Austrian Parliament, years
     <?php echo $t; ?>
   </title>
   <meta charset="utf-8">
@@ -124,7 +124,7 @@
         <li>
           Data from
           <a href="http://www.parlament.gv.at/">parlament.gv.at</a>
-          (autumn 2014)
+          (summer 2015)
         </li>
 
         <li>
@@ -152,12 +152,13 @@
           <li><a href="/parlviz/parlement">France</a></li>
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
+          <li><a href="/parlviz/oireachtas">Ireland</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
           <li><a href="/parlviz/parlamentul">Romania</a></li>
-		  <li><a href="/parlviz/nrsr">Slovakia</a></li>
+          <li><a href="/parlviz/nrsr">Slovakia</a></li>
           <li><a href="/parlviz/riksdag">Sweden</a></li>
           <li><a href="/parlviz/swparl">Switzerland</a></li>
           <li><a href="/parlviz/marsad">Tunisia</a></li>
@@ -184,7 +185,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the Austrian Parliament, legislature ', 'net_at') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the Austrian Parliament, years ', 'net_at') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -212,7 +213,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  document.title.replace('Cosponsorship networks in the Austrian Parliament, legislature ', 'net_at') + '.gexf',
+  document.title.replace('Cosponsorship networks in the Austrian Parliament, years ', 'net_at') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -284,14 +285,15 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="http://www.parlament.gv.at/WWER/' + e.data.node.attributes['url'].replace('id', 'PAD') +
-        '/index.shtml" title="Go to profile (Austrian Parliament, new window)" target="_blank">';
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (Austrian Parliament, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
 
       // photo
-      var photo = profile + '<img height="128px" src="photos/' + e.data.node.attributes['photo'] + '.jpg" alt="photo" /></a> ';
+      var photo = '';
+      if(typeof e.data.node.attributes['photo'] != 'undefined')
+        photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
