@@ -1,12 +1,12 @@
 <?php
 
   if(count($_GET) > 0) {
-    if(!empty($_GET['t'])) $t = basename($_GET['t']);
+    if(!empty($_GET['years'])) $years = basename($_GET['years']);
     if(!empty($_GET['chamber'])) $ch = basename($_GET['chamber']);
   }
 
   // default legislature
-  if(!isset($t)) $t = '2011-2015';
+  if(!isset($years)) $years = '2011-2015';
 
   // default chamber
   if(!isset($ch)) $ch = 'cn';
@@ -31,10 +31,10 @@
   foreach ($c as $i => $j)
     $c[ $i ] = '';
 
-  $c[ $t ] = 'here';
+  $c[ $years ] = 'here';
 
   $box =
-    '<p>This graph shows Swiss Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $y[ $t ] . '. ' .
+    '<p>This graph shows Swiss Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $y[ $years ] . '. ' .
     'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they have cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
@@ -48,7 +48,7 @@
 <head>
   <title>
     Cosponsorship networks in the Swiss Parliament:
-    <?php echo $chamber; ?>, years <?php echo $t; ?>
+    <?php echo $chamber; ?>, years <?php echo $years; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -72,18 +72,18 @@
     <h2>
       <a href="http://www.parlament.ch/" title="Assemblée fédérale">
       <img src="logo_ch.png" height="18" alt="logo"></a>&nbsp;
-      <?php echo $chamber; ?>,<br><?php echo $y[ $t ]; ?>
+      <?php echo $chamber; ?>,<br><?php echo $y[ $years ]; ?>
     </h2>
 
     <!-- graph selector -->
     <nav>
-       Chamber&nbsp;&nbsp;
-    <a href="?chamber=cn&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'cn') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
-    <a href="?chamber=cs&amp;t=<?php echo $t; ?>" class="<?php if($ch == 'cs') echo 'here'; ?>">Upper</a><br>
+      Chamber&nbsp;&nbsp;
+      <a href="?chamber=cn&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'cn') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
+      <a href="?chamber=cs&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'cs') echo 'here'; ?>">Upper</a><br>
       Legislature
       <?php
       foreach ($y as $i => $j)
-        echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+        echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
       ?>
     </nav>
 
@@ -145,7 +145,7 @@
         <li>
           Download&nbsp;&nbsp;
           <i class="fa fa-file-o"></i>&nbsp;&nbsp;
-          <a href="net_ch_<?php echo $ch . $t; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
+          <a href="net_ch_<?php echo $ch . $years; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
           <i class="fa fa-files-o"></i>&nbsp;&nbsp;
           <a href="net_ch_<?php echo $ch; ?>.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
           <i class="fa fa-file-image-o"></i>&nbsp;&nbsp;

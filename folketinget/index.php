@@ -1,9 +1,9 @@
 <?php
 
-  if(count($_GET) > 0 & !empty($_GET['t'])) $t = basename($_GET['t']);
+  if(count($_GET) > 0 & !empty($_GET['years'])) $years = basename($_GET['years']);
 
   // default theme
-  if(!isset($t)) $t = 'Environment';
+  if(!isset($years)) $years = 'Environment';
 
   $y = array(
     'Agriculture' => 'Agriculture',
@@ -25,7 +25,7 @@
   foreach ($c as $i => $j)
     $c[ $i ] = '';
 
-  $c[ $t ] = 'here';
+  $c[ $years ] = 'here';
 
   // initial box
   $box = '<p>This graph shows Danish Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years 2004&mdash;2015. ' .
@@ -47,7 +47,7 @@
 <head>
   <title>
     Cosponsorship networks in the Danish Parliament:
-    <?php echo $t; ?>
+    <?php echo $years; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -72,7 +72,7 @@
       <a href="http://www.ft.dk/" title="Folketinget">
         <img src="logo_dk.png" height="18" alt="logo">
       </a>
-      &nbsp;<?php echo $y[ $t ]; ?>
+      &nbsp;<?php echo $y[ $years ]; ?>
     </h2>
 
     <!-- graph selector -->
@@ -80,7 +80,7 @@
       Theme
       <?php
       foreach ($y as $i => $j)
-        echo '&nbsp;&nbsp; <a href="?t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+        echo '&nbsp;&nbsp; <a href="?years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
       ?>
     </nav>
 
@@ -142,7 +142,7 @@
         <li>
           Download&nbsp;&nbsp;
           <i class="fa fa-file-o"></i>&nbsp;&nbsp;
-          <a href="<?php echo 'net_dk' . $t; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
+          <a href="<?php echo 'net_dk' . $years; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
           <i class="fa fa-files-o"></i>&nbsp;&nbsp;
           <a href="net_dk.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
           <i class="fa fa-file-image-o"></i>&nbsp;&nbsp;

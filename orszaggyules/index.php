@@ -1,9 +1,9 @@
 <?php
 
-  if(count($_GET) > 0 & !empty($_GET['t'])) $t = basename($_GET['t']);
+  if(count($_GET) > 0 & !empty($_GET['years'])) $years = basename($_GET['years']);
 
   // default legislature
-  if(!isset($t)) $t = '2014-2018';
+  if(!isset($years)) $years = '2014-2018';
 
   $y = array(
     '1998-2002' => '1998&mdash;2002',
@@ -18,10 +18,10 @@
   foreach ($c as $i => $j)
     $c[ $i ] = '';
 
-  $c[ $t ] = 'here';
+  $c[ $years ] = 'here';
 
   $box =
-    '<p>This graph shows Hungarian Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $y[ $t ] . '. ' .
+    '<p>This graph shows Hungarian Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $y[ $years ] . '. ' .
     'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they have cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
@@ -35,7 +35,7 @@
 <head>
   <title>
     Cosponsorship networks in the Hungarian Parliament, years
-    <?php echo $t; ?>
+    <?php echo $years; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -59,7 +59,7 @@
     <h2>
       <a href="http://www.parlament.hu/" title="Országgyűlés">
       <img src="logo_hu.png" height="18" alt="logo"></a>&nbsp;
-      Országgyűlés, <?php echo $y[ $t ]; ?>
+      Országgyűlés, <?php echo $y[ $years ]; ?>
     </h2>
 
     <!-- graph selector -->
@@ -67,7 +67,7 @@
       Legislature
       <?php
       foreach ($y as $i => $j)
-        echo '&nbsp;&nbsp; <a href="?t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+        echo '&nbsp;&nbsp; <a href="?years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
       ?>
     </nav>
 
@@ -129,7 +129,7 @@
         <li>
           Download&nbsp;&nbsp;
           <i class="fa fa-file-o"></i>&nbsp;&nbsp;
-          <a href="<?php echo 'net_hu' . $t; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
+          <a href="<?php echo 'net_hu' . $years; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
           <i class="fa fa-files-o"></i>&nbsp;&nbsp;
           <a href="net_hu.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
           <i class="fa fa-file-image-o"></i>&nbsp;&nbsp;
