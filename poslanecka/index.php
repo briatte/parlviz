@@ -59,7 +59,7 @@
 
     <h2>
       <a href="http://www.psp.cz/" title="Parlament České republiky, Poslanecká sněmovna">
-      <img src="logo_po.png" height="18" alt="logo"></a>&nbsp;
+      <img src="logo_cz.png" height="18" alt="logo"></a>&nbsp;
       Poslanecká sněmovna,&nbsp;<br><?php echo $y[ $years ]; ?>
     </h2>
 
