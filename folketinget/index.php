@@ -1,9 +1,9 @@
 <?php
 
-  if(count($_GET) > 0 & !empty($_GET['years'])) $years = basename($_GET['years']);
+  if(count($_GET) > 0 & !empty($_GET['theme'])) $theme = basename($_GET['theme']);
 
   // default theme
-  if(!isset($years)) $years = 'Environment';
+  if(!isset($theme)) $theme = 'Environment';
 
   $y = array(
     'Agriculture' => 'Agriculture',
@@ -11,7 +11,7 @@
     'Economy' => 'Economic&nbsp;Affairs',
     'Education' => 'Education',
     'Environment' => 'Environment',
-    'Foreign%20Affairs' => 'Foreign&nbsp;Affairs',
+    'Foreign_Affairs' => 'Foreign&nbsp;Affairs',
     'Health' => 'Health',
     'Housing' => 'Housing',
     'Immigration' => 'Immigration',
@@ -25,7 +25,7 @@
   foreach ($c as $i => $j)
     $c[ $i ] = '';
 
-  $c[ $years ] = 'here';
+  $c[ $theme ] = 'here';
 
   // initial box
   $box = '<p>This graph shows Danish Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years 2004&mdash;2015. ' .
@@ -47,7 +47,7 @@
 <head>
   <title>
     Cosponsorship networks in the Danish Parliament:
-    <?php echo $years; ?>
+    <?php echo $theme; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -72,7 +72,7 @@
       <a href="http://www.ft.dk/" title="Folketinget">
         <img src="logo_dk.png" height="18" alt="logo">
       </a>
-      &nbsp;<?php echo $y[ $years ]; ?>
+      &nbsp;<?php echo $y[ $theme ]; ?>
     </h2>
 
     <!-- graph selector -->
@@ -80,7 +80,7 @@
       Theme
       <?php
       foreach ($y as $i => $j)
-        echo '&nbsp;&nbsp; <a href="?years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+        echo '&nbsp;&nbsp; <a href="?theme=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
       ?>
     </nav>
 
@@ -142,7 +142,7 @@
         <li>
           Download&nbsp;&nbsp;
           <i class="fa fa-file-o"></i>&nbsp;&nbsp;
-          <a href="<?php echo 'net_dk' . $years; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
+          <a href="<?php echo 'net_dk' . $theme; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
           <i class="fa fa-files-o"></i>&nbsp;&nbsp;
           <a href="net_dk.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
           <i class="fa fa-file-image-o"></i>&nbsp;&nbsp;
@@ -302,7 +302,7 @@ sigma.parsers.gexf(
       // photo
       var photo = '';
       if(typeof e.data.node.attributes['photo'] != 'undefined')
-        photo = profile + '<img height="128px" src="photos/' + e.data.node.attributes['photo'] + '.jpg" alt="photo" /></a> ';
+        photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
