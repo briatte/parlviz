@@ -11,7 +11,7 @@
     'Economy' => 'Economic&nbsp;Affairs',
     'Education' => 'Education',
     'Environment' => 'Environment',
-    'Foreign Affairs' => 'Foreign&nbsp;Affairs',
+    'Foreign%20Affairs' => 'Foreign&nbsp;Affairs',
     'Health' => 'Health',
     'Housing' => 'Housing',
     'Immigration' => 'Immigration',

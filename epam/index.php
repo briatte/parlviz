@@ -85,7 +85,7 @@
       Committee
       <?php
       foreach ($y as $i => $j)
-        echo '&nbsp;&nbsp; <a href="?co=' . $i . '" title="' . $j . '"class="' . $c[ $i ] . '">' . $i . '</a>';
+        echo '&nbsp;&nbsp; <a href="?co=' . $i . '" title="' . $j . '" class="' . $c[ $i ] . '">' . $i . '</a>';
       ?>
     </nav>
 

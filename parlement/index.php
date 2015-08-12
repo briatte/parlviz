@@ -99,7 +99,7 @@
       Legislature
         <?php
         foreach ($y as $i => $j)
-          echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+          echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;t=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
         ?>
       <!-- <label title="Map MPs to their constituencies (very approximative).">&nbsp;<input type="checkbox" id="showMap" />&nbsp;Map</label> -->
     </nav>
