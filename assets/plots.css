@@ -1,0 +1,36 @@
+body {
+  color: #333;
+  font: 18px/200% Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  padding: 2em 0;
+}
+
+a, h1, h2 { color: #000; font-weight: 500; }
+
+a.box {
+  display: block;
+  padding: 1em;
+  float: left;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid white;
+}
+
+a.box:hover { border-color: #999; }
+
+p, h1, h2, dl {
+  clear: left;
+  margin: 9px auto;
+  max-width:1200px;
+}
+
+h1, h2 {
+  font-size: 125%;
+  padding-top: 1em;
+}
+
+dt {
+  width: 150px;
+  clear: left;
+  float: left;
+}
