@@ -8,10 +8,10 @@ Please use the [issues](issues) to report bugs or suggestions about the visualiz
 
 # DEPENDENCIES
 
-- [Font Awesome 4.1.0](https://fortawesome.github.io/Font-Awesome/)
-- [jQuery 1.5+](https://jquery.com/)
+- [Font Awesome](https://fortawesome.github.io/Font-Awesome/)
+- [jQuery](https://jquery.com/)
 - [jQuery Smart Auto-Complete](http://www.laktek.com/2011/03/03/introducing-jquery-smart-autocomplete/)
-- [Sigma.js 1.0.2](http://sigmajs.org/)
+- [Sigma.js](http://sigmajs.org/)
 
 > __Note:__ the code currently uses jQuery 2.1.1, which [does not support Internet Explorer 6, 7, or 8](http://blog.jquery.com/2013/04/18/jquery-2-0-released/).
 
