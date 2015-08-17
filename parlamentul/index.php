@@ -6,7 +6,7 @@
   }
 
   // default legislature
-  if(!isset($years)) $years = '1996';
+  if(!isset($years)) $years = '2012-2016';
 
   // default chamber
   if(!isset($ch)) $ch = 'ca';
@@ -23,11 +23,11 @@
   }
 
   $y = array(
-    '1996' => '1996&mdash;2000',
-    '2000' => '2000&mdash;2004',
-    '2004' => '2004&mdash;2008',
-    '2008' => '2008&mdash;2012',
-    '2012' => '2012&mdash;');
+    '1996-2000' => '1996&mdash;2000',
+    '2000-2004' => '2000&mdash;2004',
+    '2004-2008' => '2004&mdash;2008',
+    '2008-2012' => '2008&mdash;2012',
+    '2012-2016' => '2012&mdash;');
 
   $c = $y;
 
@@ -38,10 +38,10 @@
 
   // ongoing legislature
   $be = 'was';
-  if($years == '2012') $be = 'is';
+  if($years == '2012-2016') $be = 'is';
 
   $have = 'had';
-  if($years == '2012') $have = 'has had';
+  if($years == '2012-2016') $have = 'has had';
 
   // initial box
   $box =
@@ -64,13 +64,13 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
   <link rel="stylesheet" type="text/css" href="../assets/styles.css" />
-  <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.1.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.4.0/css/font-awesome.min.css">
   <style type="text/css" media="screen">body { background: #100; }</style>
-  <script type="text/javascript" src="../assets/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="../assets/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="../assets/jquery.smart_autocomplete.min.js"></script>
-  <script type="text/javascript" src="../assets/sigmajs-release-v1.0.2/sigma.min.js"></script>
-  <script type="text/javascript" src="../assets/sigmajs-release-v1.0.2/plugins/sigma.parsers.gexf.min.js"></script>
-  <script type="text/javascript" src="../assets/sigmajs-release-v1.0.2/plugins/sigma.layout.forceAtlas2.min.js"></script>
+  <script type="text/javascript" src="../assets/sigmajs-release-v1.0.3/sigma.min.js"></script>
+  <script type="text/javascript" src="../assets/sigmajs-release-v1.0.3/plugins/sigma.parsers.gexf.min.js"></script>
+  <script type="text/javascript" src="../assets/sigmajs-release-v1.0.3/plugins/sigma.layout.forceAtlas2.min.js"></script>
 </head>
 <body>
 
@@ -325,7 +325,7 @@ sigma.parsers.gexf(
       // photo
       var photo = '';
       if(typeof e.data.node.attributes['photo'] != 'undefined')
-        photo = profile + '<img height="128px" src="photos/' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
+        photo = profile + '<img height="128px" src="' + e.data.node.attributes['photo'] + '" alt="photo" /></a> ';
 
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
