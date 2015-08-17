@@ -1,0 +1,131 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>epam</title>
+  <meta name="author" content="François Briatte">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css">
+  <link href="../assets/plots.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  
+  <h1>
+    Each network shows amendment cosponsorships in a <a href="http://www.europarl.europa.eu/committees/en/full-list.html">committee of the European Parliament</a>.
+  </h1>
+  
+  <p>
+    The data cover the <a href="http://www.europarl.europa.eu/meps/en/full-list.html?filter=all&amp;leg=7">7th term (2009&mdash;2014)</a> and come from <a href="http://parltrack.euwiki.org/">Parltrack</a> (<a href="http://parltrack.euwiki.org/dumps/">May 24, 2014</a>).
+  </p>
+  
+  <p>
+    All networks are undirected graphs drawn with the <a href="http://emr.cs.iit.edu/~reingold/force-directed.pdf">Fruchterman-Reingold</a> force-directed algorithm. 
+    The nodes are sized by <a href="http://toreopsahl.com/tnet/weighted-networks/node-centrality/">weighted degree</a>, using weights that are proportional to the number of bills cosponsored 
+    and inversely proportional to the number of sponsors on each bill (see <a href="http://www-personal.umich.edu/~mejn/papers/016132.pdf">Newman&nbsp;2001</a> and <a href="http://jhfowler.ucsd.edu/best_connected_congressperson.pdf">Fowler&nbsp;2006</a>). 
+    When two or more nodes belong to the same group, any existing tie(s) between them is given the color of that group.
+  </p>
+  
+  <p>
+    There is a <a href="#colors">guide to party codes and colors</a> at the end of this page.
+  </p>
+  
+  <p>
+    See the <a href="/parlviz/epam">interactive visualization</a>, or view <a href="/parlviz">other countries</a>.
+  </p>
+
+  <p>
+    <a class="box" href="plots/AFCO.pdf">Constitutional Affairs<br />
+      <img width="250" alt="preview" src="plots/AFCO.jpg" /></a>
+      
+    <a class="box" href="plots/AFET.pdf">Foreign Affairs<br />
+      <img width="250" alt="preview" src="plots/AFET.jpg" /></a>
+      
+    <a class="box" href="plots/AGRI.pdf">Agriculture and Rural Development<br />
+      <img width="250" alt="preview" src="plots/AGRI.jpg" /></a>
+
+    <a class="box" href="plots/BUDG.pdf">Budgets<br />
+      <img width="250" alt="preview" src="plots/BUDG.jpg" /></a>
+
+    <a class="box" href="plots/CONT.pdf">Budgetary Control<br />
+      <img width="250" alt="preview" src="plots/CONT.jpg" /></a>
+
+    <a class="box" href="plots/CRIS.pdf">Financial, Economic and Social Crisis<br />
+      <img width="250" alt="preview" src="plots/CRIS.jpg" /></a>
+
+    <a class="box" href="plots/CULT.pdf">Culture and Education<br />
+      <img width="250" alt="preview" src="plots/CULT.jpg" /></a>
+
+    <a class="box" href="plots/DEVE.pdf">Development<br />
+      <img width="250" alt="preview" src="plots/DEVE.jpg" /></a>
+
+    <a class="box" href="plots/ECON.pdf">Economic and Monetary Affairs<br />
+      <img width="250" alt="preview" src="plots/ECON.jpg" /></a>
+
+    <a class="box" href="plots/EMPL.pdf">Employment and Social Affairs<br />
+      <img width="250" alt="preview" src="plots/EMPL.jpg" /></a>
+
+    <a class="box" href="plots/ENVI.pdf">Environment, Public Health and Food Safety<br />
+      <img width="250" alt="preview" src="plots/ENVI.jpg" /></a>
+
+    <a class="box" href="plots/FEMM.pdf">Women's Rights and Gender Equality<br />
+      <img width="250" alt="preview" src="plots/FEMM.jpg" /></a>
+
+    <a class="box" href="plots/IMCO.pdf">Internal Market and Consumer Protection<br />
+      <img width="250" alt="preview" src="plots/IMCO.jpg" /></a>
+    
+    <a class="box" href="plots/INTA.pdf">International Trade<br />
+      <img width="250" alt="preview" src="plots/INTA.jpg" /></a>
+
+    <a class="box" href="plots/ITRE.pdf">Industry, Research and Energy<br />
+      <img width="250" alt="preview" src="plots/ITRE.jpg" /></a>
+    
+    <a class="box" href="plots/JURI.pdf">Legal Affairs<br />
+      <img width="250" alt="preview" src="plots/JURI.jpg" /></a>
+
+    <a class="box" href="plots/LIBE.pdf">Civil Liberties, Justice and Home Affairs<br />
+      <img width="250" alt="preview" src="plots/LIBE.jpg" /></a>
+    
+    <a class="box" href="plots/PECH.pdf">Fisheries<br />
+      <img width="250" alt="preview" src="plots/PECH.jpg" /></a>
+
+    <a class="box" href="plots/PETI.pdf">Petitions<br />
+      <img width="250" alt="preview" src="plots/PETI.jpg" /></a>
+
+    <a class="box" href="plots/REGI.pdf">Regional Development<br />
+      <img width="250" alt="preview" src="plots/REGI.jpg" /></a>
+
+    <a class="box" href="plots/SURE.pdf">Policy Challenges<br />
+      <img width="250" alt="preview" src="plots/SURE.jpg" /></a>
+
+    <a class="box" href="plots/TRAN.pdf">Transport and Tourism<br />
+      <img width="250" alt="preview" src="plots/TRAN.jpg" /></a>
+  </p>
+  
+  <h1 id="colors">Party abbreviations</h1>
+  
+  <dl>
+    <dt>Far-left</dt>
+      <dd>Communist and Allies, Left Unity, European United Left, Nordic Green Left, red</dd>
+    <dt>Greens</dt>
+      <dd>Rainbow Alliance, Greens/European Free Alliance, Green Group, green</dd>
+    <dt>Socialists</dt>
+      <dd>Socialists and Social-Democratic group, pink</dd>
+    <dt>Centrists</dt>
+      <dd>Liberal-Democrats and Radicals, orange</dd>
+    <dt>Chr.-Democrats</dt>
+      <dd>Christian-Democratic group, blue</dd>
+    <dt>Euroskeptics</dt>
+      <dd>European Conservatives and Reformists, Independents for a Europe of Nations, Democracies and Diversities, Europe of freedom and democracy, purple</dd>
+    <dt>Extreme-right</dt>
+      <dd>Union for Europe of the Nations, Progressive Democrats, Forza Europa, European Democratic Alliance, Identity, Tradition and Sovereignty Group, European Right, brown</dd>
+    <dt>Independents</dt>
+      <dd>Non-attached members, grey</dd>
+  </dl>
+  
+  <p>
+    <a href="https://github.com/briatte/epam"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  </p>
+
+</body>
+</html>

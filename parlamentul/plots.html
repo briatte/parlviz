@@ -1,0 +1,119 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>parlamentul</title>
+  <meta name="author" content="François Briatte">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
+  <link href="../assets/plots.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <h1>
+    Each network shows bill cosponsorships in the
+    <a href="http://www.cdep.ro/">lower</a> and <a href="http://www.senat.ro/">upper</a>
+    chambers of the Romanian Parliament.
+  </h1>
+
+  <p>
+    The data cover years 1996–2015 of the lower (Camera Deputaților) and upper (Senat) chambers, and are split by legislature.
+  </p>
+
+  <p>
+    All networks are directed graphs drawn with the <a href="http://emr.cs.iit.edu/~reingold/force-directed.pdf">Fruchterman-Reingold</a> force-directed algorithm.
+    The ties connect the first author of each bill to the cosponsors of that bill.
+    The nodes are sized by <a href="https://en.wikipedia.org/wiki/Degree_distribution">unweighted total degree</a>.
+    When two nodes belong to the same group, any existing tie between them is given the color of that group.
+  </p>
+
+  <p>
+    There is a <a href="#colors">guide to party codes and colors</a> at the end of this page.
+  </p>
+
+  <p>
+    See the <a href="/parlviz/parlamentul">interactive visualization</a>, or view <a href="/parlviz">other countries</a>.
+  </p>
+
+  <h2>Camera Deputaților</h2>
+
+  <p>
+    <a class="box" href="plots/net_ro_ca1996-2000.pdf">1996–2000<br />
+      <img height="188" alt="preview" src="plots/net_ro_ca1996-2000.jpg" /></a>
+
+    <a class="box" href="plots/net_ro_ca2000-2004.pdf">2000–2004<br />
+      <img height="188" alt="preview" src="plots/net_ro_ca2000-2004.jpg" /></a>
+
+    <a class="box" href="plots/net_ro_ca2004-2008.pdf">2004–2008<br />
+      <img height="188" alt="preview" src="plots/net_ro_ca2004-2008.jpg" /></a>
+
+    <a class="box" href="plots/net_ro_ca2008-2012.pdf">2008–2012<br />
+      <img height="188" alt="preview" src="plots/net_ro_ca2008-2012.jpg" /></a>
+
+    <a class="box" href="plots/net_ro_ca2012-2016.pdf">2012–<br />
+      <img height="188" alt="preview" src="plots/net_ro_ca2012-2016.jpg" /></a>
+  </p>
+
+  <h2>Senat</h2>
+
+  <p>
+    <a class="box" href="plots/net_ro_se1996-2000.pdf">1996–2000<br />
+      <img height="188" alt="preview" src="plots/net_ro_se1996-2000.jpg" /></a>
+
+    <a class="box" href="plots/net_ro_se2000-2004.pdf">2000–2004<br />
+      <img height="188" alt="preview" src="plots/net_ro_se2000-2004.jpg" /></a>
+
+    <a class="box" href="plots/net_ro_se2004-2008.pdf">2004–2008<br />
+      <img height="188" alt="preview" src="plots/net_ro_se2004-2008.jpg" /></a>
+
+    <a class="box" href="plots/net_ro_se2008-2012.pdf">2008–2012<br />
+      <img height="188" alt="preview" src="plots/net_ro_se2008-2012.jpg" /></a>
+
+    <a class="box" href="plots/net_ro_se2012-2016.pdf">2012–<br />
+      <img height="188" alt="preview" src="plots/net_ro_se2012-2016.jpg" /></a>
+  </p>
+
+  <h2 id="colors">Party groups</h2>
+
+  <dl>
+    <dt>PP-DD</dt>
+      <dd>Partidul Poporului - Dan Diaconescu, purple</dd>
+    <dt>VERZII</dt>
+      <dd>Partidul Verde, green</dd>
+    <dt>PER</dt>
+      <dd>Partidul Ecologist Român, green</dd>
+    <dt>FER</dt>
+      <dd>Federația Ecologistă din România, light green</dd>
+    <dt>PSD</dt>
+      <dd>Partidul Social Democrat, red</dd>
+    <dt>UNPR</dt>
+      <dd>Uniunea Naţională pentru Progresul României, light red</dd>
+    <dt>FSN</dt>
+      <dd>Frontul Salvării Naționale (now absorbed in PD-L), orange</dd>
+    <dt>PD-L</dt>
+      <dd>Partidul Democrat-Liberal, orange</dd>
+    <dt>PNTCD</dt>
+      <dd>Partidul Naţional Ţaranesc Creştin-Democrat, light yellow</dd>
+    <dt>PC</dt>
+      <dd>Partidul Conservator (ex-PUR-SL), light blue</dd>
+    <dt>PUNR</dt>
+      <dd>Partidul Unității Națiunii Române (now absorbed in PC), light blue</dd>
+    <dt>UDMR</dt>
+      <dd>Uniunea Democrată Maghiară din România, teal</dd>
+    <dt>PNL</dt>
+      <dd>Partidul Național Liberal, yellow</dd>
+    <dt>PRM</dt>
+      <dd>Partidul România Mare, brown</dd>
+    <dt>MIN</dt>
+      <dd>Ethnic/Liniguistic minorities (<i>minoritatilor</i>), dark grey</dd>
+    <dt>IND</dt>
+      <dd>Independents, light grey</dd>
+  </dl>
+
+  <p>
+    <a href="https://github.com/briatte/parlamentul"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  </p>
+
+</body>
+</html>

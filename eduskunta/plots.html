@@ -1,0 +1,81 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>eduskunta</title>
+  <meta name="author" content="François Briatte">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css">
+  <link href="../assets/plots.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <h1>
+    Each network shows bill cosponsorships in the <a href="http://www.eduskunta.fi/">Finnish Parliament</a>.
+  </h1>
+
+  <p>
+    The data cover years 2009–2014 and are split by legislature.
+  </p>
+
+  <p>
+    All networks are directed graphs drawn with the <a href="http://emr.cs.iit.edu/~reingold/force-directed.pdf">Fruchterman-Reingold</a> force-directed algorithm.
+    The ties connect the first author of each bill to the cosponsors of that bill.
+    The nodes are sized by <a href="https://en.wikipedia.org/wiki/Degree_distribution">unweighted total degree</a>.
+    When two nodes belong to the same group, any existing tie between them is given the color of that group.
+  </p>
+
+  <p>
+    There is a <a href="#colors">guide to party codes and colors</a> at the end of this page.
+  </p>
+
+  <p>
+    See the <a href="/parlviz/eduskunta">interactive visualization</a>, or view <a href="/parlviz">other countries</a>.
+  <p>
+
+  <p>
+    <a class="box" href="plots/net_fi1999-2002.pdf"><abbr title="Legislature">L.</abbr>&nbsp;33 (1999–2002)<br />
+      <img width="250" alt="preview" src="plots/net_fi1999-2002.jpg" /></a>
+    
+    <a class="box" href="plots/net_fi2003-2006.pdf"><abbr title="Legislature">L.</abbr>&nbsp;34 (2003–2006)<br />
+      <img width="250" alt="preview" src="plots/net_fi2003-2006.jpg" /></a>
+      
+    <a class="box" href="plots/net_fi2007-2010.pdf"><abbr title="Legislature">L.</abbr>&nbsp;35 (2007–2010)<br />
+      <img width="250" alt="preview" src="plots/net_fi2007-2010.jpg" /></a>
+
+    <a class="box" href="plots/net_fi2011-2014.pdf"><abbr title="Legislature">L.</abbr>&nbsp;36 (2011–2014)<br />
+      <img width="250" alt="preview" src="plots/net_fi2011-2014.jpg" /></a>
+  </p>
+
+  <h2 id="colors">Party groups</h2>
+
+  <dl>
+    <dt>VR</dt>
+      <dd>Vasenryhmä, light grey</dd>
+    <dt>VAS</dt>
+      <dd>Vasemmistoliitto, red</dd>
+    <dt>VIHR</dt>
+      <dd>Vihreä liitto, light green</dd>
+    <dt>SD</dt>
+      <dd>Sosialidemokraattinen Puolue, pink</dd>
+    <dt>KESK</dt>
+      <dd>Suomen Keskusta, green</dd>
+    <dt>R</dt>
+      <dd>Ruotsalainen kansanpuolue, yellow</dd>
+    <dt>PS</dt>
+      <dd>Perussuomalaiset, dark blue</dd>
+    <dt>KD</dt>
+      <dd>Kristillisdemokraatit, orange</dd>
+    <dt>KOK</dt>
+      <dd>Kansallinen Kokoomus, teal</dd>
+    <dt>MU11</dt>
+      <dd>Muutos 2011, light blue</dd>
+  </dl>
+
+  <p>
+    <a href="https://github.com/briatte/eduskunta"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  </p>
+
+</body>
+</html>

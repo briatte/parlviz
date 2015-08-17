@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>nrsr</title>
+  <meta name="author" content="François Briatte">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css">
+  <link href="../assets/plots.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <h1>
+    Each network shows bill cosponsorships in the <a href="http://www.nrsr.sk/">Slovakian Parliament</a>.
+  </h1>
+
+  <p>
+    The data cover years 1998–2015 and are split by legislature.
+  </p>
+
+  <p>
+    All networks are directed graphs drawn with the <a href="http://emr.cs.iit.edu/~reingold/force-directed.pdf">Fruchterman-Reingold</a> force-directed algorithm.
+    The ties connect the first author of each bill to the cosponsors of that bill.
+    The nodes are sized by <a href="https://en.wikipedia.org/wiki/Degree_distribution">unweighted total degree</a>.
+    When two nodes belong to the same group, any existing tie between them is given the color of that group.
+  </p>
+
+
+  <p>
+    There is a <a href="#colors">guide to party codes and colors</a> at the end of this page.
+  </p>
+
+  <p>
+    See the <a href="/parlviz/nrsr">interactive visualization</a>, or view <a href="/parlviz">other countries</a>.
+  <p>
+
+  <p>
+    <a class="box" href="plots/net_sk1998-2002.pdf"><abbr title="Legislature">L.</abbr>&nbsp;2 (1998–2002)<br />
+      <img width="250" alt="preview" src="plots/net_sk1998-2002.jpg" /></a>
+
+    <a class="box" href="plots/net_sk2002-2006.pdf"><abbr title="Legislature">L.</abbr>&nbsp;3 (2002–2006)<br />
+      <img width="250" alt="preview" src="plots/net_sk2002-2006.jpg" /></a>
+
+    <a class="box" href="plots/net_sk2006-2010.pdf"><abbr title="Legislature">L.</abbr>&nbsp;4 (2006–2010)<br />
+      <img width="250" alt="preview" src="plots/net_sk2006-2010.jpg" /></a>
+
+    <a class="box" href="plots/net_sk2010-2012.pdf"><abbr title="Legislature">L.</abbr>&nbsp;5 (2010–2012)<br />
+      <img width="250" alt="preview" src="plots/net_sk2010-2012.jpg" /></a>
+
+    <a class="box" href="plots/net_sk2012-2016.pdf"><abbr title="Legislature">L.</abbr>&nbsp;6 (2012–)<br />
+      <img width="250" alt="preview" src="plots/net_sk2012-2016.jpg" /></a>
+  </p>
+
+  <h2 id="colors">Party groups</h2>
+
+  <dl>
+    <dt>KSS</dt>
+      <dd>Komunistická strana Slovenska, dark red</dd>
+    <dt>SDL</dt>
+      <dd>Strana demokratickej ľavice, light red</dd>
+    <dt>SOP</dt>
+      <dd>Strana občianskeho porozumenia, pink</dd>
+    <dt>SMER-SD</dt>
+      <dd>Smer - sociálna demokracia, red</dd>
+    <dt>HZDS</dt>
+      <dd>Hnutie za demokratické Slovensko, magenta</dd>
+    <dt>SAS</dt>
+      <dd>Sloboda a Solidarita, teal</dd>
+    <dt>SMK-MKP</dt>
+      <dd>Strana maďarskej komunity - Magyar Közösség Pártja, green</dd>
+    <dt>SNS</dt>
+      <dd>Slovenská národná strana, light blue</dd>
+    <dt>KDH</dt>
+      <dd>Kresťanskodemokratické hnutie, blue</dd>
+    <dt>ANO</dt>
+      <dd>Aliancia Nového Občana, yellow</dd>
+    <dt>SDKU-DS</dt>
+      <dd>Slovenská demokratická a kresťanská únia – Demokratická strana, dark blue</dd>
+    <dt>MOST-HID</dt>
+      <dd>Most–Híd, orange</dd>
+    <dt>OLANO</dt>
+      <dd>Obyčajní ľudia a nezávislé osobnosti, light green</dd>
+  </dl>
+
+  <p>
+    <a href="https://github.com/briatte/nrsr"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  </p>
+
+</body>
+</html>

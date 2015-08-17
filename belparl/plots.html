@@ -1,0 +1,124 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>belparl</title>
+  <meta name="author" content="François Briatte">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet" type="text/css">
+  <link href="../assets/plots.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <h1>
+    Each network shows bill cosponsorships in the
+    <a href="http://www.dekamer.be/">lower</a> and <a href="http://www.senate.be/">upper</a>
+    chambers of the Belgian Parliament.
+  </h1>
+
+  <p>
+    The data cover years 1991–2015 of the lower chamber (Chambre des Représentants) and years 1995–2014 of the upper chamber (Sénat), and are split by legislature.
+  </p>
+
+  <p>
+    All networks are directed graphs drawn with the <a href="http://emr.cs.iit.edu/~reingold/force-directed.pdf">Fruchterman-Reingold</a> force-directed algorithm.
+    The ties connect the first author of each bill to the cosponsors of that bill.
+    The nodes are sized by <a href="https://en.wikipedia.org/wiki/Degree_distribution">unweighted total degree</a>.
+    When two nodes belong to the same group, any existing tie between them is given the color of that group.
+  </p>
+
+  <p>
+    There is a <a href="#colors">guide to party codes and colors</a> at the end of this page.
+  </p>
+
+  <p>
+    See the <a href="/parlviz/belparl">interactive visualization</a>.
+  </p>
+
+  <h2>Chambre des Représentants</h2>
+
+  <p>
+    <a class="box" href="plots/net_be_ch1991-1995.pdf"><abbr title="Législature">L.</abbr>&nbsp;48 (1991-1995)<br />
+      <img height="188" alt="preview" src="plots/net_be_ch1991-1995.jpg" /></a>
+
+    <a class="box" href="plots/net_be_ch1995-1999.pdf"><abbr title="Législature">L.</abbr>&nbsp;49 (1995-1999)<br />
+      <img height="188" alt="preview" src="plots/net_be_ch1995-1999.jpg" /></a>
+
+    <a class="box" href="plots/net_be_ch1999-2003.pdf"><abbr title="Législature">L.</abbr>&nbsp;50 (1999-2003)<br />
+      <img height="188" alt="preview" src="plots/net_be_ch1999-2003.jpg" /></a>
+
+    <a class="box" href="plots/net_be_ch2003-2007.pdf"><abbr title="Législature">L.</abbr>&nbsp;51 (2003-2007)<br />
+      <img height="188" alt="preview" src="plots/net_be_ch2003-2007.jpg" /></a>
+
+    <a class="box" href="plots/net_be_ch2007-2010.pdf"><abbr title="Législature">L.</abbr>&nbsp;52 (2007-2010)<br />
+      <img height="188" alt="preview" src="plots/net_be_ch2007-2010.jpg" /></a>
+
+    <a class="box" href="plots/net_be_ch2010-2014.pdf"><abbr title="Législature">L.</abbr>&nbsp;53 (2010-2014)<br />
+      <img height="188" alt="preview" src="plots/net_be_ch2010-2014.jpg" /></a>
+
+    <a class="box" href="plots/net_be_ch2014-2019.pdf"><abbr title="Législature">L.</abbr>&nbsp;54 (2014–)<br />
+      <img height="188" alt="preview" src="plots/net_be_ch2014-2019.jpg" /></a>
+
+  </p>
+
+  <h2>Sénat</h2>
+
+  <p>
+    <a class="box" href="plots/net_be_se1995-1999.pdf"><abbr title="Législature">L.</abbr>&nbsp;49 (1995-1999)<br />
+      <img height="188" alt="preview" src="plots/net_be_se1995-1999.jpg" /></a>
+
+    <a class="box" href="plots/net_be_se1999-2003.pdf"><abbr title="Législature">L.</abbr>&nbsp;50 (1999-2003)<br />
+      <img height="188" alt="preview" src="plots/net_be_se1999-2003.jpg" /></a>
+
+    <a class="box" href="plots/net_be_se2003-2007.pdf"><abbr title="Législature">L.</abbr>&nbsp;51 (2003-2007)<br />
+      <img height="188" alt="preview" src="plots/net_be_se2003-2007.jpg" /></a>
+
+    <a class="box" href="plots/net_be_se2007-2010.pdf"><abbr title="Législature">L.</abbr>&nbsp;52 (2007-2010)<br />
+      <img height="188" alt="preview" src="plots/net_be_se2007-2010.jpg" /></a>
+
+    <a class="box" href="plots/net_be_se2010-2014.pdf"><abbr title="Législature">L.</abbr>&nbsp;53 (2010-2014)<br />
+      <img height="188" alt="preview" src="plots/net_be_se2010-2014.jpg" /></a>
+  </p>
+
+  <h2 id="colors">Party abbreviations</h2>
+
+  <dl>
+    <dt>PT</dt>
+      <dd>Worker's Party, dark red</dd>
+    <dt>ECOLO</dt>
+      <dd>Greens (Agalev/Groen, Écologistes), green</dd>
+    <dt>SOC-F</dt>
+      <dd>Francophone Socialists (PS), red</dd>
+    <dt>SOC-V</dt>
+      <dd>Flemish Socialists (SP/sp.a), light red</dd>
+    <dt>C-DEM-F</dt>
+      <dd>Francophone Christian-Democrats (PSC/cdH), orange</dd>
+    <dt>C-DEM-V</dt>
+      <dd>Flemish Christian-Democrats (CVP/CD&amp;V), light orange</dd>
+    <dt>LDD</dt>
+      <dd>List Dedecker/Libertarian, Direct, Democratic, purple</dd>
+    <dt>ROSSEM</dt>
+      <dd>Jean-Pierre Van Rossem, light purple</dd>
+    <dt>C-DEM-V/VOLKS</dt>
+      <dd>Flemish rightwing alliance (CD&amp;V/NV-A), light yellow</dd>
+    <dt>VOLKS</dt>
+      <dd>Flemish nationalists (VU, VU-ID, NV-A), yellow</dd>
+    <dt>LIB-F</dt>
+      <dd>Francophone Liberals (FDF, FDF &amp; PPW, PRL, MR), blue</dd>
+    <dt>LIB-V</dt>
+      <dd>Flemish Liberals (PVV, VLD/Open VLD), light blue</dd>
+    <dt>VLAAMS</dt>
+      <dd>Vlaams Blok (VB), brown</dd>
+    <dt>FN</dt>
+      <dd>Front National (FN), grey</dd>
+    <dt>IND</dt>
+      <dd>Independents, light grey</dd>
+  </dl>
+
+  <p>
+    <a href="https://github.com/briatte/belparl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  </p>
+
+</body>
+</html>

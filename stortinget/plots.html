@@ -1,0 +1,97 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>stortinget</title>
+  <meta name="author" content="François Briatte">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css">
+  <link href="../assets/plots.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <h1>
+    Each network shows bill cosponsorships in the <a href="https://www.stortinget.no/">Norwegian Parliament</a>.
+  </h1>
+
+  <p>
+    The data cover years 1985–2015 and are split by legislature.
+  </p>
+
+  <p>
+    All networks are directed graphs drawn with the <a href="http://emr.cs.iit.edu/~reingold/force-directed.pdf">Fruchterman-Reingold</a> force-directed algorithm.
+    The ties connect the first author of each bill to the cosponsors of that bill.
+    The nodes are sized by <a href="https://en.wikipedia.org/wiki/Degree_distribution">unweighted total degree</a>.
+    When two nodes belong to the same group, any existing tie between them is given the color of that group.
+  </p>
+
+  <p>
+    There is a <a href="#colors">guide to party codes and colors</a> at the end of this page.
+  </p>
+
+  <p>
+    See the <a href="/parlviz/stortinget">interactive visualization</a>, or view <a href="/parlviz">other countries</a>.
+  <p>
+
+  <p>
+    <a class="box" href="plots/net_no1985-1989.pdf">1985-1989<br />
+      <img width="250" alt="preview" src="plots/net_no1985-1989.jpg" /></a>
+
+    <a class="box" href="plots/net_no1989-1993.pdf">1989-1993<br />
+      <img width="250" alt="preview" src="plots/net_no1989-1993.jpg" /></a>
+
+    <a class="box" href="plots/net_no1993-1997.pdf">1993-1997<br />
+      <img width="250" alt="preview" src="plots/net_no1993-1997.jpg" /></a>
+
+    <a class="box" href="plots/net_no1997-2001.pdf">1997-2001<br />
+      <img width="250" alt="preview" src="plots/net_no1997-2001.jpg" /></a>
+
+    <a class="box" href="plots/net_no2001-2005.pdf">2001-2005<br />
+      <img width="250" alt="preview" src="plots/net_no2001-2005.jpg" /></a>
+
+    <a class="box" href="plots/net_no2005-2009.pdf">2005-2009<br />
+      <img width="250" alt="preview" src="plots/net_no2005-2009.jpg" /></a>
+
+    <a class="box" href="plots/net_no2009-2013.pdf">2009-2013<br />
+      <img width="250" alt="preview" src="plots/net_no2009-2013.jpg" /></a>
+
+    <a class="box" href="plots/net_no2013-2017.pdf">2013-2017<br />
+      <img width="250" alt="preview" src="plots/net_no2013-2017.jpg" /></a>
+  </p>
+
+  <h2 id="colors">Party abbreviations</h2>
+
+  <dl>
+    <dt>RV</dt>
+      <dd>Rød Valgallianse, dark red</dd>
+    <dt>SV</dt>
+      <dd>Sosialistisk Venstreparti, red</dd>
+    <dt>MDG</dt>
+      <dd>Miljøpartiet De Grønne, light green</dd>
+    <dt>AP</dt>
+      <dd>Arbeiderpartiet, pink</dd>
+    <dt>SP</dt>
+      <dd>Senterpartiet, green</dd>
+    <dt>V</dt>
+      <dd>Venstre, dark green/teal</dd>
+    <dt>KRF</dt>
+      <dd>Kristelig Folkeparti, yellow</dd>
+    <dt>H</dt>
+      <dd>Høyre, light blue</dd>
+    <dt>FRP</dt>
+      <dd>Fremskrittspartiet, blue</dd>
+    <dt>KYP</dt>
+      <dd>Kystpartiet (and predecessor Tverrpolitisk Folkevalgte), dark grey</dd>
+    <dt>FFF</dt>
+      <dd>Framtid for Finnmark, purple</dd>
+    <dt>IND</dt>
+      <dd>Independents, light grey</dd>
+  </dl>
+
+  <p>
+    <a href="https://github.com/briatte/stortinget"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  </p>
+
+</body>
+</html>

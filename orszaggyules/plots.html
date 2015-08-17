@@ -1,0 +1,83 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>orszaggyules</title>
+  <meta name="author" content="François Briatte">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css">
+  <link href="../assets/plots.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <h1>
+    Each network shows bill cosponsorships in the <a href="http://www.parlament.hu/">Hungarian Parliament</a>.
+  </h1>
+
+  <p>
+    The data cover years 1998–2015 and are split by legislature.
+  </p>
+
+  <p>
+    All networks are directed graphs drawn with the <a href="http://emr.cs.iit.edu/~reingold/force-directed.pdf">Fruchterman-Reingold</a> force-directed algorithm.
+    The ties connect the first author of each bill to the cosponsors of that bill.
+    The nodes are sized by <a href="https://en.wikipedia.org/wiki/Degree_distribution">unweighted total degree</a>.
+    When two nodes belong to the same group, any existing tie between them is given the color of that group.
+  </p>
+
+
+  <p>
+    There is a <a href="#colors">guide to party codes and colors</a> at the end of this page.
+  </p>
+
+  <p>
+    See the <a href="/parlviz/orszaggyules">interactive visualization</a>, or view <a href="/parlviz">other countries</a>.
+  <p>
+
+  <p>
+    <a class="box" href="plots/net_hu1998-2002.pdf">1998–2002<br />
+      <img width="250" alt="preview" src="plots/net_hu1998-2002.jpg" /></a>
+
+    <a class="box" href="plots/net_hu2002-2006.pdf">2002–2006<br />
+      <img width="250" alt="preview" src="plots/net_hu2002-2006.jpg" /></a>
+
+    <a class="box" href="plots/net_hu2006-2010.pdf">2006–2010<br />
+      <img width="250" alt="preview" src="plots/net_hu2006-2010.jpg" /></a>
+
+    <a class="box" href="plots/net_hu2010-2014.pdf">2010–2014<br />
+      <img width="250" alt="preview" src="plots/net_hu2010-2014.jpg" /></a>
+
+    <a class="box" href="plots/net_hu2014-2018.pdf">2014–<br />
+      <img width="250" alt="preview" src="plots/net_hu2014-2018.jpg" /></a>
+  </p>
+
+  <h2 id="colors">Party groups</h2>
+
+  <dl>
+    <dt>LMP</dt>
+      <dd>Lehet Más a Politika, light green</dd>
+    <dt>MSZP</dt>
+      <dd>Magyar Szocialista Párt, red</dd>
+    <dt>SZDSZ</dt>
+      <dd>Szabad Demokraták Szövetsége, blue</dd>
+    <dt>FIDESZ</dt>
+      <dd>Fidesz – Magyar Polgári Szövetség, orange</dd>
+    <dt>MDF</dt>
+      <dd>Magyar Demokrata Fórum, teal</dd>
+    <dt>KDNP</dt>
+      <dd>Kereszténydemokrata Néppárt, yellow</dd>
+    <dt>JOBBIK</dt>
+      <dd>Jobbik Magyarországért Mozgalom, dark grey</dd>
+    <dt>FKGP</dt>
+      <dd>Független Kisgazda, Földmunkás és Polgári Párt, brown</dd>
+    <dt>IND</dt>
+      <dd>Independents, light grey</dd>
+  </dl>
+
+  <p>
+    <a href="https://github.com/briatte/orszaggyules"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  </p>
+
+</body>
+</html>
