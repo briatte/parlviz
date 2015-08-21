@@ -1,0 +1,106 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>edm</title>
+  <meta name="author" content="François Briatte">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css">
+  <link href="../assets/plots.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <h1>
+    Each network shows <a href="http://www.parliament.uk/edm">early day motion</a> cosponsorships in the <a href="http://www.parliament.uk/business/commons/">U.K. House of Commons</a>.
+  </h1>
+
+  <p>
+    The data cover years 1989&mdash;2015 and are split by <a href="https://en.wikipedia.org/wiki/List_of_United_Kingdom_general_elections">general elections</a>. 
+    Amendments to the motions are not included.
+  </p>
+
+  <p>
+    All networks are directed graphs drawn with the <a href="http://emr.cs.iit.edu/~reingold/force-directed.jpg">Fruchterman-Reingold</a> force-directed algorithm. 
+    The ties connect the primary sponsor of one or more early day motion(s) to his or her systematic cosponsors (read below). 
+    The nodes are sized by <a href="https://en.wikipedia.org/wiki/Degree_distribution">unweighted total degree</a>. 
+    When two nodes belong to the same group, any existing tie between them is given the color of that group.
+  </p>
+
+  <p>
+    The graphs are subset to systematic cosponsorship ties by using the weighted propensity to cosponsor (WPC) scheme by <a href="http://www.latinodecisions.com/files/4013/3840/2978/Gross-Kirkland-Shalizi_Multilevel-Cosponsorship_PolAnlys-submission.jpg">Gross, Kirkland and Shalizi</a>. 
+    The graphs show only ties for which the WPC is equal to 1, which corresponds to the situation where a Member of Parliament has cosponsored all early day motions by another one.
+  </p>
+
+  <p>
+    There is a <a href="#colors">guide to party codes and colors</a> at the end of this page.
+  </p>
+
+  <p>
+    Similar graphs are available for <a href="/parlviz">other countries</a>.
+  <p>
+
+  <p>
+    <a class="box" href="plots/net_2015.pdf">2015&mdash;<br />
+      <img width="250" alt="preview" src="plots/net_2015.jpg" /></a>
+
+    <a class="box" href="plots/net_2010.pdf">2010&mdash;2015<br />
+      <img width="250" alt="preview" src="plots/net_2010.jpg" /></a>
+
+    <a class="box" href="plots/net_2001.pdf">2001&mdash;2005<br />
+      <img width="250" alt="preview" src="plots/net_2001.jpg" /></a>
+
+    <a class="box" href="plots/net_1997.pdf">1997&mdash;2001<br />
+      <img width="250" alt="preview" src="plots/net_1997.jpg" /></a>
+
+    <a class="box" href="plots/net_1997.pdf">1997&mdash;2001<br />
+      <img width="250" alt="preview" src="plots/net_1997.jpg" /></a>
+
+    <a class="box" href="plots/net_1992.pdf">1992&mdash;1997<br />
+      <img width="250" alt="preview" src="plots/net_1992.jpg" /></a>
+
+    <a class="box" href="plots/net_1987.pdf">1989&mdash;1992 (missing 1987–1988)<br />
+      <img width="250" alt="preview" src="plots/net_1987.jpg" /></a>
+  </p>
+
+  <h2 id="colors">Party groups</h2>
+
+  <dl>
+    <dt>UKIP</dt>
+      <dd>United Kingdom Independence Party, purple</dd>
+    <dt>CON</dt>
+      <dd>Conservative Party, blue</dd>
+    <dt>LD</dt>
+      <dd>Liberal Democrats, orange</dd>
+    <dt>LAB</dt>
+      <dd>Labour Party, red</dd>
+    <dt>R</dt>
+      <dd>Respect Party, dark red</dd>
+    <dt>G</dt>
+      <dd>Green Party, green</dd>
+    <dt>W-PLAID</dt>
+      <dd>Wales: Plaid Cymru, light green</dd>
+    <dt>NI-ALL</dt>
+      <dd>Northern Ireland: Alliance Party, light yellow</dd>
+    <dt>NI-DUP</dt>
+      <dd>Northern Ireland: Democratic Unionist Party, magenta</dd>
+    <dt>NI-UUP</dt>
+      <dd>Northern Ireland: Ulster Unionist Party, dark blue</dd>
+    <dt>NI-SDLP</dt>
+      <dd>Northern Ireland: Social Democratic and Labour Party, dark green</dd>
+    <dt>NI-UKUP</dt>
+      <dd>Northern Ireland: United Kingdom Unionist Party, light blue</dd>
+    <dt>S-LAB</dt>
+      <dd>Scotland: Scottish Labour Party, light red</dd>
+    <dt>S-SNP</dt>
+      <dd>Scotland: Scottish National Party, yellow</dd>
+    <dt>IND</dt>
+      <dd>Independent or unaffiliated, light grey</dd>
+  </dl>
+  
+  <p>
+    <a href="https://github.com/briatte/edm"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.jpg"></a>
+  </p>
+
+</body>
+</html>
