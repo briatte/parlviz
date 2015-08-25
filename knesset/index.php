@@ -1,33 +1,15 @@
 <?php
 
-  if(count($_GET) > 0) {
-    if(!empty($_GET['years'])) $years = basename($_GET['years']);
-    if(!empty($_GET['chamber'])) $ch = basename($_GET['chamber']);
-  }
+  if(count($_GET) > 0 & !empty($_GET['years'])) $years = basename($_GET['years']);
 
   // default legislature
-  if(!isset($years)) $years = '2013-2018';
-
-  // default chamber
-  if(!isset($ch)) $ch = 'ca';
-
-  if($ch == 'ca') {
-    $chamber = 'Camera';
-    $members = '<abbr title="Members of Parliament">MPs</abbr>';
-    $source  = 'http://www.camera.it/';
-  }
-  else {
-    $chamber = 'Senato';
-    $members = 'senators';
-    $source  = 'http://www.senato.it/';
-  }
+  if(!isset($years)) $years = '2015-2018';
 
   $y = array(
-    '1996-2001' => '1996&mdash;2001',
-    '2001-2006' => '2001&mdash;2006',
-    '2006-2008' => '2006&mdash;2008',
-    '2008-2013' => '2008&mdash;2013',
-    '2013-2018' => '2013&mdash;');
+    '2009-2013' => '2009&mdash;2013',
+    '2013-2015' => '2013&mdash;2015',
+    '2015-2018' => '2015&mdash;'
+  );
 
   $c = $y;
 
@@ -36,17 +18,9 @@
 
   $c[ $years ] = 'here';
 
-  // ongoing legislature
-  $be = 'was';
-  if($years == '2013-2018') $be = 'is';
-
-  $have = 'had';
-  if($years == '2013-2018') $have = 'has had';
-
-  // initial box
   $box =
-    '<p>This graph shows Italian ' . str_replace('<abbr title="Members of Parliament">MPs</abbr>', 'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) .
-    ' during years ' . $y[ $years ] . '. ' . 'A link between two ' . $members . ' indicates that they cosponsored at least one bill together.</p>' .
+    '<p>This graph shows Israeli Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $y[ $years ] . '. ' .
+    'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they have cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
     'that connect the first author of each bill to its cosponsor(s). The /nodes nodes are sized proportionally to their ' .
@@ -58,14 +32,14 @@
 <html>
 <head>
   <title>
-    Cosponsorship networks in the Italian Parliament:
-    <?php echo $chamber; ?>, years <?php echo $years; ?>
+    Cosponsorship networks in the Israeli Parliament, years
+    <?php echo $years; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
   <link rel="stylesheet" type="text/css" href="../assets/styles.css" />
   <link rel="stylesheet" type="text/css" href="../assets/font-awesome-4.4.0/css/font-awesome.min.css">
-  <style type="text/css" media="screen">body { background: #111; }</style>
+  <style type="text/css" media="screen">body { background: url(hemicycle.jpg) no-repeat; }</style>
   <script type="text/javascript" src="../assets/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="../assets/jquery.smart_autocomplete.min.js"></script>
   <script type="text/javascript" src="../assets/sigmajs-release-v1.0.3/sigma.min.js"></script>
@@ -76,27 +50,23 @@
 
 <div id="sigma-container">
 
-  <div id="controls" class="bg_gr">
+  <div id="controls" class="bg_an">
 
-    <h1>italian parliament</h1>
+    <h1>Israeli parliament</h1>
 
     <h2>
-      <a href="<?php echo $source; ?>" title="<?php echo $chamber; ?>">
-        <img src="logo_<?php echo $ch; ?>.png" height="25" alt="logo">
-      </a>
-      &nbsp;<?php echo $chamber . ', ' . $y[ $years ]; ?>
+      <a href="http://www.knesset.gov.il/" title="Knesset">
+      <img src="logo_il.png" height="18" alt="logo"></a>&nbsp;
+      Knesset, <?php echo $y[ $years ]; ?>
     </h2>
 
     <!-- graph selector -->
     <nav>
-      Chamber&nbsp;&nbsp;
-      <a href="?chamber=ca&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'ca') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
-      <a href="?chamber=se&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper</a><br>
       Legislature
-        <?php
-        foreach ($y as $i => $j)
-          echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
-        ?>
+      <?php
+      foreach ($y as $i => $j)
+        echo '&nbsp;&nbsp; <a href="?years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+      ?>
     </nav>
 
     <!-- user search field -->
@@ -142,7 +112,7 @@
 
       <!-- tweet -->
       <p>
-        <a href="http://twitter.com/share?text=Cosponsorship%20networks%20in%20the%20@<?php if($ch == 'ca') echo 'Montecitorio'; else echo 'SenatoStampa'; ?>%20-%20Italian%20Parliament%20-%20using%20%23rstats%20and%20@sigmajs,%20by%20@phnk:&amp;url=<?php echo 'http://' . $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>" class="button" title="Share this page on Twitter."><i class="fa fa-twitter"></i>&nbsp;Tweet</a>&nbsp;&nbsp;
+        <a href="http://twitter.com/share?text=Cosponsorship%20networks%20in%20the%20@KnessetIL%20-%20Israeli%20Parliament%20-%20using%20%23rstats%20and%20@sigmajs,%20by%20@phnk:&amp;url=<?php echo 'http://' . $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>" class="button" title="Share this page on Twitter."><i class="fa fa-twitter"></i>&nbsp;Tweet</a>&nbsp;&nbsp;
         <a href="https://github.com/briatte/parlviz" class="button" title="Get the visualization code from GitHub."><i class="fa fa-github"></i>&nbsp;Code</a>
       </p>
 
@@ -150,16 +120,23 @@
       <ul>
         <li>
           Data from
-          <a href="<?php echo $source ?>"><?php echo str_replace(array('http://', 'www.', '/'), '', $source) ?></a>
+          <a href="https://oknesset.org/">oknesset.org</a> and
+          <a href="http://main.knesset.gov.il/">knesset.gov.il</a>
           (summer 2015)
+        </li>
+        
+        <li>
+          Background photo by
+          <a href="https://en.wikipedia.org/wiki/File:PikiWiki_Israel_7260_Knesset-Room.jpg" title="Original photograph by Itzik Edri">Itzik Edri</a>
+          (Wikimedia)
         </li>
 
         <li>
           Download&nbsp;&nbsp;
           <i class="fa fa-file-o"></i>&nbsp;&nbsp;
-          <a href="net_it_<?php echo $ch . $years; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
+          <a href="<?php echo 'net_il' . $years; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
           <i class="fa fa-files-o"></i>&nbsp;&nbsp;
-          <a href="net_it_<?php echo $ch; ?>.zip" title="Download all <?php echo $chamber; ?> graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
+          <a href="net_il.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
           <i class="fa fa-file-image-o"></i>&nbsp;&nbsp;
           <a href="plots.html">plots</a>
         </li>
@@ -179,8 +156,8 @@
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
           <li><a href="/parlviz/oireachtas">Ireland</a></li>
-          <li><a href="/parlviz/knesset">Israel</a></li>
-          <!-- <li><a href="/parlviz/parlamento">Italy</a></li> -->
+          <!-- <li><a href="/parlviz/knesset">Israel</a></li> -->
+          <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
           <li><a href="/parlviz/assembleia">Portugal</a></li>
@@ -193,10 +170,11 @@
       </div>
 
     </footer>
+
     <div id="graph-container"></div>
   </div>
 
-  <div id="box" class="bg_gr">
+  <div id="box" class="bg_an">
     <?php echo $box; ?>
   </div>
 
@@ -211,7 +189,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the Italian Parliament: ', 'net_it_').replace('Camera', 'ca').replace('Senato', 'se').replace(', years ', '') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the Israeli Parliament, years ', 'net_il') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -239,7 +217,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  document.title.replace('Cosponsorship networks in the Italian Parliament: ', 'net_it_').replace('Camera', 'ca').replace('Senato', 'se').replace(', years ', '') + '.gexf',
+  document.title.replace('Cosponsorship networks in the Israeli Parliament, years ', 'net_il') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -253,22 +231,12 @@ sigma.parsers.gexf(
     });
 
     // box
-    var parties = [ "P. Rifondazione Comunista", "P. Comunisti Italiani", "Sinistra Democratica",
-      "Sinistra Ecologia Libertà", "Verdi e Communisti", "Verdi", "Democratici di Sinistra",
-      "Movimento 5 Stelle", "Partito Democratico", "L'Ulivo", "Autonomie, PSI e MAIE",
-      "Rosa nel Pugno", "Margherita", "I Democratici", "Partito Popolare Italiano",
-      "Italia dei Valori", "Rinnovamento Italiano", "Popolari-UDEUR", "Südtiroler Volkspartei",
-      "Democrazia Cristiana per le Autonomie e Nuovo PSI", // "Per l'Italia", 
-      "Liberal-Democratici, Repubblicani e Nuovo PSI", 
-      "UDC, SVP e Autonomie", "Centro Cristiano Democratico", "CCD-CDU: Biancofiore",
-      "Scelta Civica con Monti", "Centro Democratico", "Unione di Centro", "Cristiani Democratici Uniti",
-      "Movimento per l'Autonomia", "Movimento per le Autonomie", "Grandi Autonomie e Libertà",
-      "Alleanza Liberalpopolare-Autonomie", "Area Popolare", "Conservatori, Riformisti italiani",
-      "Forza Italia",
-      "Il Popolo della Libertà", // "Nuovo Centrodestra",
-      "Fratelli d'Italia", "Lega Nord", "Alleanza Nazionale", 
-      "linguistic minorities", "mixed or minor group" ];
+    var parties = [ 'Balad', 'Joint List', 'Hadash', 'Meretz', 'Independence', 
+  'Labour Party', 'Zionist Union', 'Hatnuah', 'Kadima', 'Kulanu', 
+  'Yesh Atid', 'Likud', 'United Torah Judaism', 'Shas', 'The Jewish Home', 
+  'Yisrael Beiteinu', 'National Union', 'United Arab List' ];
     var colors = new Array(parties.length);
+
 
     // initial nodes
     s.graph.nodes().forEach(function(n) {
@@ -318,8 +286,7 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="' + e.data.node.attributes['url'] +
-        '" title="Go to profile (<?php echo $chamber; ?>, new window)" target="_blank">';
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (Open Knesset, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
@@ -332,25 +299,11 @@ sigma.parsers.gexf(
       // name and party
       var id = profile + e.data.node.label + '</a> <span title="Political party affiliation(s)" style="color:' + rgba.replace('0.25)', '1)') + ';">(' + e.data.node.attributes['party'] + ')</span>';
 
-      // constituency
-      var constituency = '';
-      if(e.data.node.attributes['constituency'] == 'Senatore_a_vita')
-        constituency = ' <a title="Go to Wikipedia Italiano entry (new window)" target="_blank" href="https://it.wikipedia.org/wiki/' + 
-          e.data.node.attributes['constituency'] + '" >elected for life</a>';
-      else if(typeof e.data.node.attributes['constituency'] != 'undefined')
-        constituency = ' representing <a title="Go to Wikipedia Italiano entry (new window)" target="_blank" href="https://it.wikipedia.org/wiki/' + 
-          e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
-
-      // activity stats
-      var stat = ' who <?php echo $have; ?> <span title="unweighted total degree">' +
-        s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' + e.data.node.attributes['n_bills'] + ' bill(s) during the legislature.</p>';
-
-      if(document.title.match('Camera'))
-        document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
-        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr>' + constituency + stat;
-      else
-        document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
-        photo + 'You selected ' + id + ', a senator' + constituency + stat;
+      // selection text
+      document.getElementById('box').innerHTML = '<p style="min-height: 150px; background:' + rgba + ';">' +
+        photo + 'You selected ' + id + ', an <abbr title="Member of Parliament">MP</abbr> ' +
+        ' who had <span title="unweighted total degree">' + s.graph.getNeighborsCount(nodeId) +
+        ' cosponsor(s)</span> on ' + e.data.node.attributes['n_bills'] + ' bill(s) during the legislature.</p>';
 
       // Since the data has been modified, we need to
       // call the refresh method to make the colors

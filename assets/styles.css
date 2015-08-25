@@ -240,9 +240,17 @@ footer small a {
 
 #about li {
   list-style-type: none;
-  padding: .2em .2em;
+  padding: .25em .2em;
   margin: 0;
+  line-height: 133%;
+  text-align: left;
 }
+
+#about li a {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
 
 #about:hover ul {
   display: block;
@@ -258,18 +266,6 @@ footer small a {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 3px;
-}
-
-#about li {
-  line-height: 133%;
-  text-align: left;
-  padding-bottom: .4em;
-  padding-right: .4em;
-}
-
-#about li a {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 
 /* -----------------------------------------------------------------------------

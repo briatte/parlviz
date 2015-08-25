@@ -153,6 +153,7 @@
           <li><a href="/parlviz/orszaggyules">Hungary</a></li>
           <li><a href="/parlviz/althing">Iceland</a></li>
           <li><a href="/parlviz/oireachtas">Ireland</a></li>
+          <li><a href="/parlviz/knesset">Israel</a></li>
           <li><a href="/parlviz/parlamento">Italy</a></li>
           <li><a href="/parlviz/seimas">Lithuania</a></li>
           <li><a href="/parlviz/stortinget">Norway</a></li>
