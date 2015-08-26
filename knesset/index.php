@@ -52,7 +52,7 @@
 
   <div id="controls" class="bg_an">
 
-    <h1>Israeli parliament</h1>
+    <h1>israeli parliament</h1>
 
     <h2>
       <a href="http://www.knesset.gov.il/" title="Knesset">

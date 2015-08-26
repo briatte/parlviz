@@ -1,11 +1,21 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
+
 body {
   color: #333;
-  font: 18px/200% Roboto, Helvetica, Arial, sans-serif;
+  font: 18px/200% "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-weight: 400;
   padding: 2em 0;
 }
 
-a, h1, h2 { color: #000; font-weight: 500; }
+a, h1, h2 {
+  color: #000;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+}
 
 a.box {
   display: block;
@@ -13,15 +23,20 @@ a.box {
   float: left;
   text-align: center;
   text-decoration: none;
-  border: 1px solid white;
+  border: 1px solid #fff;
 }
 
-a.box:hover { border-color: #999; }
+a.box:hover { border-color: #ccc; }
+
+a.box img {
+  width: 210px;
+  height: 210px;
+}
 
 p, h1, h2, dl {
   clear: left;
   margin: 9px auto;
-  max-width:1200px;
+  max-width:1000px;
 }
 
 h1, h2 {
