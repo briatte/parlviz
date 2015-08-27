@@ -1,0 +1,81 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>gukhoe</title>
+  <meta name="author" content="François Briatte">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet" type="text/css">
+  <link href="../assets/plots.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <h1>
+    Each network shows bill cosponsorships in the <a href="http://korea.na.go.kr/">South Korean Parliament</a>.
+  </h1>
+
+  <p>
+    The data, which come from <a href="http://en.pokr.kr/">Politics in Korea</a> by <a href="http://popong.com/">Team Popong</a>, cover years 1950&mdash;2015 of both chambers and are split by legislature. 
+  </p>
+
+  <p>
+    All networks are directed graphs drawn with the <a href="http://cs.wellesley.edu/~cs315/Papers/Kamada-Graph%20Drawing.pdf">Kamada-Kawai</a> force-directed algorithm. 
+    The ties connect the first author of each bill to the cosponsors of that bill. 
+    Importantly, because there are many, many different political parties, only those with 5 or more members are given a <strong style="color: #900;">random color in each legislature.</strong> 
+    Parties with less than 5 members are shown in light grey, and independents are shown in dark grey. Click on the graph to see the (sometimes abbreviated) names of the parties.
+  </p>
+
+  <p>
+    Similar graphs are available for <a href="/parlviz">other countries</a>.
+  </p>
+  
+  <p>
+    <!-- <a class="box" href="plots/net_kr1.pdf"><abbr title="Legislature">L.</abbr>&nbsp;1<br />
+      <img alt="preview" src="plots/net_kr1.jpg" /></a> -->
+    <a class="box" href="plots/net_kr2.pdf"><abbr title="Legislature">L.</abbr>&nbsp;2 (1950–1954)<br />
+      <img alt="preview" src="plots/net_kr2.jpg" /></a>
+    <a class="box" href="plots/net_kr3.pdf"><abbr title="Legislature">L.</abbr>&nbsp;3 (1954–1958)<br />
+      <img alt="preview" src="plots/net_kr3.jpg" /></a>
+    <a class="box" href="plots/net_kr4.pdf"><abbr title="Legislature">L.</abbr>&nbsp;4 (1958–1960)<br />
+      <img alt="preview" src="plots/net_kr4.jpg" /></a>
+    <a class="box" href="plots/net_kr5.pdf"><abbr title="Legislature">L.</abbr>&nbsp;5 (1960–1963)<br />
+      <img alt="preview" src="plots/net_kr5.jpg" /></a>
+    <a class="box" href="plots/net_kr6.pdf"><abbr title="Legislature">L.</abbr>&nbsp;6 (1963–1967)<br />
+      <img alt="preview" src="plots/net_kr6.jpg" /></a>
+    <a class="box" href="plots/net_kr7.pdf"><abbr title="Legislature">L.</abbr>&nbsp;7 (1967–1971)<br />
+      <img alt="preview" src="plots/net_kr7.jpg" /></a>
+    <a class="box" href="plots/net_kr8.pdf"><abbr title="Legislature">L.</abbr>&nbsp;8 (1971–1973)<br />
+      <img alt="preview" src="plots/net_kr8.jpg" /></a>
+    <a class="box" href="plots/net_kr9.pdf"><abbr title="Legislature">L.</abbr>&nbsp;9 (1973–1978)<br />
+      <img alt="preview" src="plots/net_kr9.jpg" /></a>
+    <a class="box" href="plots/net_kr10.pdf"><abbr title="Legislature">L.</abbr>&nbsp;10 (1978–1981)<br />
+      <img alt="preview" src="plots/net_kr10.jpg" /></a>
+    <a class="box" href="plots/net_kr11.pdf"><abbr title="Legislature">L.</abbr>&nbsp;11 (1981–1985)<br />
+      <img alt="preview" src="plots/net_kr11.jpg" /></a>
+    <a class="box" href="plots/net_kr12.pdf"><abbr title="Legislature">L.</abbr>&nbsp;12 (1985–1988)<br />
+      <img alt="preview" src="plots/net_kr12.jpg" /></a>
+    <a class="box" href="plots/net_kr13.pdf"><abbr title="Legislature">L.</abbr>&nbsp;13 (1988–1992)<br />
+      <img alt="preview" src="plots/net_kr13.jpg" /></a>
+    <a class="box" href="plots/net_kr14.pdf"><abbr title="Legislature">L.</abbr>&nbsp;14 (1992–1996)<br />
+      <img alt="preview" src="plots/net_kr14.jpg" /></a>
+    <a class="box" href="plots/net_kr15.pdf"><abbr title="Legislature">L.</abbr>&nbsp;15 (1996–2000)<br />
+      <img alt="preview" src="plots/net_kr15.jpg" /></a>
+    <a class="box" href="plots/net_kr16.pdf"><abbr title="Legislature">L.</abbr>&nbsp;16 (2000–2004)<br />
+      <img alt="preview" src="plots/net_kr16.jpg" /></a>
+    <a class="box" href="plots/net_kr17.pdf"><abbr title="Legislature">L.</abbr>&nbsp;17 (2004–2008)<br />
+      <img alt="preview" src="plots/net_kr17.jpg" /></a>
+    <a class="box" href="plots/net_kr18.pdf"><abbr title="Legislature">L.</abbr>&nbsp;18 (2008–2012)<br />
+      <img alt="preview" src="plots/net_kr18.jpg" /></a>
+    <a class="box" href="plots/net_kr19.pdf"><abbr title="Legislature">L.</abbr>&nbsp;19 (2012–)<br />
+      <img alt="preview" src="plots/net_kr19.jpg" /></a>
+  <p>
+    
+  </p>
+
+  <p>
+    <a href="https://github.com/briatte/gukhoe"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  </p>
+
+</body>
+</html>
