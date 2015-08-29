@@ -232,16 +232,8 @@ sigma.parsers.gexf(
       'Akce nespokojených občanů', 'Věci veřejné' ,'Tradice Odpovědnost Prosperita', 'Úsvit přímé demokracie', 'Republikáni Miroslava Sládka'];
     var colors = new Array(parties.length);
 
-    // these characters refused to export properly from R
-    String.prototype.fixEncoding = function() {
-      return this.replace(new RegExp('\u0165', 'g'), 'ť').replace(new RegExp('\u008A', 'g'), 'Š').replace(new RegExp('\u009A', 'g'), 'š').replace(new RegExp('\u008E', 'g'), 'Ž').replace(new RegExp('\u009E', 'g'), 'ž');
-    };
-
     // initial nodes
     s.graph.nodes().forEach(function(n) {
-      // fix unresolved encoding issues
-      n.label = n.label.fixEncoding();
-      n.attributes['constituency'] = n.attributes['constituency'].fixEncoding();
       // find party colors
       if(parties.indexOf(n.attributes['party']) != -1)
         colors[ jQuery.inArray(n.attributes['party'], parties) ] = n.color;
