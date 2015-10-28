@@ -1,3 +1,5 @@
+/* -- overall formatting ---------------------------------------------------- */
+
 body {
   color: #333;
   font: 18px/200% "Source Sans Pro", Helvetica, Arial, sans-serif;
@@ -9,6 +11,8 @@ a, h1, h2 {
   color: #000;
   font-weight: 600;
 }
+
+/* -- links and images ------------------------------------------------------ */
 
 a {
   text-decoration: none;
@@ -31,10 +35,12 @@ a.box img {
   height: 210px;
 }
 
+/* -- blocks and lists ------------------------------------------------------ */
+
 p, h1, h2, dl {
   clear: left;
   margin: 9px auto;
-  max-width:1000px;
+  max-width: 1000px;
 }
 
 h1, h2 {
