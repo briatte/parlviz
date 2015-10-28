@@ -143,7 +143,7 @@
           <li><a href="/parlviz/nationalrat">Austria</a></li>
           <li><a href="/parlviz/belparl">Belgium</a></li>
           <li><a href="/parlviz/bgparl">Bulgaria</a></li>
-          <li><a href="/parlviz/poslanecka">Czech Republic</a></li>
+          <li><a href="/parlviz/parlament">Czech Republic</a></li>
           <li><a href="/parlviz/folketinget">Denmark</a></li>
           <li><a href="/parlviz/epam">European Union</a></li>
           <li><a href="/parlviz/eduskunta">Finland</a></li>
