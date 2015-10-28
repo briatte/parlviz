@@ -1,9 +1,26 @@
 <?php
 
-  if(count($_GET) > 0 & !empty($_GET['years'])) $years = basename($_GET['years']);
+  if(count($_GET) > 0) {
+    if(!empty($_GET['years'])) $years = basename($_GET['years']);
+    if(!empty($_GET['chamber'])) $ch = basename($_GET['chamber']);
+  }
 
   // default legislature
   if(!isset($years)) $years = '2013-2017';
+
+  // default chamber
+  if(!isset($ch)) $ch = 'po';
+  
+  if($ch == 'po') {
+    $chamber = 'Poslanecká sněmovna';
+    $members = '<abbr title="Members of Parliament">MPs</abbr>';
+    $source  = 'http://www.psp.cz/';
+  }
+  else {
+    $chamber = 'Senát';
+    $members = 'senators';
+    $source  = 'http://www.senat.cz/';
+  }
 
   $y = array(
     '1996-1998' => '1996&mdash;1998',
@@ -21,8 +38,8 @@
   $c[ $years ] = 'here';
 
   $box =
-    '<p>This graph shows Czech Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>) during years ' . $y[ $years ] . '. ' .
-    'A link between two <abbr title="Members of Parliament">MPs</abbr> indicates that they have cosponsored at least one bill together.</p>' .
+    '<p>This graph shows Czech ' . str_replace('<abbr title="Members of Parliament">MPs</abbr>', 'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) .
+    ' during years ' . $y[ $years ] . '. ' . 'A link between two ' . $members . ' indicates that they cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
     'that connect the first author of each bill to its cosponsor(s). The /nodes nodes are sized proportionally to their ' .
@@ -35,8 +52,8 @@
 <html>
 <head>
   <title>
-    Cosponsorship networks in the Czech Parliament, years
-    <?php echo $years; ?>
+    Cosponsorship networks in the Czech Parliament:
+    <?php echo $chamber; ?>, years <?php echo $years; ?>
   </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -58,17 +75,21 @@
     <h1>czech parliament</h1>
 
     <h2>
-      <a href="http://www.psp.cz/" title="Parlament České republiky, Poslanecká sněmovna">
-      <img src="logo_cz.png" height="18" alt="logo"></a>&nbsp;
-      Poslanecká sněmovna,&nbsp;<br><?php echo $y[ $years ]; ?>
+      <a href="<?php echo $source; ?>" title="<?php echo $chamber; ?>">
+        <img src="logo_<?php echo $ch; ?>.png" height="25" alt="logo">
+      </a>
+      &nbsp;<?php echo $chamber . ', ' . $y[ $years ]; ?>
     </h2>
 
     <!-- graph selector -->
     <nav>
+      Chamber&nbsp;&nbsp;
+      <a href="?chamber=po&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'po') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
+      <a href="?chamber=se&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper</a><br>
       Legislature
       <?php
       foreach ($y as $i => $j)
-        echo '&nbsp;&nbsp; <a href="?years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
+        echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
       ?>
     </nav>
 
@@ -115,7 +136,7 @@
 
       <!-- tweet -->
       <p>
-        <a href="http://twitter.com/share?text=Cosponsorship%20networks%20in%20the%20@snemovna%20-%20Czech%20Parliament%20-%20using%20%23rstats%20and%20@sigmajs,%20by%20@phnk:&amp;url=<?php echo 'http://' . $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>" class="button" title="Share this page on Twitter."><i class="fa fa-twitter"></i>&nbsp;Tweet</a>&nbsp;&nbsp;
+        <a href="http://twitter.com/share?text=Cosponsorship%20networks%20in%20the%20<?php if($ch == 'po') echo '@snemovna%20-%20Czech%20Parliament%20-'; else echo 'Czech%20Senate'; ?>%20using%20%23rstats%20and%20@sigmajs,%20by%20@phnk:&amp;url=<?php echo 'http://' . $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]; ?>" class="button" title="Share this page on Twitter."><i class="fa fa-twitter"></i>&nbsp;Tweet</a>&nbsp;&nbsp;
         <a href="https://github.com/briatte/parlviz" class="button" title="Get the replication code from GitHub."><i class="fa fa-github"></i>&nbsp;Code</a>
       </p>
 
@@ -123,16 +144,16 @@
       <ul>
         <li>
           Data from
-          <a href="http://www.psp.cz/">psp.cz</a>
-          (summer 2015)
+          <a href="<?php echo $source ?>"><?php echo str_replace(array('http://', 'www.', '/'), '', $source) ?></a>
+          (<?php if($ch == 'po') echo 'summer'; else echo 'autumn'; ?> 2015)
         </li>
 
         <li>
           Download&nbsp;&nbsp;
           <i class="fa fa-file-o"></i>&nbsp;&nbsp;
-          <a href="<?php echo 'net_cz' . $years; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
+          <a href="<?php echo 'net_cz_' . $ch . $years; ?>.gexf" title="Download this graph (GEXF, readable with Gephi)">network</a>&nbsp;&nbsp;
           <i class="fa fa-files-o"></i>&nbsp;&nbsp;
-          <a href="net_cz.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
+          <a href="net_cz_<?php echo $ch; ?>.zip" title="Download all graphs (GEXF, readable with Gephi)">full series</a>&nbsp;&nbsp;
           <i class="fa fa-file-image-o"></i>&nbsp;&nbsp;
           <a href="plots.html">plots</a>
         </li>
@@ -185,7 +206,7 @@ fillBox = function(x, y, z) {
 
   $.ajax({
     type: "GET",
-    url: document.title.replace('Cosponsorship networks in the Czech Parliament, years ', 'net_cz') + '.gexf',
+    url: document.title.replace('Cosponsorship networks in the Czech Parliament: ', 'net_cz_').replace('Poslanecká sněmovna', 'po').replace('Senát', 'se').replace(', years ', '') + '.gexf',
     dataType: "xml",
     success: function(xml) {
       var b = $(xml).find('description').text().replace('legislative cosponsorship network, fruchtermanreingold placement, ', '').replace(' bills', '');
@@ -213,7 +234,7 @@ sigma.classes.graph.addMethod('getNeighborsCount', function(nodeId) {
 });
 
 sigma.parsers.gexf(
-  document.title.replace('Cosponsorship networks in the Czech Parliament, years ', 'net_cz') + '.gexf',
+  document.title.replace('Cosponsorship networks in the Czech Parliament: ', 'net_cz_').replace('Poslanecká sněmovna', 'po').replace('Senát', 'se').replace(', years ', '') + '.gexf',
   { // Here is the ID of the DOM element that
     // will contain the graph:
     container: 'sigma-container'
@@ -227,9 +248,7 @@ sigma.parsers.gexf(
     });
 
     // box
-    var parties = ['Komunistická strana', 'Strana zelených', 'Česká strana sociálně demokratická',
-      'Křesťanská a demokratická unie', 'Občanská demokratická aliance', 'Občanská demokratická strana', 'Unie Svobody–Demokratická unie',
-      'Akce nespokojených občanů', 'Věci veřejné' ,'Tradice Odpovědnost Prosperita', 'Úsvit přímé demokracie', 'Republikáni Miroslava Sládka'];
+    var parties = [ 'Komunistická strana', 'Česká strana sociálně demokratická', 'Strana Práv Občanů', 'Strana zelených', 'Křesťanská a demokratická unie', 'Česká pirátská strana', 'NEZÁVISLÍ', 'Akce nespokojených občanů', 'Věci veřejné', 'SNK Evropští demokraté', 'Čtyřkoalice', 'Občanská demokratická aliance', 'Unie Svobody–Demokratická unie', 'Občanská demokratická strana', 'Tradice Odpovědnost Prosperita', 'Úsvit přímé demokracie', 'Republikáni Miroslava Sládka', 'Nestraníci', 'independent' ];
     var colors = new Array(parties.length);
 
     // initial nodes
@@ -280,7 +299,7 @@ sigma.parsers.gexf(
           e.color = '#333';
       });
 
-      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (Czech Parliament, new window)" target="_blank">';
+      var profile = '<a href="' + e.data.node.attributes['url'] + '" title="Go to profile (<?php echo $chamber; ?>, new window)" target="_blank">';
 
       // transparency
       var rgba = e.data.node.color.replace('0.5)', '0.25)');
