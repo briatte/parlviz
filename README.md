@@ -1,4 +1,4 @@
-This repository contains the code used to produce [interactive visualizations](http://f.briatte.org/parlviz) of legislative cosponsorship networks in [18 European countries](https://github.com/briatte/parlnet) and in the [European Parliament](https://github.com/briatte/epam).
+This repository contains the code used to produce [interactive visualizations](http://f.briatte.org/parlviz) of legislative cosponsorship networks in [18 European countries plus Israel](https://github.com/briatte/parlnet), as well as in the [European Parliament](https://github.com/briatte/epam).
 
 The Javascript code was hacked from [sigma.js / examples / load-external-gexf.html](https://github.com/jacomyal/sigma.js/blob/master/examples/load-external-gexf.html) (parser) and [osdc2012-demo](http://jcml.fr/~jacomyal/osdc2012-demo/) (searchbox) by [Alexis Jacomy](https://github.com/jacomyal).
 
