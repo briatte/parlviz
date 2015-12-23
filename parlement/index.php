@@ -184,6 +184,7 @@
           <li><a href="/parlviz/bgparl">Bulgaria</a></li>
           <li><a href="/parlviz/parlament">Czech Republic</a></li>
           <li><a href="/parlviz/folketinget">Denmark</a></li>
+          <li><a href="/parlviz/riigikogu">Estonia</a></li>
           <li><a href="/parlviz/epam">European Union</a></li>
           <li><a href="/parlviz/eduskunta">Finland</a></li>
           <!-- <li><a href="/parlviz/parlement">France</a></li> -->
