@@ -1,6 +1,6 @@
-This repository contains the code used to produce [interactive visualizations](http://f.briatte.org/parlviz) of [legislative cosponsorship networks](https://github.com/briatte/parlnet).
+This repository contains the code used to build [interactive visualizations and static plots](http://f.briatte.org/parlviz) of [legislative cosponsorship networks](https://github.com/briatte/parlnet).
 
-The Javascript code was hacked from [sigma.js / examples / load-external-gexf.html](https://github.com/jacomyal/sigma.js/blob/master/examples/load-external-gexf.html) (parser) and [osdc2012-demo](http://jcml.fr/~jacomyal/osdc2012-demo/) (searchbox) by [Alexis Jacomy](https://github.com/jacomyal).
+The Javascript code used in the `index.php` files was hacked from [sigma.js / examples / load-external-gexf.html](https://github.com/jacomyal/sigma.js/blob/master/examples/load-external-gexf.html) (parser) and [osdc2012-demo](http://jcml.fr/~jacomyal/osdc2012-demo/) (searchbox) by [Alexis Jacomy](https://github.com/jacomyal).
 
 The [visualization](http://f.briatte.org/parlviz/marsad/) of the [Tunisian Constituent Assembly](https://github.com/briatte/marsad), which is not included in the repository, uses code from the [InteractiveVis project](https://github.com/oxfordinternetinstitute/InteractiveVis/) at the [Oxford Internet Institute](http://blogs.oii.ox.ac.uk/vis/).
 
