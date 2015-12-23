@@ -251,7 +251,7 @@ sigma.parsers.gexf(
       "Free Democratic Party", "Liberal Party",
       "Swiss People's Party", "Conservative Democratic Party",
       "Freedom Party", "Federal Democratic Union", "Ticino League",
-      "Swiss Democrats", "Geneva Citizens Movement", "independent" ];
+      "Geneva Citizens Movement", "Swiss Democrats", "independent" ];
     var colors = new Array(parties.length);
 
     // initial nodes
