@@ -231,7 +231,7 @@ sigma.parsers.gexf(
     });
 
     // box
-    var parties = [ "Eesti Keskerakond", "Sotsiaaldemokraatlik Erakond", "Erakonna Eestimaa Rohelised", "Eesti Vabaerakond", "Eestimaa Rahvalliit", "Eesti Konservatiivne Rahvaerakond", "Eesti Reformierakond", "Erakond Isamaa ja Res Publica Liit" ];
+    var parties = [ "Eesti Keskerakond", "Sotsiaaldemokraatlik Erakond", "Eestimaa Rahvalliit", "Erakonna Eestimaa Rohelised", "Eesti Vabaerakond", "Eesti Konservatiivne Rahvaerakond", "Eesti Reformierakond", "Erakond Isamaa ja Res Publica Liit" ];
     var colors = new Array(parties.length);
 
 
