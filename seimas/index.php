@@ -6,6 +6,9 @@
   if(!isset($years)) $years = '2012-2016';
 
   $y = array(
+    '1992-1996' => '1992&mdash;1996',
+    '1996-2000' => '1996&mdash;2000',
+    '2000-2004' => '2000&mdash;2004',
     '2004-2008' => '2004&mdash;2008',
     '2008-2012' => '2008&mdash;2012',
     '2012-2016' => '2012&mdash;'
@@ -121,7 +124,7 @@
         <li>
           Data from
           <a href="http://www3.lrs.lt/">lrs.lt</a>
-          (summer 2015)
+          (winter 2015)
         </li>
 
         <li>
@@ -225,11 +228,7 @@ sigma.parsers.gexf(
     });
 
     // box
-    var parties = [ 'Lietuvos socialdemokratų partija', 'Lietuvos valstiečių ir žaliųjų sąjunga', 
-      'Darbo partija', 'Lietuvos lenkų rinkimų akcija', 'Naujoji sąjunga (socialliberalai)', 
-      'Tvarka ir teisingumas', 'Tėvynės sąjunga - Lietuvos krikščionys demokratai', 
-      'Liberalų sąjūdis', 'Liberalų ir centro sąjunga', 'Tautos prisikėlimo partija', 
-      'Drąsos kelias', 'independent' ];
+    var parties = [ 'Lietuvos socialdemokratų partija', 'Lietuvos demokratinė darbo partija', 'Lietuvos valstiečių ir žaliųjų sąjunga', 'Naujosios demokratijos partija', 'Darbo partija', 'Lietuvos lenkų rinkimų akcija', 'Naujoji sąjunga (socialliberalai)', 'Lietuvos centro sąjunga', 'Tvarka ir teisingumas', 'Lietuvos Krikščionių demokratų partijos', 'Krikščionių demokratų sąjunga', 'Lietuvos liberalų sąjunga', 'Nuosaikiųjų konservatorių sąjunga', 'Sąjūdžio koalicija', 'Tėvynės sąjunga - Lietuvos krikščionys demokratai', 'Lietuvos laisvės sąjunga', 'Liberalų sąjūdis', 'Liberalų ir centro sąjunga', 'Lietuvių tautininkų sąjunga', 'Tautos prisikėlimo partija', 'Jaunosios Lietuvos', 'Lietuvos politinių kalinių ir terminių sąjunga', 'Drąsos kelias', 'independent' ];
     var colors = new Array(parties.length);
 
 
