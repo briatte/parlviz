@@ -136,7 +136,7 @@
         <li>
           Data from
           <a href="http://www.ft.dk/">folketinget.dk</a>
-          (summer 2015)
+          (winter 2015)
         </li>
 
         <li>
