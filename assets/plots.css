@@ -28,7 +28,21 @@ a.box {
   border: 1px solid #fff;
 }
 
+a.box:after { 
+  color: #fff;
+  font-size: 75%;
+  font-weight: 400;
+  display: block;
+  line-height: 115%;
+  white-space: pre;
+  content: "Click to view PDF version\Awith party codes";
+}
+
 a.box:hover { border-color: #ccc; }
+
+a.box:hover:after { 
+  color: #666;
+}
 
 a.box img {
   width: 210px;
