@@ -11,38 +11,43 @@
   // default chamber
   if(!isset($ch)) $ch = 'ca';
 
-  if($ch == 'ca') {
-    $chamber = 'Camera';
-    $members = '<abbr title="Members of Parliament">MPs</abbr>';
-    $source  = 'http://www.camera.it/';
-  }
-  else {
-    $chamber = 'Senato';
-    $members = 'senators';
-    $source  = 'http://www.senato.it/';
-  }
-
   $y = array(
-    '1996-2001' => '1996&mdash;2001',
+    '1948-1953' => '1948&mdash;1953',
+    '1953-1958' => '1953&mdash;1958',
+    '1958-1963' => '1958&mdash;1963',
+    '1963-1968' => '1963&mdash;1968',
+    '1968-1972' => '1968&mdash;1972',
+    '1972-1976' => '1972&mdash;1976',
+    '1976-1979' => '1976&mdash;1979',
+    '1979-1983' => '1979&mdash;1983',
+    '1983-1987' => '1983&mdash;1987',
+    '1987-1992' => '1987&mdash;1992',
+    '1992-1994' => '1992&mdash;1994',
+    '1994-1996' => '1994&mdash;1996',
+    '1996-2001' => '1996&mdash;2001', # Senato starts here
     '2001-2006' => '2001&mdash;2006',
     '2006-2008' => '2006&mdash;2008',
     '2008-2013' => '2008&mdash;2013',
     '2013-2018' => '2013&mdash;');
-
-  $c = $y;
-
-  foreach ($c as $i => $j)
-    $c[ $i ] = '';
-
-  $c[ $years ] = 'here';
-
-  // ongoing legislature
-  $be = 'was';
-  if($years == '2013-2018') $be = 'is';
-
-  $have = 'had';
-  if($years == '2013-2018') $have = 'has had';
-
+    
+  if($ch == 'ca') {
+    
+    $chamber = 'Camera';
+    $members = '<abbr title="Members of Parliament">MPs</abbr>';
+    $source  = 'http://www.camera.it/';
+    
+  } else {
+    
+    $chamber = 'Senato';
+    $members = 'senators';
+    $source  = 'http://www.senato.it/';
+    
+    // missing graphs
+    $y = array_slice($y, 12);
+    if(!in_array($years, $y)) $years = '1996-2001'; // start at l. 13
+    
+  }
+  
   // initial box
   $box =
     '<p>This graph shows Italian ' . str_replace('<abbr title="Members of Parliament">MPs</abbr>', 'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) .
@@ -94,6 +99,13 @@
       <a href="?chamber=se&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper</a><br>
       Legislature
         <?php
+        $c = $y;
+
+        foreach ($c as $i => $j)
+          $c[ $i ] = '';
+
+        $c[ $years ] = 'here';
+        
         foreach ($y as $i => $j)
           echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
         ?>
@@ -151,7 +163,7 @@
         <li>
           Data from
           <a href="<?php echo $source ?>"><?php echo str_replace(array('http://', 'www.', '/'), '', $source) ?></a>
-          (summer 2015)
+          (winter 2015)
         </li>
 
         <li>
@@ -254,21 +266,25 @@ sigma.parsers.gexf(
     });
 
     // box
-    var parties = [ "P. Rifondazione Comunista", "P. Comunisti Italiani", "Sinistra Democratica",
-      "Sinistra Ecologia Libertà", "Verdi e Communisti", "Verdi", "Democratici di Sinistra",
-      "Movimento 5 Stelle", "Partito Democratico", "L'Ulivo", "Autonomie, PSI e MAIE",
-      "Rosa nel Pugno", "Margherita", "I Democratici", "Partito Popolare Italiano",
-      "Italia dei Valori", "Rinnovamento Italiano", "Popolari-UDEUR", "Südtiroler Volkspartei",
-      "Democrazia Cristiana per le Autonomie e Nuovo PSI", // "Per l'Italia", 
-      "Liberal-Democratici, Repubblicani e Nuovo PSI", 
-      "UDC, SVP e Autonomie", "Centro Cristiano Democratico", "CCD-CDU: Biancofiore",
-      "Scelta Civica con Monti", "Centro Democratico", "Unione di Centro", "Cristiani Democratici Uniti",
-      "Movimento per l'Autonomia", "Movimento per le Autonomie", "Grandi Autonomie e Libertà",
-      "Alleanza Liberalpopolare-Autonomie", "Area Popolare", "Conservatori, Riformisti italiani",
-      "Forza Italia",
-      "Il Popolo della Libertà", // "Nuovo Centrodestra",
-      "Fratelli d'Italia", "Lega Nord", "Alleanza Nazionale", 
-      "linguistic minorities", "mixed or minor group" ];
+    var parties = [ "Democrazia Proletaria", "P. Rifondazione Comunista", "P. Comunisti Italiani", 
+"P. di Unità Proletaria-Democrazia Proletaria", "Sinistra Ecologia Libertà", 
+"P. di Unità Proletaria", "P. Comunista Italiano", "Sinistra Indipendente", 
+"Verdi e Communisti", "Verdi", "Democratici di Sinistra", "Movimento 5 Stelle", 
+"Partito Democratico", "Alleanza dei Progressisti", "L'Ulivo", 
+"P. Socialista Italiano", "Unita' Socialista", "Radicali", "Rosa nel Pugno", 
+"Margherita", "I Democratici", "P. Popolare Italiano", "P. Socialista Democratico Italiano", 
+"Italia dei Valori", "Partito Repubblicano Italiano", "Rinnovamento Italiano", 
+"Popolari-UDEUR", "Democrazia Cristiana", "Centro Cristiano Democratico", 
+"CCD-CDU: Biancofiore", "Scelta Civica per Monti", "Per l'Italia: Centro Democratico", 
+"Unione di Centro", "Unione di Centro, Terzo Polo", "Cristiani Democratici Uniti", 
+"Movimento per le Autonomie", "Popolari per Prodi", "Popolo e Territorio", 
+"Movimento per la Democrazia – La Rete", "Grandi Autonomie e Libertà", 
+"P. Liberale Italiano", "Area Popolare", "Forza Italia (Il Popolo della Liberta')", 
+"Futuro e Libertà per l'Italia, Terzo Polo", "Nuovo Centrodestra", 
+"P. Democratico Italiano di Unità Monarchica", "P. Monarchico Popolare", 
+"Federalisti e Liberaldemocratici", "Lega Nord", "Alleanza Nazionale", 
+"Partito Nazionale Monarchico", "Democrazia Nazionale", "Movimento Sociale Italiano–Destra Nazionale", 
+"mixed or minor group" ];
     var colors = new Array(parties.length);
 
     // initial nodes
@@ -337,13 +353,13 @@ sigma.parsers.gexf(
       var constituency = '';
       if(e.data.node.attributes['constituency'] == 'Senatore_a_vita')
         constituency = ' <a title="Go to Wikipedia Italiano entry (new window)" target="_blank" href="https://it.wikipedia.org/wiki/' + 
-          e.data.node.attributes['constituency'] + '" >elected for life</a>';
+          e.data.node.attributes['constituency'] + '">elected for life</a>';
       else if(typeof e.data.node.attributes['constituency'] != 'undefined')
         constituency = ' representing <a title="Go to Wikipedia Italiano entry (new window)" target="_blank" href="https://it.wikipedia.org/wiki/' + 
           e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
 
       // activity stats
-      var stat = ' who <?php echo $have; ?> <span title="unweighted total degree">' +
+      var stat = ' who had <span title="unweighted total degree">' +
         s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' + e.data.node.attributes['n_bills'] + ' bill(s) during the legislature.</p>';
 
       if(document.title.match('Camera'))
