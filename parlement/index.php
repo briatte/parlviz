@@ -30,8 +30,10 @@
     '2007-2012' => '2007&mdash;2012',
     '2012-2017' => '2012&mdash;');
     
-  if($ch == 'an')
+  if($ch == 'an') {
     unset($y['1993-1997']);
+    if($years == '1993-1997') $years = '2012-2017';
+  }
 
   $c = $y;
 
@@ -94,8 +96,8 @@
     <!-- graph selector -->
     <nav>
       Chamber&nbsp;&nbsp;
-      <a href="?chamber=an&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'an') echo 'here'; ?>">National Assembly</a>&nbsp;&nbsp;
-      <a href="?chamber=se&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Senate</a><br>
+      <a href="?chamber=an&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'an') echo 'here'; ?>">Lower</a>&nbsp;&nbsp;
+      <a href="?chamber=se&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper</a><br>
       Legislature
         <?php
         foreach ($y as $i => $j)
