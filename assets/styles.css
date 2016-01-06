@@ -3,7 +3,7 @@
 ----------------------------------------------------------------------------- */
 
 html, body {
-  font: 24px/150% "Source Sans Pro", sans-serif;
+  font: 23px/150% "Source Sans Pro", sans-serif;
   color: #fff;
   margin: 0;
   padding: 0;
@@ -227,7 +227,7 @@ footer small a {
   left: 0;
   color: #999;
   margin: 0;
-  font-size: 150%;
+  font-size: 160%;
   float: right;
 }
 
