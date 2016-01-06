@@ -11,23 +11,6 @@
   // default chamber
   if(!isset($ch)) $ch = 'ch';
 
-  // start Senate at l. 49
-  if($ch == 'se' & $years == '1991-1995') $years = '1995-1999';
-  
-  // stop Senate at l. 43
-  if($ch == 'se' & $years == '2014-2019') $years = '2010-2014';
-
-  if($ch == 'ch') {
-    $chamber = 'Chambre';
-    $members = '<abbr title="Members of Parliament">MPs</abbr>';
-    $source  = 'http://www.lachambre.be/';
-  }
-  else {
-    $chamber = 'Sénat';
-    $members = 'senators';
-    $source  = 'http://www.senate.be/';
-  }
-
   $y = array(
     // '47' => '1988&mdash;1991',
     '1991-1995' => '1991&mdash;1995',
@@ -38,23 +21,33 @@
     '2010-2014' => '2010&mdash;2014',
     '2014-2019' => '2014&mdash;');
 
-  $c = $y;
-
-  foreach ($c as $i => $j)
-    $c[ $i ] = '';
-
-  $c[ $years ] = 'here';
-
-  // ongoing legislature
-  $be = 'was';
-  if($years == '2014-2019') $be = 'is';
-
-  $have = 'had';
-  if($years == '2014-2019') $have = 'has had';
-
+  if($ch == 'ch') {
+    
+    $chamber = 'Chambre';
+    $members = '<abbr title="Members of Parliament">MPs</abbr>';
+    $source  = 'http://www.lachambre.be/';
+    
+  } else {
+    
+    $chamber = 'Sénat';
+    $members = 'senators';
+    $source  = 'http://www.senate.be/';
+    
+    // missing graph: start at l. 49
+    unset($y['1991-1995']);
+    if($years == '1991-1995') $years = '1995-1999';
+    
+    // missing graph: stop at l. 53
+    unset($y['2014-2019']);
+    if($years == '2014-2019') $years = '2010-2014';
+    
+  }
+  
   // initial box
   $box =
-    '<p>This graph shows Belgian ' . str_replace('<abbr title="Members of Parliament">MPs</abbr>', 'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) .
+    '<p>This graph shows Belgian ' . 
+      str_replace('<abbr title="Members of Parliament">MPs</abbr>',
+                  'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) .
     ' during years ' . $y[ $years ] . '. ' .
     'A link between two ' . $members . ' indicates that they cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .
@@ -102,8 +95,14 @@
       <a href="?chamber=se&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper</a><br>
       Legislature
         <?php
+        $c = $y;
+
+        foreach ($c as $i => $j)
+          $c[ $i ] = '';
+
+        $c[ $years ] = 'here';
+        
         foreach ($y as $i => $j)
-          if($ch != 'se' || ($ch == 'se' & $i != '1991-1995' & $i != '2014-2019'))
             echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
         ?>
     </nav>
@@ -341,7 +340,7 @@ sigma.parsers.gexf(
           e.data.node.attributes['constituency'] + '">' + e.data.node.attributes['constituency'].replace(new RegExp('_', 'g'), ' ') + '</a>';
 
       // activity stats
-      var stat = ' who <?php echo $have; ?> <span title="unweighted total degree">' +
+      var stat = ' who had <span title="unweighted total degree">' +
         s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' +
         e.data.node.attributes['n_bills'] + ' bill(s) during the legislature.</p>';
 

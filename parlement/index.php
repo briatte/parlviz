@@ -11,16 +11,6 @@
   // default chamber
   if(!isset($ch)) $ch = 'an';
 
-  if($ch == 'an') {
-    $chamber = 'Assemblée nationale';
-    $members = '<abbr title="Members of Parliament">MPs</abbr>';
-    $source  = 'http://www.assemblee-nationale.fr/';
-  } else {
-    $chamber = 'Sénat';
-    $members = 'senators';
-    $source  = 'http://data.senat.fr/';
-  }
-
   $y = array(
     '1986-1988' => '1986&mdash;1988',
     '1988-1993' => '1988&mdash;1993',
@@ -29,29 +19,30 @@
     '2002-2007' => '2002&mdash;2007',
     '2007-2012' => '2007&mdash;2012',
     '2012-2017' => '2012&mdash;');
-    
+
   if($ch == 'an') {
+    
+    $chamber = 'Assemblée nationale';
+    $members = '<abbr title="Members of Parliament">MPs</abbr>';
+    $source  = 'http://www.assemblee-nationale.fr/';
+    
+    // missing graph
     unset($y['1993-1997']);
     if($years == '1993-1997') $years = '2012-2017';
+    
+  } else {
+    
+    $chamber = 'Sénat';
+    $members = 'senators';
+    $source  = 'http://data.senat.fr/';
+    
   }
-
-  $c = $y;
-
-  foreach ($c as $i => $j)
-    $c[ $i ] = '';
-
-  $c[ $years ] = 'here';
-
-  // ongoing legislature
-  $be = 'was';
-  if($years == '14') $be = 'is';
-
-  $have = 'had';
-  if($years == '14') $have = 'has had';
 
   // initial box
   $box =
-    '<p>This graph shows French ' . str_replace('<abbr title="Members of Parliament">MPs</abbr>', 'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) . 
+    '<p>This graph shows French ' . 
+      str_replace('<abbr title="Members of Parliament">MPs</abbr>', 
+                  'Members of Parliament (<abbr title="Members of Parliament">MPs</abbr>)', $members) . 
     ' during years ' . $y[ $years ] . '. A link between two ' . $members . ' indicates that they cosponsored at least one bill together.</p>' .
     '<div id="details"><h3><i class="fa fa-cube"></i> Details</h3>' .  
     '<p>The network is based on /bills cosponsored bills. It contains /edges directed edges ' .
@@ -100,6 +91,13 @@
       <a href="?chamber=se&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper</a><br>
       Legislature
         <?php
+        $c = $y;
+
+        foreach ($c as $i => $j)
+          $c[ $i ] = '';
+
+        $c[ $years ] = 'here';
+        
         foreach ($y as $i => $j)
           echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
         ?>

@@ -11,17 +11,6 @@
   // default chamber
   if(!isset($ch)) $ch = 'ca';
 
-  if($ch == 'ca') {
-    $chamber = 'Camera Deputaților';
-    $members = '<abbr title="Members of Parliament">MPs</abbr>';
-    $source  = 'http://www.cdep.ro/';
-  }
-  else {
-    $chamber = 'Senat';
-    $members = 'senators';
-    $source  = 'http://www.senat.ro/';
-  }
-
   $y = array(
     '1996-2000' => '1996&mdash;2000',
     '2000-2004' => '2000&mdash;2004',
@@ -29,19 +18,19 @@
     '2008-2012' => '2008&mdash;2012',
     '2012-2016' => '2012&mdash;');
 
-  $c = $y;
-
-  foreach ($c as $i => $j)
-    $c[ $i ] = '';
-
-  $c[ $years ] = 'here';
-
-  // ongoing legislature
-  $be = 'was';
-  if($years == '2012-2016') $be = 'is';
-
-  $have = 'had';
-  if($years == '2012-2016') $have = 'has had';
+  if($ch == 'ca') {
+    
+    $chamber = 'Camera Deputaților';
+    $members = '<abbr title="Members of Parliament">MPs</abbr>';
+    $source  = 'http://www.cdep.ro/';
+    
+  } else {
+    
+    $chamber = 'Senat';
+    $members = 'senators';
+    $source  = 'http://www.senat.ro/';
+    
+  }
 
   // initial box
   $box =
@@ -98,6 +87,13 @@
       <a href="?chamber=se&amp;years=<?php echo $years; ?>" class="<?php if($ch == 'se') echo 'here'; ?>">Upper</a><br>
       Legislature
         <?php
+        $c = $y;
+
+        foreach ($c as $i => $j)
+          $c[ $i ] = '';
+
+        $c[ $years ] = 'here';
+        
         foreach ($y as $i => $j)
           echo '&nbsp;&nbsp; <a href="?chamber=' . $ch . '&amp;years=' . $i . '" class="' . $c[ $i ] . '">' . $j . '</a>';
         ?>
@@ -337,7 +333,7 @@ sigma.parsers.gexf(
         id = id.replace('(Ethnic/Linguistic minorities)', '').replace('</a> <', '</a><');
       
       // activity stats
-      var stat = ' who <?php echo $have; ?> <span title="unweighted total degree">' +
+      var stat = ' who had <span title="unweighted total degree">' +
         s.graph.getNeighborsCount(nodeId) + ' cosponsor(s)</span> on ' +
         e.data.node.attributes['n_bills'] + ' bill(s) during the legislature.</p>';
 
