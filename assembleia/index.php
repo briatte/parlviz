@@ -125,7 +125,7 @@
         <li>
           Data from
           <a href="http://www.parlamento.pt/">parlamento.pt</a>
-          (summer 2015)
+          (winter 2015)
         </li>
 
         <li>

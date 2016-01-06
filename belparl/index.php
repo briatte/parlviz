@@ -159,7 +159,7 @@
         <li>
           Data from
           <a href="<?php echo $source ?>"><?php echo str_replace(array('http://', 'www.', '/'), '', $source) ?></a>
-          (summer 2015)
+          (winter 2015)
         </li>
 
         <li>

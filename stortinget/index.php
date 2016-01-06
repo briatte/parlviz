@@ -126,7 +126,7 @@
           Data from
           <!-- <a href="https://www.stortinget.no/">stortinget.no</a> and -->
           <a href="https://data.stortinget.no/">data.stortinget.no</a> 
-          (summer 2015)
+          (winter 2015)
         </li>
 
         <li>

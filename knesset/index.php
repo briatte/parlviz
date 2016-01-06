@@ -122,7 +122,7 @@
           Data from
           <a href="https://oknesset.org/">oknesset.org</a> and
           <a href="http://main.knesset.gov.il/">knesset.gov.il</a>
-          (summer 2015)
+          (winter 2015)
         </li>
         
         <li>

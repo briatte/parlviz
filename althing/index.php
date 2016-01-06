@@ -123,7 +123,7 @@
         <li>
           Data from
           <a href="http://www.althingi.is/">althing.is</a>
-          (summer 2015)
+          (winter 2015)
         </li>
 
         <li>

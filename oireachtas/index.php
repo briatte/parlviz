@@ -142,7 +142,7 @@
         <li>
           Data from
           <a href="http://www.oireachtas.ie/">oireachtas.ie</a>
-          (summer 2015)
+          (winter 2015)
         </li>
 
         <li>

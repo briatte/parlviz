@@ -126,7 +126,7 @@
         <li>
           Data from
           <a href="http://data.riksdagen.se/">data.riksdagen.se</a>
-          (summer 2015)
+          (winter 2015)
         </li>
 
         <li>

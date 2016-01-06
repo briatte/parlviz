@@ -123,7 +123,7 @@
         <li>
           Data from
           <a href="http://www.nrsr.sk/">nrsr.sk</a>
-          (summer 2015)
+          (winter 2015)
         </li>
 
         <li>

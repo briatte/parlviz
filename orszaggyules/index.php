@@ -123,7 +123,7 @@
         <li>
           Data from
           <a href="http://www.parlament.hu/">parlament.hu</a>
-          (summer 2015)
+          (winter 2015)
         </li>
 
         <li>

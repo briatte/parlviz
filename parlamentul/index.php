@@ -151,7 +151,7 @@
         <li>
           Data from 
            <a href="http://www.cdep.ro/">cdep.ro</a> 
-           (summer 2015)
+           (winter 2015)
         </li>
 
         <li>
